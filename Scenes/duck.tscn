@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://lq30jipgbnqm"]
+
+[ext_resource type="Texture2D" uid="uid://b5cf5e22rfc85" path="res://Assets/Sprites/Duckk/Fduck_202510201925_44517.png" id="1_jhtpm"]
+
+[node name="Duck" type="Node2D"]
+
+[node name="DuckSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_jhtpm")

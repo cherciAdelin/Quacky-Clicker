@@ -21,11 +21,11 @@ var main
 @onready var sprite = $egg_sprite
 ##preloads the textures for the egg at the start of the program
 @onready var egg_textures := {
-	100:	preload("res://Assets/Sprites/Egg/Egg_full_202510151033_14760.png"),
-	75:		preload("res://Assets/Sprites/Egg/Egg_cracked1_202510151033_14758.png"),
-	50:		preload("res://Assets/Sprites/Egg/Egg_cracked2_202510151033_14756.png"),
-	25:		preload("res://Assets/Sprites/Egg/Egg_cracked3_202510151033_14755.png"),
-	0:		preload("res://Assets/Sprites/Egg/Egg_broken_202510151033_14751.png"),
+	100:	preload("res://Assets/Sprites/Egg/Egg_full_202510201925_57344.png"),
+	75:		preload("res://Assets/Sprites/Egg/Egg_cracked1_202510201925_57343.png"),
+	50:		preload("res://Assets/Sprites/Egg/Egg_cracked2_202510201925_57339.png"),
+	25:		preload("res://Assets/Sprites/Egg/Egg_cracked3_202510201925_57338.png"),
+	0:		preload("res://Assets/Sprites/Egg/Egg_broken_202510201925_57336.png"),
 }
 
 
