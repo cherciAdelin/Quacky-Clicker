@@ -88,6 +88,5 @@ func animate_tween():
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_OUT)
-	sprite.scale = Vector2(1, 1)
-	tween.tween_property(sprite, "scale", Vector2(0.9, 0.9), 0.08)
-	tween.tween_property(sprite, "scale", Vector2(1, 1), 0.08)
+	tween.tween_property(sprite, "scale", Vector2(0.9, 0.9), 0.1)
+	tween.tween_property(sprite, "scale", Vector2(1, 1), 0.1)

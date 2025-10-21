@@ -22,11 +22,12 @@ func _ready() -> void:
 ## it increases the "Currency" you have and also updates the UI
 func _on_egg_egg_pressed() -> void:
 	points += click_value
+	show_dmg(click_value, $Egg.global_position)
 	update_ui()
 
 ## updates every label on-screen with the latest values
 func update_ui():
-	$UI/Score.text = "Current points: " + str(int(points))
+	$UI/Score.text = "Money: " + str(int(points)) + "$"
 	$UI/Click_val.text = "Click value: " + str(click_value)
 	$UI/Upgrade1.text = "CLICK UPGRADE: " + str(up_cost) + " $$$"
 
@@ -61,3 +62,32 @@ func up_clickval_flat():
 	click_value += up_val
 	up_val += 0.1
 	update_ui()
+
+## Dmg popup function. It first creates the text(var pop), generates a random position
+## loads the font, sets the text to the click value, adds the font and changes the font size
+## sets the position with the "origin" which is the position of the egg then adds the random coordinates
+## changes the color and adds it to the main scene with add_child. After all that it uses tweens for the 
+## popup and fading animations
+func show_dmg(dmg_val: float, origin: Vector2):
+	var pop = Label.new()
+	var pos_x = randf_range(-40, 30)
+	var pos_y = randf_range(-30, 30)
+	var font = FontFile.new()
+	
+	font.load_dynamic_font("res://Assets/Sprites/Fonts/Cute Dino.ttf")
+	pop.text = "+ " + str(dmg_val) + "$"
+	pop.add_theme_font_override("font", font)
+	pop.add_theme_font_size_override("font_size", 46)
+	pop.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
+	pop.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
+	pop.add_theme_constant_override("outline_size", 3)
+	pop.global_position = origin + Vector2(pos_x, pos_y)
+	add_child(pop)
+	
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
+	tween.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(pop, "scale", Vector2.ZERO, 0.5)
+	#tween.tween_property(pop, "modulate:a", 0.0, 0.8)
+	tween.connect("finished", Callable(pop, "queue_free"))
