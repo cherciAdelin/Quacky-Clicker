@@ -1,46 +1,92 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=12 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
+[ext_resource type="Texture2D" uid="uid://d0f7sin7yhnc6" path="res://Assets/Sprites/Other/Window 18_202510222208_40913.png" id="2_344ge"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
-[ext_resource type="Texture2D" uid="uid://b1ypmqcaps6le" path="res://Assets/Sprites/Background/Background_202510201926_32173.png" id="2_kry3j"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="3_8gbba"]
-[ext_resource type="Texture2D" uid="uid://cf8f4rkijtyih" path="res://Assets/Sprites/Other/Pan_202510201925_21784.png" id="3_21xkr"]
+[ext_resource type="Texture2D" uid="uid://bxmw3dl7jlois" path="res://Assets/Sprites/Background/Background_202510222212_34324.png" id="3_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://lq30jipgbnqm" path="res://Scenes/duck.tscn" id="4_21xkr"]
+[ext_resource type="Texture2D" uid="uid://chy8tbkb7mwt8" path="res://Assets/Sprites/Other/Pan_202510222141_26683.png" id="4_hptm8"]
+[ext_resource type="Texture2D" uid="uid://cpgh6rscsjioj" path="res://Assets/Sprites/Other/Scoreboard_202510222140_54062.png" id="5_d1ilt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iyac"]
+atlas = ExtResource("5_d1ilt")
+region = Rect2(305, 1237, 290, 182)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdnlq"]
+atlas = ExtResource("5_d1ilt")
+region = Rect2(300, 1447, 290, 182)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkdf5"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iyac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdnlq")
+}],
+"loop": true,
+"name": &"scoreboard1",
+"speed": 7.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
+
+[node name="RandomDecorations" type="Node2D" parent="."]
+
+[node name="Windows" type="Sprite2D" parent="RandomDecorations"]
+position = Vector2(958, 541)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_344ge")
+
+[node name="Background" type="Sprite2D" parent="RandomDecorations"]
+position = Vector2(957.99994, 540.75006)
+scale = Vector2(1.0002604, 1.0004629)
+texture = ExtResource("3_ynf5e")
+
+[node name="Pan" type="Sprite2D" parent="RandomDecorations"]
+position = Vector2(457.00003, 709)
+scale = Vector2(0.23669347, 0.19071497)
+texture = ExtResource("4_hptm8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RandomDecorations"]
+position = Vector2(188.99998, 123.999985)
+scale = Vector2(1.1241379, 1.1648352)
+sprite_frames = SubResource("SpriteFrames_jkdf5")
+animation = &"scoreboard1"
+autoplay = "scoreboard1"
+frame = 1
+frame_progress = 0.005407557
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0.99999976, 1.000001)
 scale = Vector2(0.1, 0.1)
 anchor_mode = 0
 
-[node name="Background" type="Sprite2D" parent="Camera2D"]
-position = Vector2(9569.998, 5369.999)
-scale = Vector2(10.002604, 9.990739)
-texture = ExtResource("2_kry3j")
-
-[node name="Pan" type="Sprite2D" parent="Camera2D"]
-position = Vector2(11350, 7260)
-scale = Vector2(2.3669348, 1.9071499)
-texture = ExtResource("3_21xkr")
-
 [node name="Egg" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(1109.9999, 623)
-scale = Vector2(0.1, 0.1)
+position = Vector2(438, 588)
+scale = Vector2(0.12, 0.12)
 
 [node name="UI" type="Node2D" parent="."]
 position = Vector2(-2, 6)
 
 [node name="Duck" parent="UI" instance=ExtResource("4_21xkr")]
-position = Vector2(1788, 720)
-scale = Vector2(0.1, 0.1)
+position = Vector2(1673, 628)
+scale = Vector2(0.16, 0.16)
 
 [node name="Score" type="Label" parent="UI"]
-offset_left = 699.0
-offset_top = 312.0
-offset_right = 1243.0
-offset_bottom = 399.0
+offset_left = 64.0
+offset_top = 44.0
+offset_right = 608.0
+offset_bottom = 131.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_8gbba")
@@ -49,10 +95,11 @@ text = "Money:"
 vertical_alignment = 1
 
 [node name="Click_val" type="Label" parent="UI"]
-offset_left = 703.0
-offset_top = 399.0
-offset_right = 969.0
-offset_bottom = 504.0
+offset_left = 64.0
+offset_top = 93.0
+offset_right = 330.0
+offset_bottom = 198.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_8gbba")
@@ -61,10 +108,10 @@ text = "Click value:"
 vertical_alignment = 1
 
 [node name="Upgrade1" type="Button" parent="UI"]
-offset_left = 36.0
-offset_top = 55.0
-offset_right = 283.0
-offset_bottom = 147.0
+offset_left = 1113.0
+offset_top = 661.0
+offset_right = 1360.0
+offset_bottom = 753.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 30

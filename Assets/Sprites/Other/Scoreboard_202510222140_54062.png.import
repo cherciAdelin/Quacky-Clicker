@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf8f4rkijtyih"
-path="res://.godot/imported/Pan_202510201925_21784.png-ef919ed137d36804db44b28c308450b1.ctex"
+uid="uid://cpgh6rscsjioj"
+path="res://.godot/imported/Scoreboard_202510222140_54062.png-a6239bdbd424394ffe059f940873d3f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Other/Pan_202510201925_21784.png"
-dest_files=["res://.godot/imported/Pan_202510201925_21784.png-ef919ed137d36804db44b28c308450b1.ctex"]
+source_file="res://Assets/Sprites/Other/Scoreboard_202510222140_54062.png"
+dest_files=["res://.godot/imported/Scoreboard_202510222140_54062.png-a6239bdbd424394ffe059f940873d3f4.ctex"]
 
 [params]
 

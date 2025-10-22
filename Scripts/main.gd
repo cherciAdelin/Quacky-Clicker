@@ -36,8 +36,8 @@ func update_ui():
 func _on_egg_egg_broken() -> void:
 	eggs_broken += 1
 	points += int(points*0.2)
-	$UI/Score.text = "Congratulations! You have broken " + str(eggs_broken) + " eggs! Bonus points awarded!"
-
+	update_ui()
+	
 	## Upgrade button functions
 
 ## the signal you get when you press the upgrade button
@@ -70,7 +70,7 @@ func up_clickval_flat():
 ## popup and fading animations
 func show_dmg(dmg_val: float, origin: Vector2):
 	var pop = Label.new()
-	var pos_x = randf_range(-40, 30)
+	var pos_x = randf_range(-60, 20)
 	var pos_y = randf_range(-30, 30)
 	var font = FontFile.new()
 	
@@ -88,6 +88,5 @@ func show_dmg(dmg_val: float, origin: Vector2):
 	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
 	tween.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
-	tween.tween_property(pop, "scale", Vector2.ZERO, 0.5)
-	#tween.tween_property(pop, "modulate:a", 0.0, 0.8)
+	tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
 	tween.connect("finished", Callable(pop, "queue_free"))
