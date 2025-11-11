@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpgh6rscsjioj"
-path="res://.godot/imported/Scoreboard_202510222140_54062.png-a6239bdbd424394ffe059f940873d3f4.ctex"
+uid="uid://36hjiipbwtf"
+path="res://.godot/imported/ButtonHover.png-723985f4662e82b6fd08b828677298a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Other/Scoreboard_202510222140_54062.png"
-dest_files=["res://.godot/imported/Scoreboard_202510222140_54062.png-a6239bdbd424394ffe059f940873d3f4.ctex"]
+source_file="res://Assets/Sprites/Other/ButtonHover.png"
+dest_files=["res://.godot/imported/ButtonHover.png-723985f4662e82b6fd08b828677298a0.ctex"]
 
 [params]
 

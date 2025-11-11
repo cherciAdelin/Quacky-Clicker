@@ -25,6 +25,7 @@ func _on_egg_egg_pressed() -> void:
 	show_dmg(click_value, $Egg.global_position)
 	update_ui()
 
+
 ## updates every label on-screen with the latest values
 func update_ui():
 	$UI/Score.text = "Money: " + str(int(points)) + "$"
@@ -90,3 +91,23 @@ func show_dmg(dmg_val: float, origin: Vector2):
 	tween.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
 	tween.connect("finished", Callable(pop, "queue_free"))
+
+
+## the signal you get from the start button in MainMenu scene
+## it zooms in on the house door, screen fades to black then changes the 
+## camera position to the main game and turns the brighness back on
+func _on_main_menu_start_pressed() -> void:
+	var camera = $Camera2D
+	var tint = $UI/ColorRect
+	var tween = create_tween()
+	
+	tween.tween_property(camera, "position", $MainMenu/Door.global_position, 1.0)
+	tween.parallel().tween_property(camera, "zoom", Vector2(3,3), 1.0)
+	tween.parallel().tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1.0)
+	
+	await get_tree().create_timer(1).timeout
+	var tween2 = create_tween()
+	
+	tween2.tween_property(camera, "zoom", Vector2(1, 1), 0.1)
+	tween2.parallel().tween_property(camera, "position", $MainScreen/Background.global_position, 0.1)
+	tween2.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0), 1.0)

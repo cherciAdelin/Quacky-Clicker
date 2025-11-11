@@ -1,104 +1,71 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=7 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
-[ext_resource type="Texture2D" uid="uid://d0f7sin7yhnc6" path="res://Assets/Sprites/Other/Window 18_202510222208_40913.png" id="2_344ge"]
+[ext_resource type="Texture2D" uid="uid://cmr27y5gjqp6x" path="res://Assets/Sprites/Background/Background.png" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://dynayq4ubemnf" path="res://Assets/Sprites/Other/Pan.png" id="3_6bp64"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="3_8gbba"]
-[ext_resource type="Texture2D" uid="uid://bxmw3dl7jlois" path="res://Assets/Sprites/Background/Background_202510222212_34324.png" id="3_ynf5e"]
-[ext_resource type="PackedScene" uid="uid://lq30jipgbnqm" path="res://Scenes/duck.tscn" id="4_21xkr"]
-[ext_resource type="Texture2D" uid="uid://chy8tbkb7mwt8" path="res://Assets/Sprites/Other/Pan_202510222141_26683.png" id="4_hptm8"]
-[ext_resource type="Texture2D" uid="uid://cpgh6rscsjioj" path="res://Assets/Sprites/Other/Scoreboard_202510222140_54062.png" id="5_d1ilt"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6iyac"]
-atlas = ExtResource("5_d1ilt")
-region = Rect2(305, 1237, 290, 182)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fdnlq"]
-atlas = ExtResource("5_d1ilt")
-region = Rect2(300, 1447, 290, 182)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jkdf5"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6iyac")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fdnlq")
-}],
-"loop": true,
-"name": &"scoreboard1",
-"speed": 7.0
-}]
+[ext_resource type="PackedScene" uid="uid://cmvimpsu3c6ub" path="res://Scenes/main_menu.tscn" id="5_6bp64"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
 
-[node name="RandomDecorations" type="Node2D" parent="."]
-
-[node name="Windows" type="Sprite2D" parent="RandomDecorations"]
-position = Vector2(958, 541)
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("2_344ge")
-
-[node name="Background" type="Sprite2D" parent="RandomDecorations"]
-position = Vector2(957.99994, 540.75006)
-scale = Vector2(1.0002604, 1.0004629)
-texture = ExtResource("3_ynf5e")
-
-[node name="Pan" type="Sprite2D" parent="RandomDecorations"]
-position = Vector2(457.00003, 709)
-scale = Vector2(0.23669347, 0.19071497)
-texture = ExtResource("4_hptm8")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RandomDecorations"]
-position = Vector2(188.99998, 123.999985)
-scale = Vector2(1.1241379, 1.1648352)
-sprite_frames = SubResource("SpriteFrames_jkdf5")
-animation = &"scoreboard1"
-autoplay = "scoreboard1"
-frame = 1
-frame_progress = 0.005407557
-
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0.99999976, 1.000001)
+position = Vector2(3128, 539.99994)
 scale = Vector2(0.1, 0.1)
-anchor_mode = 0
+limit_enabled = false
+
+[node name="MainScreen" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="MainScreen"]
+position = Vector2(962, 542)
+scale = Vector2(1.0002604, 1.0004629)
+texture = ExtResource("2_21xkr")
+
+[node name="Other" type="Node2D" parent="MainScreen"]
+
+[node name="Pan" type="Sprite2D" parent="MainScreen/Other"]
+position = Vector2(503, 715)
+scale = Vector2(0.23669347, 0.19071497)
+texture = ExtResource("3_6bp64")
+
+[node name="MainMenu" parent="." instance=ExtResource("5_6bp64")]
+offset_left = 2169.0
+offset_top = 1.0
+offset_right = 2169.0
+offset_bottom = 1.0
 
 [node name="Egg" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(438, 588)
+position = Vector2(443, 609)
 scale = Vector2(0.12, 0.12)
 
-[node name="UI" type="Node2D" parent="."]
-position = Vector2(-2, 6)
-
-[node name="Duck" parent="UI" instance=ExtResource("4_21xkr")]
-position = Vector2(1673, 628)
-scale = Vector2(0.16, 0.16)
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Score" type="Label" parent="UI"]
-offset_left = 64.0
-offset_top = 44.0
-offset_right = 608.0
-offset_bottom = 131.0
+layout_mode = 0
+offset_left = 28.0
+offset_top = 47.0
+offset_right = 525.0
+offset_bottom = 105.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 30
 text = "Money:"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Click_val" type="Label" parent="UI"]
-offset_left = 64.0
-offset_top = 93.0
-offset_right = 330.0
-offset_bottom = 198.0
+layout_mode = 0
+offset_left = 32.0
+offset_top = 158.0
+offset_right = 260.0
+offset_bottom = 233.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -108,15 +75,33 @@ text = "Click value:"
 vertical_alignment = 1
 
 [node name="Upgrade1" type="Button" parent="UI"]
-offset_left = 1113.0
-offset_top = 661.0
-offset_right = 1360.0
-offset_bottom = 753.0
+layout_mode = 0
+offset_left = 1111.0
+offset_top = 667.0
+offset_right = 1358.0
+offset_bottom = 759.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 30
 text = "Upgrade button"
 
+[node name="ColorRect" type="ColorRect" parent="UI"]
+custom_minimum_size = Vector2(7000, 7000)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 4.0
+offset_right = 1878.0
+offset_bottom = 1044.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(9127, 5016)
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
 [connection signal="egg_broken" from="Egg" to="." method="_on_egg_egg_broken"]
 [connection signal="egg_pressed" from="Egg" to="." method="_on_egg_egg_pressed"]
 [connection signal="pressed" from="UI/Upgrade1" to="." method="_on_upgrade_1_pressed"]

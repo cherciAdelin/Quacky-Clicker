@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxmw3dl7jlois"
-path="res://.godot/imported/Background_202510222212_34324.png-f86b71096264014c0ebb2b30cf041279.ctex"
+uid="uid://dynayq4ubemnf"
+path="res://.godot/imported/Pan.png-2433969500d79aa8984eff4b6e92a522.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Background/Background_202510222212_34324.png"
-dest_files=["res://.godot/imported/Background_202510222212_34324.png-f86b71096264014c0ebb2b30cf041279.ctex"]
+source_file="res://Assets/Sprites/Other/Pan.png"
+dest_files=["res://.godot/imported/Pan.png-2433969500d79aa8984eff4b6e92a522.ctex"]
 
 [params]
 
