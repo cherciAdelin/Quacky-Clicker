@@ -14,8 +14,6 @@ var max_egg_health := 100.0
 ## required number of eggs. If the threshold is reached, the max health
 ## of the egg grows by *10
 var egg_threshold := 10
-## connects variables and functions from the main script to this script
-var main
 
 ## sprite has easy access to the sprite2d
 @onready var sprite = $egg_sprite
@@ -35,7 +33,7 @@ var main
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if(event.is_action_pressed("left_click")):
 		egg_pressed.emit()
-		var damage = main.click_value
+		var damage = Global.click_value
 		take_dmg(damage)
 		animate_tween()
 
@@ -74,7 +72,7 @@ func change_sprite():
 ## increases the %maxhealth of the egg if a certain number of eggs have been
 ## broken
 func reset_egg():
-	if(main.eggs_broken >= egg_threshold):
+	if(Global.eggsBroken >= egg_threshold):
 		max_egg_health *= 10
 		egg_threshold *= 10
 	egg_health = int(max_egg_health)

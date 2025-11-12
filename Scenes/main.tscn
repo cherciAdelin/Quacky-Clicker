@@ -1,11 +1,63 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=24 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
-[ext_resource type="Texture2D" uid="uid://cmr27y5gjqp6x" path="res://Assets/Sprites/Background/Background.png" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
-[ext_resource type="Texture2D" uid="uid://dynayq4ubemnf" path="res://Assets/Sprites/Other/Pan.png" id="3_6bp64"]
+[ext_resource type="PackedScene" uid="uid://b7qbp2r71yp5f" path="res://Scenes/main_screen.tscn" id="2_kry3j"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cmvimpsu3c6ub" path="res://Scenes/main_menu.tscn" id="5_6bp64"]
+[ext_resource type="PackedScene" uid="uid://ybq2e658v4de" path="res://Scenes/upgrade_menu.tscn" id="5_21xkr"]
+[ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="5_344ge"]
+[ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="6_6bp64"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
+atlas = ExtResource("5_344ge")
+region = Rect2(1048.6997, 532.2451, 606.83594, 409.35486)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bp64"]
+atlas = ExtResource("6_6bp64")
+region = Rect2(24.204388, 29.218128, 763.64655, 762.6356)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_344ge"]
+texture = SubResource("AtlasTexture_6bp64")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hptm8"]
+atlas = ExtResource("6_6bp64")
+region = Rect2(1691.1123, 29.180363, 763.8318, 762.7709)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1ilt"]
+texture = SubResource("AtlasTexture_hptm8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iyac"]
+atlas = ExtResource("6_6bp64")
+region = Rect2(856.2388, 27.645044, 763.29297, 762.2571)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdnlq"]
+texture = SubResource("AtlasTexture_6iyac")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jkdf5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_344ge"]
+atlas = ExtResource("6_6bp64")
+region = Rect2(24.55011, 1693.738, 763.5922, 762.1028)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynf5e"]
+texture = SubResource("AtlasTexture_344ge")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1ilt"]
+atlas = ExtResource("6_6bp64")
+region = Rect2(1691.4924, 1692.1288, 763.9126, 762.27454)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6iyac"]
+texture = SubResource("AtlasTexture_d1ilt")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdnlq"]
+atlas = ExtResource("6_6bp64")
+region = Rect2(858.1812, 1690.2036, 763.3023, 762.5513)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jkdf5"]
+texture = SubResource("AtlasTexture_fdnlq")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_344ge"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
@@ -15,19 +67,24 @@ position = Vector2(3128, 539.99994)
 scale = Vector2(0.1, 0.1)
 limit_enabled = false
 
-[node name="MainScreen" type="Node2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(7000, 7000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2000.0
+offset_top = -3029.0
+offset_right = 5000.0
+offset_bottom = 3971.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(9127, 5016)
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
-[node name="Background" type="Sprite2D" parent="MainScreen"]
-position = Vector2(962, 542)
-scale = Vector2(1.0002604, 1.0004629)
-texture = ExtResource("2_21xkr")
-
-[node name="Other" type="Node2D" parent="MainScreen"]
-
-[node name="Pan" type="Sprite2D" parent="MainScreen/Other"]
-position = Vector2(503, 715)
-scale = Vector2(0.23669347, 0.19071497)
-texture = ExtResource("3_6bp64")
+[node name="MainScreen" parent="." instance=ExtResource("2_kry3j")]
+position = Vector2(1, -2)
 
 [node name="MainMenu" parent="." instance=ExtResource("5_6bp64")]
 offset_left = 2169.0
@@ -36,7 +93,7 @@ offset_right = 2169.0
 offset_bottom = 1.0
 
 [node name="Egg" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(443, 609)
+position = Vector2(763, 612.00006)
 scale = Vector2(0.12, 0.12)
 
 [node name="UI" type="Control" parent="."]
@@ -45,63 +102,107 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="TextureRect" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 464.0
+offset_bottom = 321.0
+texture = SubResource("AtlasTexture_ynf5e")
+expand_mode = 1
+
 [node name="Score" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 47.0
-offset_right = 525.0
-offset_bottom = 105.0
+offset_left = 59.0
+offset_top = 116.0
+offset_right = 284.0
+offset_bottom = 174.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 30
 text = "Money:"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Click_val" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 158.0
-offset_right = 260.0
-offset_bottom = 233.0
+offset_left = 61.0
+offset_top = 203.0
+offset_right = 289.0
+offset_bottom = 278.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_8gbba")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 31
 text = "Click value:"
 vertical_alignment = 1
 
-[node name="Upgrade1" type="Button" parent="UI"]
+[node name="EggsBr" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 1111.0
-offset_top = 667.0
-offset_right = 1358.0
-offset_bottom = 759.0
+offset_left = 58.0
+offset_top = 157.0
+offset_right = 286.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_8gbba")
-theme_override_font_sizes/font_size = 30
-text = "Upgrade button"
+theme_override_font_sizes/font_size = 31
+text = "Eggs broken:"
+vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
-custom_minimum_size = Vector2(7000, 7000)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = 4.0
-offset_right = 1878.0
-offset_bottom = 1044.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(9127, 5016)
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
+[node name="StatsLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 38.0
+offset_right = 356.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_8gbba")
+theme_override_font_sizes/font_size = 31
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpMenuOpen" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 333.0
+offset_right = 140.0
+offset_bottom = 446.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_344ge")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d1ilt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fdnlq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jkdf5")
+
+[node name="MainMenuButton" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 333.0
+offset_right = 257.0
+offset_bottom = 445.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_8gbba")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ynf5e")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6iyac")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jkdf5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_344ge")
+text = "MainMenu"
+
+[node name="UpgradeMenu" parent="." instance=ExtResource("5_21xkr")]
+offset_left = -719.0
+offset_top = 57.0
+offset_right = 740.99976
+offset_bottom = 2126.9998
+scale = Vector2(0.5, 0.5)
 
 [connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
 [connection signal="egg_broken" from="Egg" to="." method="_on_egg_egg_broken"]
 [connection signal="egg_pressed" from="Egg" to="." method="_on_egg_egg_pressed"]
-[connection signal="pressed" from="UI/Upgrade1" to="." method="_on_upgrade_1_pressed"]
+[connection signal="pressed" from="UI/UpMenuOpen" to="." method="_on_up_menu_open_pressed"]
+[connection signal="pressed" from="UI/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="UpMenuChange" from="UpgradeMenu" to="." method="_on_upgrade_menu_up_menu_change"]

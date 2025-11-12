@@ -22,3 +22,7 @@ func open_door():
 	tween.set_ease(Tween.EASE_OUT)
 	door.scale = Vector2(1, 1)
 	tween.tween_property(door, "scale:x", 0.1, 0.4)
+	
+	await get_tree().create_timer(3).timeout
+	var tween2 = create_tween()
+	tween2.tween_property(door, "scale:x", 1, 0.1)

@@ -1,19 +1,14 @@
 extends Node2D
 
-	## Variables
+## variables to make the code more readable
+@onready var ClickUpButton = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/ClickVal/Label
+@onready var ClickUpTxt = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/ClickVal/ClickValUpgrade
+@onready var ScoreLabel = $UI/Score
+@onready var ClickValueLabel = $UI/Click_val
+@onready var EggsBrLabel = $UI/EggsBr
 
-## variables that hold the score, damage-per-click, number of eggs broken
-## the cost of the damage upgrades and the current upgrade dmg value
-var points := 0.0
-var click_value := 1.0
-var eggs_broken := 0
-var up_cost := 50
-var up_val := 1.0
-
-## first line creates the connection between this script and the egg script
-## second line updates every value and label the moment you run the program
+## updates every value and label the moment you run the program
 func _ready() -> void:
-	$Egg.main = self
 	update_ui()
 
 	## Egg functions
@@ -21,47 +16,24 @@ func _ready() -> void:
 ## the signal you get from the egg collision shape when you click it
 ## it increases the "Currency" you have and also updates the UI
 func _on_egg_egg_pressed() -> void:
-	points += click_value
-	show_dmg(click_value, $Egg.global_position)
+	Global.currency += Global.click_value
+	show_dmg(Global.click_value, $Egg.global_position)
 	update_ui()
 
 
 ## updates every label on-screen with the latest values
 func update_ui():
-	$UI/Score.text = "Money: " + str(int(points)) + "$"
-	$UI/Click_val.text = "Click value: " + str(click_value)
-	$UI/Upgrade1.text = "CLICK UPGRADE: " + str(up_cost) + " $$$"
+	ScoreLabel.text = "Money: " + str(int(Global.currency)) + "$"
+	ClickValueLabel.text = "Click value: " + str(Global.click_value)
+	ClickUpButton.text = "Click Up: " + str(Global.upgrades["click_up"]["cost"]) + " $"
+	ClickUpTxt.text = "$$$"
+	EggsBrLabel.text = "Eggs broken: " + str(Global.eggsBroken)
 
 ## the signal you get when the egg health drops below 0
-## it increases the number of eggs broken and provides a 20% bonus to your current points
+## it increases the number of eggs broken and provides a 20% bonus to your current currency
 func _on_egg_egg_broken() -> void:
-	eggs_broken += 1
-	points += int(points*0.2)
-	update_ui()
-	
-	## Upgrade button functions
-
-## the signal you get when you press the upgrade button
-## it either tells you you don't have enough currency to upgrade or
-## subtracts the upgrade cost from your current currency, increases the cost of the next upgrade
-## increases the damage you deal to the egg and displays appropriate messages for each case
-func _on_upgrade_1_pressed() -> void:
-	if(points < up_cost):
-		$UI/Upgrade1.text = "Insufficient currency!"
-		await get_tree().create_timer(2.0).timeout
-		update_ui()
-	else:
-		points -= up_cost
-		up_cost += up_cost + 50
-		up_clickval_flat()
-		$UI/Upgrade1.text = "Upgrade succesful!"
-		await get_tree().create_timer(2.0).timeout
-		update_ui()
-
-## increases the damage you deal to the egg and increases the next upgrade value by 0.1
-func up_clickval_flat():
-	click_value += up_val
-	up_val += 0.1
+	Global.eggsBroken += 1
+	Global.currency += int(Global.currency*0.2)
 	update_ui()
 
 ## Dmg popup function. It first creates the text(var pop), generates a random position
@@ -98,16 +70,42 @@ func show_dmg(dmg_val: float, origin: Vector2):
 ## camera position to the main game and turns the brighness back on
 func _on_main_menu_start_pressed() -> void:
 	var camera = $Camera2D
-	var tint = $UI/ColorRect
+	var tint = $ColorRect
 	var tween = create_tween()
 	
 	tween.tween_property(camera, "position", $MainMenu/Door.global_position, 1.0)
-	tween.parallel().tween_property(camera, "zoom", Vector2(3,3), 1.0)
+	tween.parallel().tween_property(camera, "zoom", Vector2(3,3), 1.5)
 	tween.parallel().tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1.0)
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1.5).timeout
 	var tween2 = create_tween()
 	
 	tween2.tween_property(camera, "zoom", Vector2(1, 1), 0.1)
 	tween2.parallel().tween_property(camera, "position", $MainScreen/Background.global_position, 0.1)
 	tween2.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0), 1.0)
+
+## when you press the "upgrade menu button" the upgrade menu
+## slides on the screen 
+func _on_up_menu_open_pressed() -> void:
+	var menu = $UpgradeMenu/Control
+	var tween = create_tween()
+	
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(menu, "position:x", menu.position.x + 1500, 1)
+
+
+## function that updates the UI whenever you interact with the upgrade menu
+func _on_upgrade_menu_up_menu_change() -> void:
+	update_ui()
+
+## function that gets you back to the main menu
+func _on_main_menu_button_pressed() -> void:
+	var camera = $Camera2D
+	var tint = $ColorRect
+	var mainMenu = $MainMenu/Background
+	var tween = create_tween()
+	
+	tween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1)
+	tween.tween_property(camera, "position", mainMenu.global_position, 0.1)
+	tween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)

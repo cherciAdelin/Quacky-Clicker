@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7qbp2r71yp5f"]
+
+[ext_resource type="Texture2D" uid="uid://cmr27y5gjqp6x" path="res://Assets/Sprites/Background/Background.png" id="1_b1vw1"]
+[ext_resource type="Texture2D" uid="uid://dynayq4ubemnf" path="res://Assets/Sprites/Other/Pan.png" id="2_wi85j"]
+
+[node name="MainScreen" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(962, 542)
+scale = Vector2(1.0002604, 1.0004629)
+texture = ExtResource("1_b1vw1")
+
+[node name="Other" type="Node2D" parent="."]
+
+[node name="Pan" type="Sprite2D" parent="Other"]
+position = Vector2(835, 714.99994)
+scale = Vector2(0.23669347, 0.19071497)
+texture = ExtResource("2_wi85j")
