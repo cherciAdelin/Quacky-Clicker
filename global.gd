@@ -1,7 +1,7 @@
 extends Node
 
 ## global variables for easy access in all the other scripts
-var currency := 0.0
+var currency := 1000.0
 var eggsBroken := 0
 var click_value := 1.0
 
@@ -9,15 +9,15 @@ var click_value := 1.0
 var upgrades = {
 	
 	"click_up":{
-		"unlocked": true,
 		"cost": 100,
 		"value": 1.0,
+		"level": 0,
 	},
 	
 	"autoclicker":{
-		"unlocked": false,
 		"cost": 1000,
-		"value": 0.5,
+		"value": 0.0,
+		"level": 0,
 	}
 	
 }

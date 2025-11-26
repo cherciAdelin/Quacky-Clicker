@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ybq2e658v4de"]
+[gd_scene load_steps=7 format=3 uid="uid://ybq2e658v4de"]
 
-[ext_resource type="Script" uid="uid://dtw1cmvonb7is" path="res://Scenes/upgrade_menu.gd" id="1_6gn5s"]
+[ext_resource type="Script" uid="uid://dtw1cmvonb7is" path="res://Scripts/upgrade_menu.gd" id="1_6gn5s"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_11363"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_6gn5s"]
+[ext_resource type="PackedScene" uid="uid://da2yb5uebp00y" path="res://Scenes/upgrade_template.tscn" id="5_lhh40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5dmy"]
 atlas = ExtResource("1_11363")
@@ -63,12 +64,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ClickVal" type="TextureRect" parent="Control/UpgradesContainer/VBoxContainer"]
+[node name="click_up" type="TextureRect" parent="Control/UpgradesContainer/VBoxContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_11363")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="Control/UpgradesContainer/VBoxContainer/ClickVal"]
+[node name="UpName" type="Label" parent="Control/UpgradesContainer/VBoxContainer/click_up"]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 69.0
@@ -82,22 +83,42 @@ text = "Click Up"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ClickValUpgrade" type="Button" parent="Control/UpgradesContainer/VBoxContainer/ClickVal"]
+[node name="LvL" type="Label" parent="Control/UpgradesContainer/VBoxContainer/click_up"]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 192.0
+offset_right = 986.0
+offset_bottom = 264.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_6gn5s")
+theme_override_font_sizes/font_size = 30
+text = "LVL:"
+vertical_alignment = 1
+
+[node name="ClickValUpgrade" type="Button" parent="Control/UpgradesContainer/VBoxContainer/click_up"]
 layout_mode = 0
 offset_left = 760.0
 offset_top = 72.0
-offset_right = 987.0
-offset_bottom = 243.0
+offset_right = 990.0
+offset_bottom = 182.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("2_6gn5s")
 theme_override_font_sizes/font_size = 83
 text = "$$$"
 
-[node name="TextureRect2" type="TextureRect" parent="Control/UpgradesContainer/VBoxContainer"]
+[node name="autoclicker" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_11363")
-stretch_mode = 2
+
+[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclicker" index="0"]
+text = "Autoclicker"
+
+[node name="UpgradeTemplate" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+layout_mode = 2
+
+[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/UpgradeTemplate" index="0"]
+text = "RAAH"
 
 [node name="CloseMenu" type="Button" parent="Control"]
 layout_mode = 0
@@ -111,5 +132,9 @@ theme_override_fonts/font = ExtResource("2_6gn5s")
 theme_override_font_sizes/font_size = 36
 text = "X"
 
-[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/ClickVal/ClickValUpgrade" to="." method="_on_click_val_upgrade_pressed"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up/ClickValUpgrade" to="." method="_on_click_val_upgrade_pressed"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclicker/UpButton" to="." method="_on_up_button_pressed"]
 [connection signal="pressed" from="Control/CloseMenu" to="." method="_on_close_menu_pressed"]
+
+[editable path="Control/UpgradesContainer/VBoxContainer/autoclicker"]
+[editable path="Control/UpgradesContainer/VBoxContainer/UpgradeTemplate"]

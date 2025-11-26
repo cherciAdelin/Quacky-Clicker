@@ -1,8 +1,12 @@
 extends Node2D
 
 ## variables to make the code more readable
-@onready var ClickUpButton = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/ClickVal/Label
-@onready var ClickUpTxt = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/ClickVal/ClickValUpgrade
+@onready var ClickUpButton = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/click_up/UpName
+@onready var ClickUpTxt = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/click_up/ClickValUpgrade
+@onready var ClickUpLvL = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/click_up/LvL
+@onready var AutoclickButton = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/autoclicker/UpButton
+@onready var AutoclickLvL = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/autoclicker/LvL
+@onready var AutoclickTxT = $UpgradeMenu/Control/UpgradesContainer/VBoxContainer/autoclicker/UpName
 @onready var ScoreLabel = $UI/Score
 @onready var ClickValueLabel = $UI/Click_val
 @onready var EggsBrLabel = $UI/EggsBr
@@ -27,6 +31,10 @@ func update_ui():
 	ClickValueLabel.text = "Click value: " + str(Global.click_value)
 	ClickUpButton.text = "Click Up: " + str(Global.upgrades["click_up"]["cost"]) + " $"
 	ClickUpTxt.text = "$$$"
+	ClickUpLvL.text = "LVL: " + str(Global.upgrades["click_up"]["level"])
+	AutoclickButton.text = "$$$"
+	AutoclickTxT.text = "Autoclicker: " + str(Global.upgrades["autoclicker"]["cost"]) + "$"
+	AutoclickLvL.text = "LVL: " + str(Global.upgrades["autoclicker"]["level"])
 	EggsBrLabel.text = "Eggs broken: " + str(Global.eggsBroken)
 
 ## the signal you get when the egg health drops below 0
@@ -109,3 +117,7 @@ func _on_main_menu_button_pressed() -> void:
 	tween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1)
 	tween.tween_property(camera, "position", mainMenu.global_position, 0.1)
 	tween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
+
+
+func _on_egg_egg_autoclick() -> void:
+	update_ui()

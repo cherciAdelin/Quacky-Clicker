@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dujnulg5hcsjk"
-path="res://.godot/imported/Egg_cracked3_202510201925_57338.png-ea061ed3449c7fd14b31413ad08ee242.ctex"
+uid="uid://svkryx8pwx1k"
+path="res://.godot/imported/Egg_cracked2.png-64a7eb3d7deecb20be42d5701fcc9dbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Egg/Egg_cracked3_202510201925_57338.png"
-dest_files=["res://.godot/imported/Egg_cracked3_202510201925_57338.png-ea061ed3449c7fd14b31413ad08ee242.ctex"]
+source_file="res://Assets/Sprites/Egg/Egg_cracked2.png"
+dest_files=["res://.godot/imported/Egg_cracked2.png-64a7eb3d7deecb20be42d5701fcc9dbe.ctex"]
 
 [params]
 
