@@ -200,10 +200,9 @@ offset_right = 740.99976
 offset_bottom = 2126.9998
 scale = Vector2(0.5, 0.5)
 
+[connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
 [connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
-[connection signal="egg_autoclick" from="Egg" to="." method="_on_egg_egg_autoclick"]
-[connection signal="egg_broken" from="Egg" to="." method="_on_egg_egg_broken"]
-[connection signal="egg_pressed" from="Egg" to="." method="_on_egg_egg_pressed"]
+[connection signal="egg" from="Egg" to="." method="_on_egg_egg"]
 [connection signal="pressed" from="UI/UpMenuOpen" to="." method="_on_up_menu_open_pressed"]
 [connection signal="pressed" from="UI/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="AutoclickerChange" from="UpgradeMenu" to="Egg" method="_on_upgrade_menu_autoclicker_change"]

@@ -4,8 +4,12 @@ extends Control
 signal UpMenuChange
 signal AutoclickerChange
 @onready var Menu = $Control
-@onready var ClickValText = $Control/UpgradesContainer/VBoxContainer/click_up/ClickValUpgrade
-@onready var AutoclickerText = $Control/UpgradesContainer/VBoxContainer/autoclicker/UpButton
+@onready var ClickUpButton = $Control/UpgradesContainer/VBoxContainer/click_up/UpName
+@onready var ClickUpTxt = $Control/UpgradesContainer/VBoxContainer/click_up/ClickValUpgrade
+@onready var ClickUpLvL = $Control/UpgradesContainer/VBoxContainer/click_up/LvL
+@onready var AutoclickButton = $Control/UpgradesContainer/VBoxContainer/autoclicker/UpButton
+@onready var AutoclickLvL = $Control/UpgradesContainer/VBoxContainer/autoclicker/LvL
+@onready var AutoclickTxT = $Control/UpgradesContainer/VBoxContainer/autoclicker/UpName
 
 ## when you press the "x" button the upgrade menu slides back to its "original" position
 func _on_close_menu_pressed() -> void:
@@ -20,7 +24,7 @@ func _on_close_menu_pressed() -> void:
 ##                  increases the click value and updates the UI after 2 seconds
 func _on_click_val_upgrade_pressed() -> void:
 	if(Global.currency < Global.upgrades["click_up"]["cost"]):
-		ClickValText.text = "Nuh"
+		ClickUpTxt.text = "Nuh"
 		await get_tree().create_timer(2).timeout
 		UpMenuChange.emit()
 	else:
@@ -28,7 +32,7 @@ func _on_click_val_upgrade_pressed() -> void:
 		Global.upgrades["click_up"]["cost"] += Global.upgrades["click_up"]["cost"] + 100
 		Global.upgrades["click_up"]["level"] += 1
 		upgrade_click()
-		ClickValText.text = "OK"
+		ClickUpTxt.text = "OK"
 		await get_tree().create_timer(2).timeout
 		UpMenuChange.emit()
 
@@ -43,7 +47,7 @@ func upgrade_click() -> void:
 
 func _on_up_button_pressed() -> void:
 	if Global.currency < Global.upgrades["autoclicker"]["cost"]:
-		AutoclickerText.text = "Nuh"
+		AutoclickButton.text = "Nuh"
 		await get_tree().create_timer(2).timeout
 		UpMenuChange.emit()
 	else:
@@ -51,7 +55,7 @@ func _on_up_button_pressed() -> void:
 		Global.upgrades["autoclicker"]["cost"] += Global.upgrades["autoclicker"]["cost"] + 500
 		Global.upgrades["autoclicker"]["level"] += 1
 		upgrade_autoclick()
-		AutoclickerText.text = "OK"
+		AutoclickButton.text = "OK"
 		await get_tree().create_timer(2).timeout
 		UpMenuChange.emit()
 
@@ -59,3 +63,12 @@ func upgrade_autoclick()-> void:
 	Global.upgrades["autoclicker"]["value"] += 0.5
 	AutoclickerChange.emit()
 	UpMenuChange.emit()
+
+
+func _on_main_up_menu() -> void:
+	ClickUpButton.text = "Click Up: " + str(Global.upgrades["click_up"]["cost"]) + " $"
+	ClickUpTxt.text = "$$$"
+	ClickUpLvL.text = "LVL: " + str(Global.upgrades["click_up"]["level"])
+	AutoclickButton.text = "$$$"
+	AutoclickTxT.text = "Autoclicker: " + str(Global.upgrades["autoclicker"]["cost"]) + "$"
+	AutoclickLvL.text = "LVL: " + str(Global.upgrades["autoclicker"]["level"])

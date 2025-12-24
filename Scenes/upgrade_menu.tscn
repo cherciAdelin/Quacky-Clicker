@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ybq2e658v4de"]
+[gd_scene load_steps=15 format=3 uid="uid://ybq2e658v4de"]
 
 [ext_resource type="Script" uid="uid://dtw1cmvonb7is" path="res://Scripts/upgrade_menu.gd" id="1_6gn5s"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_11363"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_6gn5s"]
+[ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="5_2hr16"]
 [ext_resource type="PackedScene" uid="uid://da2yb5uebp00y" path="res://Scenes/upgrade_template.tscn" id="5_lhh40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5dmy"]
@@ -12,6 +13,29 @@ region = Rect2(76.860596, 1650.1381, 918.6343, 1484.2238)
 [sub_resource type="AtlasTexture" id="AtlasTexture_11363"]
 atlas = ExtResource("1_11363")
 region = Rect2(1183.151, 2120.228, 1103.932, 331.77197)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpopj"]
+atlas = ExtResource("5_2hr16")
+region = Rect2(24.073683, 1693.2573, 763.76044, 762.94556)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mpwqm"]
+texture = SubResource("AtlasTexture_lpopj")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4egn"]
+atlas = ExtResource("5_2hr16")
+region = Rect2(1692.2046, 1692.4745, 764.40063, 762.08997)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1lbs"]
+texture = SubResource("AtlasTexture_v4egn")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m70ya"]
+atlas = ExtResource("5_2hr16")
+region = Rect2(857.81903, 1690.3999, 763.6651, 762.30176)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_60tjm"]
+texture = SubResource("AtlasTexture_m70ya")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ttpbb"]
 
 [node name="UpgradeMenu" type="Control"]
 layout_mode = 3
@@ -122,15 +146,18 @@ text = "RAAH"
 
 [node name="CloseMenu" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 1299.0
-offset_top = 137.0
-offset_right = 1383.0
-offset_bottom = 214.0
+offset_left = 1321.0
+offset_top = 132.0
+offset_right = 1385.0
+offset_bottom = 193.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("2_6gn5s")
 theme_override_font_sizes/font_size = 36
-text = "X"
+theme_override_styles/normal = SubResource("StyleBoxTexture_mpwqm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d1lbs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_60tjm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ttpbb")
 
 [connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up/ClickValUpgrade" to="." method="_on_click_val_upgrade_pressed"]
 [connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclicker/UpButton" to="." method="_on_up_button_pressed"]
