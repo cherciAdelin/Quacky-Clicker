@@ -64,3 +64,12 @@ func _on_main_menu_start_pressed() -> void:
 	tween2.tween_property(camera, "zoom", Vector2(1, 1), 0.1)
 	tween2.parallel().tween_property(camera, "position", $MainScreen/Background.global_position, 0.1)
 	tween2.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0), 1.0)
+
+
+func _on_autoclick_up_menu_open_pressed() -> void:
+	var menu = $autoclick_up_menu
+	var tween = create_tween()
+	
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(menu, "position:x", menu.position.x + 750, 1)

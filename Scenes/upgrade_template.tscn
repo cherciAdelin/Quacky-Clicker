@@ -1,12 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://da2yb5uebp00y"]
+[gd_scene load_steps=16 format=3 uid="uid://da2yb5uebp00y"]
 
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_wfifv"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_rgau5"]
+[ext_resource type="Texture2D" uid="uid://b18bafpfn5rty" path="res://Assets/Sprites/Other/UpButtonStatic.png" id="3_05fa0"]
 [ext_resource type="Texture2D" uid="uid://dxt8mxpr82qkx" path="res://Assets/Sprites/Other/LockedSprites.png" id="3_c56hg"]
+[ext_resource type="Texture2D" uid="uid://3nv0d65wstr1" path="res://Assets/Sprites/Other/UpButtonPressed.png" id="4_e21b6"]
+[ext_resource type="Texture2D" uid="uid://cqk1k01dschii" path="res://Assets/Sprites/Other/UpButtonHover.png" id="5_rsrjx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_11363"]
 atlas = ExtResource("1_wfifv")
 region = Rect2(1183.151, 2120.228, 1103.932, 331.77197)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45uvo"]
+atlas = ExtResource("3_05fa0")
+region = Rect2(279.5791, 663.4125, 1926.4385, 1920.5084)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfifv"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mle5o"]
+atlas = ExtResource("4_e21b6")
+region = Rect2(279.579, 663.412, 1926.438, 1920.508)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xq2ll"]
+texture = SubResource("AtlasTexture_mle5o")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvuny"]
+atlas = ExtResource("5_rsrjx")
+region = Rect2(279.579, 663.412, 1926.438, 1920.508)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyyeh"]
+texture = SubResource("AtlasTexture_pvuny")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c56hg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhh40"]
 atlas = ExtResource("3_c56hg")
@@ -20,40 +47,66 @@ stretch_mode = 2
 layout_mode = 0
 offset_left = 78.0
 offset_top = 69.0
-offset_right = 739.0
-offset_bottom = 255.0
+offset_right = 750.0
+offset_bottom = 186.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("2_rgau5")
 theme_override_font_sizes/font_size = 60
 text = "UpName"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LvL" type="Label" parent="."]
 layout_mode = 0
-offset_left = 760.0
-offset_top = 192.0
-offset_right = 986.0
-offset_bottom = 264.0
+offset_left = 75.0
+offset_top = 196.0
+offset_right = 293.0
+offset_bottom = 257.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("2_rgau5")
 theme_override_font_sizes/font_size = 30
-text = "LVL:"
+text = "LVL: 0"
 vertical_alignment = 1
 
 [node name="UpButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 760.0
-offset_top = 72.0
-offset_right = 990.0
-offset_bottom = 182.0
+offset_left = 767.0
+offset_top = 54.0
+offset_right = 988.0
+offset_bottom = 251.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_rgau5")
-theme_override_font_sizes/font_size = 83
-text = "$$$"
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_wfifv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xq2ll")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jyyeh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c56hg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visibility_layer = 3
+layout_mode = 0
+offset_left = 790.0
+offset_top = 71.0
+offset_right = 1670.0
+offset_bottom = 890.9999
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+
+[node name="Cost" type="Label" parent="."]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 199.0
+offset_right = 972.0
+offset_bottom = 244.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_rgau5")
+theme_override_font_sizes/font_size = 30
+text = "cost"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Locked" type="TextureRect" parent="."]
 layout_mode = 0

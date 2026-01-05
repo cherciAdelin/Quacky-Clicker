@@ -1,0 +1,154 @@
+[gd_scene load_steps=21 format=3 uid="uid://b81tfanlc847y"]
+
+[ext_resource type="Script" uid="uid://j745132cbrmb" path="res://Scripts/autoclick_up_menu.gd" id="1_614lw"]
+[ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_f2sfo"]
+[ext_resource type="PackedScene" uid="uid://da2yb5uebp00y" path="res://Scenes/upgrade_template.tscn" id="2_4yun0"]
+[ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_vardp"]
+[ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="5_44sy5"]
+[ext_resource type="Texture2D" uid="uid://b18bafpfn5rty" path="res://Assets/Sprites/Other/UpButtonStatic.png" id="5_fmh26"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vardp"]
+atlas = ExtResource("1_f2sfo")
+region = Rect2(76.95616, 1648.0436, 917.81824, 1486.7938)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45uvo"]
+atlas = ExtResource("5_fmh26")
+region = Rect2(279.5791, 663.4125, 1926.4385, 1920.5084)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k3b1m"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vs0mw"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbvtb"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eceln"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8vt5a"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmh26"]
+atlas = ExtResource("5_44sy5")
+region = Rect2(25.212858, 1692.5996, 764.7194, 762.3965)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjetp"]
+texture = SubResource("AtlasTexture_fmh26")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3b1m"]
+atlas = ExtResource("5_44sy5")
+region = Rect2(1691.6385, 1693.5616, 763.329, 762.3981)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o7p5u"]
+texture = SubResource("AtlasTexture_k3b1m")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs0mw"]
+atlas = ExtResource("5_44sy5")
+region = Rect2(856.23785, 1691.2937, 763.4294, 762.5415)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lwnqu"]
+texture = SubResource("AtlasTexture_vs0mw")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbvtb"]
+
+[node name="autoclick_up_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_614lw")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainSprite" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 1375.0
+offset_bottom = 1977.0
+texture = SubResource("AtlasTexture_vardp")
+
+[node name="UpgradesText" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 121.0
+offset_right = 1019.0
+offset_bottom = 240.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_vardp")
+theme_override_font_sizes/font_size = 64
+text = "Autoclick upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradesContainer" type="ScrollContainer" parent="Control"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 240.0
+offset_right = 1243.0
+offset_bottom = 1867.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/UpgradesContainer"]
+layout_mode = 2
+
+[node name="autoclick_up1" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+layout_mode = 2
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="2"]
+theme_override_styles/normal = SubResource("StyleBoxTexture_k3b1m")
+
+[node name="Locked" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="5"]
+visible = false
+
+[node name="autoclick_up2" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+layout_mode = 2
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="2"]
+theme_override_styles/normal = SubResource("StyleBoxTexture_vs0mw")
+
+[node name="autoclick_up3" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+layout_mode = 2
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="2"]
+theme_override_styles/normal = SubResource("StyleBoxTexture_jbvtb")
+
+[node name="autoclick_up4" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+layout_mode = 2
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="2"]
+theme_override_styles/normal = SubResource("StyleBoxTexture_eceln")
+
+[node name="autoclick_up5" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+layout_mode = 2
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up5" index="2"]
+theme_override_styles/normal = SubResource("StyleBoxTexture_8vt5a")
+
+[node name="CloseMenu" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 1291.0
+offset_top = 109.0
+offset_right = 1353.0
+offset_bottom = 167.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_xjetp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_o7p5u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lwnqu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jbvtb")
+
+[connection signal="pressed" from="Control/CloseMenu" to="." method="_on_close_menu_pressed"]
+
+[editable path="Control/UpgradesContainer/VBoxContainer/autoclick_up1"]
+[editable path="Control/UpgradesContainer/VBoxContainer/autoclick_up2"]
+[editable path="Control/UpgradesContainer/VBoxContainer/autoclick_up3"]
+[editable path="Control/UpgradesContainer/VBoxContainer/autoclick_up4"]
+[editable path="Control/UpgradesContainer/VBoxContainer/autoclick_up5"]

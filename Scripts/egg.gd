@@ -25,9 +25,6 @@ var egg_threshold := 10
 	0:		preload("res://Assets/Sprites/Egg/Egg_broken.png"),
 }
 
-
-	##EGG
-
 ## when you click the egg it triggers every command in this function
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if(event.is_action_pressed("left_click")):
@@ -61,16 +58,16 @@ func show_dmg(dmg_val: float, origin: Vector2):
 	pop.add_theme_font_size_override("font_size", 300)
 	pop.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	pop.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
-	pop.add_theme_constant_override("outline_size", 35)
+	pop.add_theme_constant_override("outline_size", 70)
 	pop.global_position = origin + Vector2(pos_x, pos_y)
 	add_child(pop)
 	
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
-	tween.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
-	tween.connect("finished", Callable(pop, "queue_free"))
+	tween.finished.connect(pop.queue_free)
 	
 ## egg health
 
@@ -130,9 +127,7 @@ func animate_tween():
 	tween.tween_property(sprite, "scale", Vector2(1, 1), 0.1)
 
 
-func _on_upgrade_menu_autoclicker_change() -> void:
-	while(1):
-		await get_tree().create_timer(1).timeout
-		take_dmg(Global.upgrades["autoclicker"]["value"])
-		Global.currency += Global.upgrades["autoclicker"]["value"]
-		egg.emit()
+func _on_autoclicker_timeout() -> void:
+	take_dmg(Global.upgrades["autoclicker"]["value"])
+	Global.currency += Global.upgrades["autoclicker"]["value"]
+	egg.emit()

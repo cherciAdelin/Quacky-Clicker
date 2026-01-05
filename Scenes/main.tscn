@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=25 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ybq2e658v4de" path="res://Scenes/upgrade_menu.tscn" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="5_344ge"]
 [ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="6_6bp64"]
+[ext_resource type="PackedScene" uid="uid://b81tfanlc847y" path="res://Scenes/autoclick_up_menu.tscn" id="9_ynf5e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
 atlas = ExtResource("5_344ge")
@@ -119,7 +120,7 @@ offset_right = 284.0
 offset_bottom = 174.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 30
 text = "Money:"
@@ -133,7 +134,7 @@ offset_right = 289.0
 offset_bottom = 278.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 31
 text = "Click value:"
@@ -147,7 +148,7 @@ offset_right = 286.0
 offset_bottom = 232.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 31
 text = "Eggs broken:"
@@ -161,7 +162,7 @@ offset_right = 356.0
 offset_bottom = 113.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 31
 text = "Stats"
@@ -174,6 +175,7 @@ offset_left = 23.0
 offset_top = 333.0
 offset_right = 140.0
 offset_bottom = 446.0
+tooltip_text = "Click upgrades"
 theme_override_styles/normal = SubResource("StyleBoxTexture_344ge")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_d1ilt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fdnlq")
@@ -181,17 +183,28 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jkdf5")
 
 [node name="MainMenuButton" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 138.0
-offset_top = 333.0
-offset_right = 257.0
-offset_bottom = 445.0
+offset_left = 1861.0
+offset_top = -1.0
+offset_right = 1924.0
+offset_bottom = 59.0
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ynf5e")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6iyac")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jkdf5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_344ge")
-text = "MainMenu"
+
+[node name="AutoclickUpMenuOpen" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 332.0
+offset_right = 270.0
+offset_bottom = 445.0
+tooltip_text = "Autoclickers"
+theme_override_styles/normal = SubResource("StyleBoxTexture_344ge")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d1ilt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fdnlq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jkdf5")
 
 [node name="UpgradeMenu" parent="." instance=ExtResource("5_21xkr")]
 offset_left = -719.0
@@ -200,10 +213,17 @@ offset_right = 740.99976
 offset_bottom = 2126.9998
 scale = Vector2(0.5, 0.5)
 
+[node name="autoclick_up_menu" parent="." instance=ExtResource("9_ynf5e")]
+offset_left = -705.0
+offset_top = 68.0
+offset_right = -705.0
+offset_bottom = 68.0
+scale = Vector2(0.5, 0.5)
+
 [connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
 [connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
 [connection signal="egg" from="Egg" to="." method="_on_egg_egg"]
 [connection signal="pressed" from="UI/UpMenuOpen" to="." method="_on_up_menu_open_pressed"]
 [connection signal="pressed" from="UI/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="AutoclickerChange" from="UpgradeMenu" to="Egg" method="_on_upgrade_menu_autoclicker_change"]
+[connection signal="pressed" from="UI/AutoclickUpMenuOpen" to="." method="_on_autoclick_up_menu_open_pressed"]
 [connection signal="UpMenuChange" from="UpgradeMenu" to="." method="_on_upgrade_menu_up_menu_change"]

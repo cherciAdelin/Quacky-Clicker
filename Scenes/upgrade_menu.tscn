@@ -1,18 +1,44 @@
-[gd_scene load_steps=15 format=3 uid="uid://ybq2e658v4de"]
+[gd_scene load_steps=26 format=3 uid="uid://ybq2e658v4de"]
 
 [ext_resource type="Script" uid="uid://dtw1cmvonb7is" path="res://Scripts/upgrade_menu.gd" id="1_6gn5s"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_11363"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_6gn5s"]
 [ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="5_2hr16"]
+[ext_resource type="Texture2D" uid="uid://87vwba1qh22h" path="res://Assets/Sprites/ClickUpSprites/toothpicks.png" id="5_d1lbs"]
 [ext_resource type="PackedScene" uid="uid://da2yb5uebp00y" path="res://Scenes/upgrade_template.tscn" id="5_lhh40"]
+[ext_resource type="Texture2D" uid="uid://b18bafpfn5rty" path="res://Assets/Sprites/Other/UpButtonStatic.png" id="5_m70ya"]
+[ext_resource type="Texture2D" uid="uid://tdwqvo60730r" path="res://Assets/Sprites/ClickUpSprites/butterknife.png" id="6_m70ya"]
+[ext_resource type="Texture2D" uid="uid://ljpiwrpliw0w" path="res://Assets/Sprites/ClickUpSprites/hammer.png" id="7_60tjm"]
+[ext_resource type="Texture2D" uid="uid://bpdq8kgvw3tkb" path="res://Assets/Sprites/ClickUpSprites/drill.png" id="8_ttpbb"]
+[ext_resource type="Texture2D" uid="uid://mhxadurwd3eh" path="res://Assets/Sprites/ClickUpSprites/nuke.png" id="9_fm0cu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5dmy"]
 atlas = ExtResource("1_11363")
 region = Rect2(76.860596, 1650.1381, 918.6343, 1484.2238)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_11363"]
-atlas = ExtResource("1_11363")
-region = Rect2(1183.151, 2120.228, 1103.932, 331.77197)
+[sub_resource type="AtlasTexture" id="AtlasTexture_45uvo"]
+atlas = ExtResource("5_m70ya")
+region = Rect2(279.5791, 663.4125, 1926.4385, 1920.5084)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ttpbb"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fm0cu"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s2rwv"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ojj7b"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d2q0m"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpopj"]
 atlas = ExtResource("5_2hr16")
@@ -88,61 +114,125 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="click_up" type="TextureRect" parent="Control/UpgradesContainer/VBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_11363")
-stretch_mode = 2
-
-[node name="UpName" type="Label" parent="Control/UpgradesContainer/VBoxContainer/click_up"]
-layout_mode = 0
-offset_left = 78.0
-offset_top = 69.0
-offset_right = 739.0
-offset_bottom = 255.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("2_6gn5s")
-theme_override_font_sizes/font_size = 60
-text = "Click Up"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LvL" type="Label" parent="Control/UpgradesContainer/VBoxContainer/click_up"]
-layout_mode = 0
-offset_left = 760.0
-offset_top = 192.0
-offset_right = 986.0
-offset_bottom = 264.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_6gn5s")
-theme_override_font_sizes/font_size = 30
-text = "LVL:"
-vertical_alignment = 1
-
-[node name="ClickValUpgrade" type="Button" parent="Control/UpgradesContainer/VBoxContainer/click_up"]
-layout_mode = 0
-offset_left = 760.0
-offset_top = 72.0
-offset_right = 990.0
-offset_bottom = 182.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("2_6gn5s")
-theme_override_font_sizes/font_size = 83
-text = "$$$"
-
-[node name="autoclicker" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+[node name="click_up1" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
 layout_mode = 2
 
-[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclicker" index="0"]
-text = "Autoclicker"
+[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="0"]
+text = "Toothpicks"
 
-[node name="UpgradeTemplate" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="2"]
+offset_left = 778.0
+offset_top = 257.0
+offset_right = 978.0
+offset_bottom = 458.0
+rotation = -1.5707964
+theme_override_styles/normal = SubResource("StyleBoxTexture_ttpbb")
+
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="3"]
+visibility_layer = 1
+offset_left = 784.0
+offset_top = 7.999996
+offset_right = 3264.0
+offset_bottom = 3515.0
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("5_d1lbs")
+
+[node name="Locked" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="5"]
+visible = false
+
+[node name="click_up2" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
 layout_mode = 2
 
-[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/UpgradeTemplate" index="0"]
-text = "RAAH"
+[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="0"]
+text = "Butterknife"
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="2"]
+offset_left = 778.0
+offset_top = 48.0
+offset_right = 981.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_fm0cu")
+
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="3"]
+offset_left = 780.0
+offset_top = 19.000008
+offset_right = 3260.0
+offset_bottom = 3526.0
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("6_m70ya")
+
+[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="4"]
+offset_left = 789.0
+offset_top = 197.0
+offset_right = 974.0
+offset_bottom = 242.0
+
+[node name="click_up3" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+layout_mode = 2
+
+[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="0"]
+text = "Hammer"
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="2"]
+offset_left = 780.0
+offset_top = 50.0
+offset_right = 977.0
+offset_bottom = 254.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_s2rwv")
+
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="3"]
+offset_left = 781.0
+offset_top = 25.0
+offset_right = 3261.0
+offset_bottom = 3532.0
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("7_60tjm")
+
+[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="4"]
+offset_left = 786.0
+offset_top = 200.0
+offset_right = 971.0
+offset_bottom = 245.0
+
+[node name="click_up4" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+layout_mode = 2
+
+[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="0"]
+text = "Drill"
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="2"]
+offset_left = 771.0
+offset_top = 46.0
+offset_right = 973.0
+offset_bottom = 254.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ojj7b")
+
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="3"]
+offset_left = 771.0
+offset_top = 27.0
+offset_right = 3251.0
+offset_bottom = 3534.0
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("8_ttpbb")
+
+[node name="click_up5" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+layout_mode = 2
+
+[node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="0"]
+text = "Nuke"
+
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="2"]
+offset_left = 784.0
+offset_top = 39.0
+offset_right = 973.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_d2q0m")
+
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="3"]
+offset_left = 778.0
+offset_top = 7.0
+offset_right = 3258.0
+offset_bottom = 3514.0
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("9_fm0cu")
 
 [node name="CloseMenu" type="Button" parent="Control"]
 layout_mode = 0
@@ -159,9 +249,15 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_d1lbs")
 theme_override_styles/hover = SubResource("StyleBoxTexture_60tjm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ttpbb")
 
-[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up/ClickValUpgrade" to="." method="_on_click_val_upgrade_pressed"]
-[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclicker/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up1/UpButton" to="." method="_on_up_button_pressed_clickval1"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up2/UpButton" to="." method="_on_up_button_pressed_clickval2"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up3/UpButton" to="." method="_on_up_button_pressed_clickval3"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up4/UpButton" to="." method="_on_up_button_pressed_clickval4"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up5/UpButton" to="." method="_on_up_button_pressed_clickval5"]
 [connection signal="pressed" from="Control/CloseMenu" to="." method="_on_close_menu_pressed"]
 
-[editable path="Control/UpgradesContainer/VBoxContainer/autoclicker"]
-[editable path="Control/UpgradesContainer/VBoxContainer/UpgradeTemplate"]
+[editable path="Control/UpgradesContainer/VBoxContainer/click_up1"]
+[editable path="Control/UpgradesContainer/VBoxContainer/click_up2"]
+[editable path="Control/UpgradesContainer/VBoxContainer/click_up3"]
+[editable path="Control/UpgradesContainer/VBoxContainer/click_up4"]
+[editable path="Control/UpgradesContainer/VBoxContainer/click_up5"]
