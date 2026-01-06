@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://lq30jipgbnqm"]
+[gd_scene load_steps=6 format=3 uid="uid://lq30jipgbnqm"]
 
-[ext_resource type="Texture2D" uid="uid://dhq2nmx6eun4x" path="res://Assets/Sprites/Duckk/Fduck_202510222141_45487.png" id="1_jhtpm"]
 [ext_resource type="Script" uid="uid://ckaubownshbmt" path="res://Scripts/duck.gd" id="1_tvw4f"]
+[ext_resource type="Texture2D" uid="uid://dvycim7csvi8b" path="res://Assets/Sprites/Duckk/DuckBody.png" id="2_mshtc"]
+[ext_resource type="Texture2D" uid="uid://6yexhg8guodh" path="res://Assets/Sprites/Duckk/Eyes/RegularEyes.png" id="3_8ghs4"]
+[ext_resource type="Texture2D" uid="uid://cw5idwdsii46u" path="res://Assets/Sprites/Duckk/Hats/WizardHat.png" id="4_bvjhm"]
+[ext_resource type="Texture2D" uid="uid://brnn64rl5c452" path="res://Assets/Sprites/Duckk/Accessories/WizardStaff.png" id="5_3a0xp"]
 
 [node name="Duck" type="Node2D"]
 script = ExtResource("1_tvw4f")
 
 [node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("1_jhtpm")
+texture = ExtResource("2_mshtc")
 
 [node name="Eyes" type="Sprite2D" parent="."]
+texture = ExtResource("3_8ghs4")
 
 [node name="Hat" type="Sprite2D" parent="."]
+texture = ExtResource("4_bvjhm")
 
 [node name="Weapon" type="Sprite2D" parent="."]
+texture = ExtResource("5_3a0xp")

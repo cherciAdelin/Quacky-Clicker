@@ -55,7 +55,7 @@ func take_dmg(amount:float):
 	egg_health = clamp(egg_health - amount, -1, max_egg_health)
 	var percent := (egg_health / max_egg_health) * 100
 	if(egg_health < 0):
-		$egg_hp.text = "Egg health: 0.00%"
+		$egg_hp.text = "Egg health: 0.0%"
 	else:
 		$egg_hp.text = "Egg health: " + String.num(percent, 2) + "%"
 	change_sprite()
@@ -93,7 +93,7 @@ func reset_egg():
 		max_egg_health *= 10
 		egg_threshold *= 10
 	egg_health = int(max_egg_health)
-	$egg_hp.text = "Egg health: " + str(egg_health)
+	$egg_hp.text = "Egg health: 100.0%"
 	sprite.texture = egg_textures[100]
 
 

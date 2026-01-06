@@ -4,10 +4,12 @@ extends Node2D
 @onready var ClickValueLabel = $UI/Click_val
 @onready var EggsBrLabel = $UI/EggsBr
 signal up_menu
-var shownCurrency := 10000.0
+var shownCurrency := 0.0
 var currencyTween: Tween
+var cameraTween: Tween
+var menuTween: Tween
 
-func _ready() -> void:
+func _ready():
 	update_ui()
 
 func update_ui():
@@ -39,30 +41,36 @@ func _on_main_menu_button_pressed() -> void:
 	var camera = $Camera2D
 	var tint = $ColorRect
 	var mainMenu = $MainMenu/Background
-	var tween = create_tween()
+	if(cameraTween):
+		cameraTween.kill()
+	cameraTween = create_tween()
 	
-	tween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1)
-	tween.tween_property(camera, "position", mainMenu.global_position, 0.1)
-	tween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
+	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1)
+	cameraTween.tween_property(camera, "position", mainMenu.global_position, 0.1)
+	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
 
 
 func _on_up_menu_open_pressed() -> void:
 	var menu = $UpgradeMenu/Control
-	var tween = create_tween()
+	if(menuTween):
+		menuTween.kill()
+	menuTween = create_tween()
 	
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(menu, "position:x", menu.position.x + 1500, 1)
+	menuTween.set_trans(Tween.TRANS_SINE)
+	menuTween.set_ease(Tween.EASE_OUT)
+	menuTween.tween_property(menu, "position:x", menu.position.x + 1500, 1)
 
 
 func _on_main_menu_start_pressed() -> void:
 	var camera = $Camera2D
 	var tint = $ColorRect
-	var tween = create_tween()
+	if(cameraTween):
+		cameraTween.kill()
+	cameraTween = create_tween()
 	
-	tween.tween_property(camera, "position", $MainMenu/Door.global_position, 1.0)
-	tween.parallel().tween_property(camera, "zoom", Vector2(3,3), 1.5)
-	tween.parallel().tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1.0)
+	cameraTween.tween_property(camera, "position", $MainMenu/Door.global_position, 1.0)
+	cameraTween.parallel().tween_property(camera, "zoom", Vector2(3,3), 1.5)
+	cameraTween.parallel().tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1.0)
 	
 	await get_tree().create_timer(1.5).timeout
 	var tween2 = create_tween()
@@ -74,8 +82,10 @@ func _on_main_menu_start_pressed() -> void:
 
 func _on_autoclick_up_menu_open_pressed() -> void:
 	var menu = $autoclick_up_menu
-	var tween = create_tween()
+	if(menuTween):
+		menuTween.kill()
+	menuTween = create_tween()
 	
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(menu, "position:x", menu.position.x + 750, 1)
+	menuTween.set_trans(Tween.TRANS_SINE)
+	menuTween.set_ease(Tween.EASE_OUT)
+	menuTween.tween_property(menu, "position:x", menu.position.x + 750, 1)

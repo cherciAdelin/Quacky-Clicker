@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=26 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="5_344ge"]
 [ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="6_6bp64"]
 [ext_resource type="PackedScene" uid="uid://b81tfanlc847y" path="res://Scenes/autoclick_up_menu.tscn" id="9_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://lq30jipgbnqm" path="res://Scenes/duck.tscn" id="10_hptm8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
 atlas = ExtResource("5_344ge")
@@ -219,6 +220,10 @@ offset_top = 68.0
 offset_right = -705.0
 offset_bottom = 68.0
 scale = Vector2(0.5, 0.5)
+
+[node name="Duck" parent="." instance=ExtResource("10_hptm8")]
+position = Vector2(1621, 597)
+scale = Vector2(0.2, 0.2)
 
 [connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
 [connection signal="up_menu" from="." to="autoclick_up_menu" method="_on_main_up_menu"]
