@@ -94,7 +94,7 @@ offset_right = 2169.0
 offset_bottom = 1.0
 
 [node name="Egg" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(763, 612.00006)
+position = Vector2(760, 596)
 scale = Vector2(0.12, 0.12)
 
 [node name="UI" type="Control" parent="."]
@@ -221,9 +221,12 @@ offset_bottom = 68.0
 scale = Vector2(0.5, 0.5)
 
 [connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
+[connection signal="up_menu" from="." to="autoclick_up_menu" method="_on_main_up_menu"]
 [connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
+[connection signal="autoclickUnlock" from="Egg" to="autoclick_up_menu" method="_on_egg_autoclick_unlock"]
 [connection signal="egg" from="Egg" to="." method="_on_egg_egg"]
 [connection signal="pressed" from="UI/UpMenuOpen" to="." method="_on_up_menu_open_pressed"]
 [connection signal="pressed" from="UI/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="UI/AutoclickUpMenuOpen" to="." method="_on_autoclick_up_menu_open_pressed"]
 [connection signal="UpMenuChange" from="UpgradeMenu" to="." method="_on_upgrade_menu_up_menu_change"]
+[connection signal="AutoclickMenuChange" from="autoclick_up_menu" to="." method="_on_autoclick_menu_change"]

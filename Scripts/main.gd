@@ -1,30 +1,40 @@
 extends Node2D
 
-## variables to make the code more readable
 @onready var ScoreLabel = $UI/Score
 @onready var ClickValueLabel = $UI/Click_val
 @onready var EggsBrLabel = $UI/EggsBr
 signal up_menu
+var shownCurrency := 10000.0
+var currencyTween: Tween
 
-## updates every value and label the moment you run the program
 func _ready() -> void:
 	update_ui()
 
-## updates every label on-screen with the latest values
 func update_ui():
-	ScoreLabel.text = "Money: " + str(int(Global.currency)) + "$"
+	animate_currency(Global.currency)
 	ClickValueLabel.text = "Click value: " + str(Global.click_value)
 	EggsBrLabel.text = "Eggs broken: " + str(Global.eggsBroken)
 	up_menu.emit()
 
-## function that updates the UI whenever you interact with the upgrade menu
+func animate_currency(newValue: float):	
+	currencyTween = create_tween()
+	currencyTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	currencyTween.tween_property(self, "shownCurrency", newValue, 0.3)
+	currencyTween.tween_method(Callable(self, "_set_shown_currency"), shownCurrency, newValue, 0.3)
+
+func _set_shown_currency(value: float):
+	shownCurrency = value
+	ScoreLabel.text = "Money: " + str(int(shownCurrency)) + "$"
+
+func _on_autoclick_menu_change() -> void:
+	update_ui()
+
 func _on_upgrade_menu_up_menu_change() -> void:
 	update_ui()
 
 func _on_egg_egg() -> void:
 	update_ui()
 
-## function that gets you back to the main menu
 func _on_main_menu_button_pressed() -> void:
 	var camera = $Camera2D
 	var tint = $ColorRect
@@ -35,8 +45,7 @@ func _on_main_menu_button_pressed() -> void:
 	tween.tween_property(camera, "position", mainMenu.global_position, 0.1)
 	tween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
 
-## when you press the "upgrade menu button" the upgrade menu
-## slides on the screen 
+
 func _on_up_menu_open_pressed() -> void:
 	var menu = $UpgradeMenu/Control
 	var tween = create_tween()
@@ -46,9 +55,6 @@ func _on_up_menu_open_pressed() -> void:
 	tween.tween_property(menu, "position:x", menu.position.x + 1500, 1)
 
 
-## the signal you get from the start button in MainMenu scene
-## it zooms in on the house door, screen fades to black then changes the 
-## camera position to the main game and turns the brighness back on
 func _on_main_menu_start_pressed() -> void:
 	var camera = $Camera2D
 	var tint = $ColorRect

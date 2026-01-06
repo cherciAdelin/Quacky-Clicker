@@ -107,9 +107,6 @@ layout_mode = 2
 [node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="2"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_k3b1m")
 
-[node name="Locked" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="5"]
-visible = false
-
 [node name="autoclick_up2" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
@@ -145,6 +142,11 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_o7p5u")
 theme_override_styles/hover = SubResource("StyleBoxTexture_lwnqu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jbvtb")
 
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclick_up1/UpButton" to="." method="_on_up_button_pressed_autoclick1"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclick_up2/UpButton" to="." method="_on_up_button_pressed_autoclick2"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclick_up3/UpButton" to="." method="_on_up_button_pressed_autoclick3"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclick_up4/UpButton" to="." method="_on_up_button_pressed_autoclick4"]
+[connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclick_up5/UpButton" to="." method="_on_up_button_pressed_autoclick5"]
 [connection signal="pressed" from="Control/CloseMenu" to="." method="_on_close_menu_pressed"]
 
 [editable path="Control/UpgradesContainer/VBoxContainer/autoclick_up1"]

@@ -1,22 +1,12 @@
 extends Area2D
 
-	## Variables
-
-## signals for when you click/break the egg that trigger functions
-## in the main script
 signal egg
-
-## variables that are used to manipulate the health of the egg
+signal autoclickUnlock
 var egg_health := 100.0
 var max_egg_health := 100.0
-## variable used in a function that checks if you have broken the
-## required number of eggs. If the threshold is reached, the max health
-## of the egg grows by *10
 var egg_threshold := 10
 
-## sprite has easy access to the sprite2d
 @onready var sprite = $egg_sprite
-##preloads the textures for the egg at the start of the program
 @onready var egg_textures := {
 	100:	preload("res://Assets/Sprites/Egg/Egg_full.png"),
 	75:		preload("res://Assets/Sprites/Egg/Egg_cracked1.png"),
@@ -25,7 +15,6 @@ var egg_threshold := 10
 	0:		preload("res://Assets/Sprites/Egg/Egg_broken.png"),
 }
 
-## when you click the egg it triggers every command in this function
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if(event.is_action_pressed("left_click")):
 		egg_press()
@@ -33,18 +22,10 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		take_dmg(damage)
 		animate_tween()
 
-## the signal you get from the egg collision shape when you click it
-## it increases the "Currency" you have and also updates the UI
 func egg_press() -> void:
 	Global.currency += Global.click_value
 	show_dmg(Global.click_value,sprite.position)
 	egg.emit()
-
-## Dmg popup function. It first creates the text(var pop), generates a random position
-## loads the font, sets the text to the click value, adds the font and changes the font size
-## sets the position with the "origin" which is the position of the egg then adds the random coordinates
-## changes the color and adds it to the main scene with add_child. After all that it uses tweens for the 
-## popup and fading animations
 
 func show_dmg(dmg_val: float, origin: Vector2):
 	var pop = Label.new()
@@ -68,31 +49,33 @@ func show_dmg(dmg_val: float, origin: Vector2):
 	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
 	tween.finished.connect(pop.queue_free)
-	
-## egg health
 
-## sets the health between -1 and max_egg_health which updates based on the number
-## of eggs broken, updates the egg sprite when the egg reaches 75%, 
-## 50%, 25%, 0% health and when the egg health drops below 0 it resets the egg
+
 func take_dmg(amount:float):
 	egg_health = clamp(egg_health - amount, -1, max_egg_health)
-	$egg_hp.text = "Egg health: " + str(int(egg_health))
+	var percent := (egg_health / max_egg_health) * 100
+	if(egg_health < 0):
+		$egg_hp.text = "Egg health: 0.00%"
+	else:
+		$egg_hp.text = "Egg health: " + String.num(percent, 2) + "%"
 	change_sprite()
 	if(egg_health < 0):
+		egg_health = 0
+		change_sprite()
+		await get_tree().create_timer(0.3).timeout
 		egg_broken()
 		reset_egg()
 
-## the signal you get when the egg health drops below 0
-## it increases the number of eggs broken and provides a 20% bonus to your current currency
+
 func egg_broken() -> void:
 	Global.eggsBroken += 1
 	Global.currency += int(Global.currency*0.2)
+	if Global.eggsBroken == 5:
+		autoclickUnlock.emit()
+		$autoclicker.start(0.5)
 	egg.emit()
 
-	## sprite manipulation
 
-## function that changes sprites based on the %health left which is calculated in 
-## the "percent" variable with the formula below
 func change_sprite():
 	var percent: float
 	var threshholds = [0, 25, 50, 75, 100]
@@ -105,9 +88,6 @@ func change_sprite():
 			break
 
 
-## function that resets the health and sprite of the egg and it
-## increases the %maxhealth of the egg if a certain number of eggs have been
-## broken
 func reset_egg():
 	if(Global.eggsBroken >= egg_threshold):
 		max_egg_health *= 10
@@ -117,8 +97,6 @@ func reset_egg():
 	sprite.texture = egg_textures[100]
 
 
-## function that changes the size of the sprite to create the illusion of the
-## egg bouncing when you click it
 func animate_tween():
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_BACK)
@@ -128,6 +106,18 @@ func animate_tween():
 
 
 func _on_autoclicker_timeout() -> void:
-	take_dmg(Global.upgrades["autoclicker"]["value"])
-	Global.currency += Global.upgrades["autoclicker"]["value"]
+	take_dmg(Global.autoclick_value)
+	Global.currency += Global.autoclick_value
 	egg.emit()
+
+
+func _on_mouse_entered() -> void:
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(sprite, "scale", Vector2(1.1, 1.1), 0.1)
+
+
+func _on_mouse_exited() -> void:
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(sprite, "scale", Vector2(1, 1), 0.1)

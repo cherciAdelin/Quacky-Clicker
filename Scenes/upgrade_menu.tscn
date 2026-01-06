@@ -234,6 +234,9 @@ offset_bottom = 3514.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("9_fm0cu")
 
+[node name="UpgradeTemplate" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+layout_mode = 2
+
 [node name="CloseMenu" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 1321.0
