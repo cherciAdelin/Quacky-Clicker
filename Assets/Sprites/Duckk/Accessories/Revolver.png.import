@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cabnevahcdscq"
-path="res://.godot/imported/WitchBroom.png-150dca992aebac77aac6a0be0633db85.ctex"
+uid="uid://diexv0f0e3e0"
+path="res://.godot/imported/Revolver.png-ee68336f03a1de5d0b4c8fa280346aaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Duckk/Eyes/WitchBroom.png"
-dest_files=["res://.godot/imported/WitchBroom.png-150dca992aebac77aac6a0be0633db85.ctex"]
+source_file="res://Assets/Sprites/Duckk/Accessories/Revolver.png"
+dest_files=["res://.godot/imported/Revolver.png-ee68336f03a1de5d0b4c8fa280346aaa.ctex"]
 
 [params]
 

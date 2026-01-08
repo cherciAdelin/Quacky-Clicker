@@ -115,10 +115,10 @@ expand_mode = 1
 
 [node name="Score" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 59.0
-offset_top = 116.0
-offset_right = 284.0
-offset_bottom = 174.0
+offset_left = 57.0
+offset_top = 92.0
+offset_right = 282.0
+offset_bottom = 150.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
@@ -129,10 +129,10 @@ vertical_alignment = 1
 
 [node name="Click_val" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 61.0
-offset_top = 203.0
-offset_right = 289.0
-offset_bottom = 278.0
+offset_left = 54.0
+offset_top = 166.0
+offset_right = 282.0
+offset_bottom = 241.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
@@ -143,10 +143,10 @@ vertical_alignment = 1
 
 [node name="EggsBr" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 157.0
-offset_right = 286.0
-offset_bottom = 232.0
+offset_left = 55.0
+offset_top = 121.0
+offset_right = 283.0
+offset_bottom = 196.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
@@ -168,6 +168,20 @@ theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 31
 text = "Stats"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EggshellLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 209.0
+offset_right = 284.0
+offset_bottom = 284.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_8gbba")
+theme_override_font_sizes/font_size = 31
+text = "Eggshells:"
 vertical_alignment = 1
 
 [node name="UpMenuOpen" type="Button" parent="UI"]
@@ -209,16 +223,16 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jkdf5")
 
 [node name="UpgradeMenu" parent="." instance=ExtResource("5_21xkr")]
 offset_left = -719.0
-offset_top = 57.0
+offset_top = 115.0
 offset_right = 740.99976
-offset_bottom = 2126.9998
+offset_bottom = 2184.9998
 scale = Vector2(0.5, 0.5)
 
 [node name="autoclick_up_menu" parent="." instance=ExtResource("9_ynf5e")]
-offset_left = -705.0
-offset_top = 68.0
-offset_right = -705.0
-offset_bottom = 68.0
+offset_left = -709.0
+offset_top = 120.0
+offset_right = -709.0
+offset_bottom = 120.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Duck" parent="." instance=ExtResource("10_hptm8")]
@@ -235,3 +249,5 @@ scale = Vector2(0.2, 0.2)
 [connection signal="pressed" from="UI/AutoclickUpMenuOpen" to="." method="_on_autoclick_up_menu_open_pressed"]
 [connection signal="UpMenuChange" from="UpgradeMenu" to="." method="_on_upgrade_menu_up_menu_change"]
 [connection signal="AutoclickMenuChange" from="autoclick_up_menu" to="." method="_on_autoclick_menu_change"]
+[connection signal="DuckHatChange" from="autoclick_up_menu" to="Duck" method="_on_duck_hat_change"]
+[connection signal="DuckWeaponChange" from="autoclick_up_menu" to="Duck" method="_on_duck_weapon_change"]

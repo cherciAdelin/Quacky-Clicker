@@ -1,9 +1,18 @@
 extends Node
 
 var currency := 100000.0
+var eggshell_currency := 0
 var eggsBroken := 0
+
 var click_value := 1.0
 var autoclick_value := 0.0
+
+var eggs_broken_multiplier := 1.0
+var eggshell_multiplier := 1.0
+var eggshell_lower_limit := 1
+var eggshell_upper_limit := 5
+var active_powerup_cooldown := 300.0
+var active_powerup_multiplier := 1.0
 
 var upgrades = {
 	
@@ -60,10 +69,32 @@ var upgrades = {
 		"value": 20,
 		"level": 0,
 	},
+}
+
+var hats = {
 	
-	"autoclick_up5":{
-		"cost": 30000,
-		"value": 50,
+	"straw_hat":{
+		"cost": 15,
+		"value": 1.0,
+		"level": 0,
+	},
+	
+	"cowboy_hat":{
+		"cost": 30,
+		"value": 1.0,
+		"level": 0,
+	},
+	
+	"witch_hat":{
+		"cost": 45,
+		"value": 1.0,
+		"level": 0,
+	},
+	
+	"wizard_hat":{
+		"cost": 60,
+		"value": 1.0,
 		"level": 0,
 	}
+	
 }

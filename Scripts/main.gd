@@ -3,6 +3,7 @@ extends Node2D
 @onready var ScoreLabel = $UI/Score
 @onready var ClickValueLabel = $UI/Click_val
 @onready var EggsBrLabel = $UI/EggsBr
+@onready var EggshellLabel = $UI/EggshellLabel
 signal up_menu
 var shownCurrency := 0.0
 var currencyTween: Tween
@@ -13,20 +14,11 @@ func _ready():
 	update_ui()
 
 func update_ui():
-	animate_currency(Global.currency)
+	ScoreLabel.text = "Money: " + str(int(Global.currency)) + "$"
 	ClickValueLabel.text = "Click value: " + str(Global.click_value)
 	EggsBrLabel.text = "Eggs broken: " + str(Global.eggsBroken)
+	EggshellLabel.text = "Eggshells: " + str(Global.eggshell_currency)
 	up_menu.emit()
-
-func animate_currency(newValue: float):	
-	currencyTween = create_tween()
-	currencyTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	currencyTween.tween_property(self, "shownCurrency", newValue, 0.3)
-	currencyTween.tween_method(Callable(self, "_set_shown_currency"), shownCurrency, newValue, 0.3)
-
-func _set_shown_currency(value: float):
-	shownCurrency = value
-	ScoreLabel.text = "Money: " + str(int(shownCurrency)) + "$"
 
 func _on_autoclick_menu_change() -> void:
 	update_ui()

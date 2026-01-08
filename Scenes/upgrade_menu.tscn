@@ -85,7 +85,7 @@ layout_mode = 0
 offset_left = 33.0
 offset_top = 25.0
 offset_right = 1407.0
-offset_bottom = 2008.0
+offset_bottom = 1839.0
 texture = SubResource("AtlasTexture_f5dmy")
 
 [node name="UpgradesText" type="Label" parent="Control"]
@@ -107,7 +107,7 @@ layout_mode = 0
 offset_left = 176.0
 offset_top = 262.0
 offset_right = 1291.0
-offset_bottom = 1894.0
+offset_bottom = 1725.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/UpgradesContainer"]
 layout_mode = 2
@@ -129,13 +129,17 @@ rotation = -1.5707964
 theme_override_styles/normal = SubResource("StyleBoxTexture_ttpbb")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="3"]
-visibility_layer = 1
 offset_left = 784.0
-offset_top = 7.999996
+offset_top = 6.0
 offset_right = 3264.0
-offset_bottom = 3515.0
+offset_bottom = 3513.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("5_d1lbs")
+
+[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="4"]
+offset_left = 788.0
+offset_top = 201.0
+offset_bottom = 246.0
 
 [node name="Locked" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="5"]
 visible = false
@@ -153,9 +157,9 @@ offset_right = 981.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_fm0cu")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="3"]
-offset_left = 780.0
-offset_top = 19.000008
-offset_right = 3260.0
+offset_left = 773.0
+offset_top = 19.0
+offset_right = 3253.0
 offset_bottom = 3526.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("6_m70ya")
@@ -163,7 +167,6 @@ texture = ExtResource("6_m70ya")
 [node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="4"]
 offset_left = 789.0
 offset_top = 197.0
-offset_right = 974.0
 offset_bottom = 242.0
 
 [node name="click_up3" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
@@ -180,10 +183,10 @@ offset_bottom = 254.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_s2rwv")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="3"]
-offset_left = 781.0
-offset_top = 25.0
-offset_right = 3261.0
-offset_bottom = 3532.0
+offset_left = 776.0
+offset_top = 14.000015
+offset_right = 3256.0
+offset_bottom = 3521.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("7_60tjm")
 
@@ -207,10 +210,10 @@ offset_bottom = 254.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ojj7b")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="3"]
-offset_left = 771.0
-offset_top = 27.0
-offset_right = 3251.0
-offset_bottom = 3534.0
+offset_left = 764.0
+offset_top = 22.0
+offset_right = 3244.0
+offset_bottom = 3529.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("8_ttpbb")
 
@@ -227,15 +230,12 @@ offset_right = 973.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_d2q0m")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="3"]
-offset_left = 778.0
-offset_top = 7.0
-offset_right = 3258.0
+offset_left = 787.0
+offset_top = 7.0000305
+offset_right = 3267.0
 offset_bottom = 3514.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("9_fm0cu")
-
-[node name="UpgradeTemplate" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
-layout_mode = 2
 
 [node name="CloseMenu" type="Button" parent="Control"]
 layout_mode = 0

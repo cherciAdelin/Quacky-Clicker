@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b88b3ell8pfih"]
+[gd_scene load_steps=6 format=3 uid="uid://b88b3ell8pfih"]
 
 [ext_resource type="Script" uid="uid://bveltrx3av83w" path="res://Scripts/egg.gd" id="1_1iuog"]
 [ext_resource type="Texture2D" uid="uid://k26l1kr27um3" path="res://Assets/Sprites/Egg/Egg_full.png" id="2_85tk0"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="3_85tk0"]
+[ext_resource type="PackedScene" uid="uid://1eug5q7apiu2" path="res://Scenes/egg_shell_burst.tscn" id="4_io5x2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1iuog"]
 radius = 907.0
@@ -10,6 +11,7 @@ height = 2424.0
 
 [node name="Egg" type="Area2D"]
 script = ExtResource("1_1iuog")
+breakParticles = ExtResource("4_io5x2")
 
 [node name="egg_sprite" type="Sprite2D" parent="."]
 position = Vector2(87, -55)

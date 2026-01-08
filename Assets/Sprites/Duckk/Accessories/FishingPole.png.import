@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db4xvo1v2grpf"
-path="res://.godot/imported/IntelligentHat.png-0c3ce476a22da26ed9e071d8e66b3816.ctex"
+uid="uid://dni357mxuwt01"
+path="res://.godot/imported/FishingPole.png-151cf874eb3d25bbec0adfadefab786b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Duckk/Hats/IntelligentHat.png"
-dest_files=["res://.godot/imported/IntelligentHat.png-0c3ce476a22da26ed9e071d8e66b3816.ctex"]
+source_file="res://Assets/Sprites/Duckk/Accessories/FishingPole.png"
+dest_files=["res://.godot/imported/FishingPole.png-151cf874eb3d25bbec0adfadefab786b.ctex"]
 
 [params]
 

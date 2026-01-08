@@ -2,10 +2,12 @@ extends Area2D
 
 signal egg
 signal autoclickUnlock
+
 var egg_health := 100.0
 var max_egg_health := 100.0
 var egg_threshold := 10
 
+@export var breakParticles: PackedScene
 @onready var sprite = $egg_sprite
 @onready var egg_textures := {
 	100:	preload("res://Assets/Sprites/Egg/Egg_full.png"),
@@ -75,16 +77,31 @@ func egg_broken() -> void:
 		$autoclicker.start(0.5)
 	egg.emit()
 
+func gain_eggshells(multiplier: float, lowerLimit: int, upperLimit: int):
+	var eggshellsGained := randi_range(lowerLimit, upperLimit) * multiplier
+	Global.eggshell_currency += int(eggshellsGained)
+
+func break_animation():
+	var particle := breakParticles.instantiate()
+	particle.global_position = sprite.global_position
+	get_tree().current_scene.add_child(particle)
+	particle.emitting = true
+	particle.finished.connect(particle.queue_free)
+
+var current_stage := 4
 
 func change_sprite():
 	var percent: float
-	var threshholds = [0, 25, 50, 75, 100]
-	
+	var thresholds = [0, 25, 50, 75, 100]
 	percent = (egg_health / max_egg_health) * 100
 	
-	for i in threshholds:
-		if(percent <= i):
-			sprite.texture = egg_textures[i]
+	for i in thresholds.size():
+		if(percent <= thresholds[i]):
+			if(i != current_stage):
+				current_stage = i
+				break_animation()
+				sprite.texture = egg_textures[thresholds[i]]
+				gain_eggshells(Global.eggshell_multiplier, Global.eggshell_lower_limit, Global.eggshell_upper_limit)
 			break
 
 
@@ -94,6 +111,7 @@ func reset_egg():
 		egg_threshold *= 10
 	egg_health = int(max_egg_health)
 	$egg_hp.text = "Egg health: 100.0%"
+	current_stage = 4
 	sprite.texture = egg_textures[100]
 
 

@@ -32,7 +32,7 @@ func upgrade_click(upgrade: String, cost_inc: int, val_inc: float, threshold: in
 	Global.upgrades[upgrade]["level"] += 1
 	Global.click_value += Global.upgrades[upgrade]["value"]
 	Global.upgrades[upgrade]["value"] += val_inc
-	if Global.upgrades[upgrade]["level"] == threshold:
+	if (Global.upgrades[upgrade]["level"] == threshold and next_upgrade != null):
 		next_upgrade.visible = false
 	UpMenuChange.emit()
 
@@ -44,26 +44,6 @@ func insufficient_funds(costLabel: Control):
 func UI_change(upgrade: String, costLabel: Control, lvlLabel: Control):
 	costLabel.text = str(Global.upgrades[upgrade]["cost"]) + "$"
 	lvlLabel.text = "LVL" + str(Global.upgrades[upgrade]["level"])
-
-
-
-
-
-func _on_close_menu_pressed() -> void:
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(Menu, "position:x", Menu.position.x - 1500, 1)
-
-
-func _on_main_up_menu() -> void:
-	UI_change("click_up", clickup1Cost, clickup1LvL)
-	UI_change("click_up2", clickup2Cost, clickup2LvL)
-	UI_change("click_up3", clickup3Cost, clickup3LvL)
-	UI_change("click_up4", clickup4Cost, clickup4LvL)
-	UI_change("click_up5", clickup5Cost, clickup5LvL)
-
-
 
 func bought_popup(origin: Vector2, offset: Vector2):
 	var pop := Label.new()
@@ -91,6 +71,24 @@ func bought_popup(origin: Vector2, offset: Vector2):
 
 
 
+func _on_close_menu_pressed() -> void:
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(Menu, "position:x", Menu.position.x - 1500, 1)
+
+
+func _on_main_up_menu() -> void:
+	UI_change("click_up", clickup1Cost, clickup1LvL)
+	UI_change("click_up2", clickup2Cost, clickup2LvL)
+	UI_change("click_up3", clickup3Cost, clickup3LvL)
+	UI_change("click_up4", clickup4Cost, clickup4LvL)
+	UI_change("click_up5", clickup5Cost, clickup5LvL)
+
+
+
+
+
 
 func _on_up_button_pressed_clickval1() -> void:
 	if(Global.currency < Global.upgrades["click_up"]["cost"]):
@@ -112,7 +110,7 @@ func _on_up_button_pressed_clickval3() -> void:
 		insufficient_funds(clickup3Cost)
 	else:
 		bought_popup(clickUp3ButtonPos.global_position, Vector2.ZERO)
-		upgrade_click("click_up3", 1500, 25, 30, clickup4lock)
+		upgrade_click("click_up3", 1500, 25, 10, clickup4lock)
 
 
 func _on_up_button_pressed_clickval4() -> void:
@@ -120,8 +118,12 @@ func _on_up_button_pressed_clickval4() -> void:
 		insufficient_funds(clickup4Cost)
 	else:
 		bought_popup(clickUp4ButtonPos.global_position, Vector2.ZERO)
-		upgrade_click("click_up4", 2500, 50, 50, clickup5lock)
+		upgrade_click("click_up4", 2500, 50, 10, clickup5lock)
 
 
 func _on_up_button_pressed_clickval5() -> void:
-	pass # Replace with function body.
+	if(Global.currency < Global.upgrades["click_up5"]["cost"]):
+		insufficient_funds(clickup5Cost)
+	else:
+		bought_popup(clickUp5ButtonPos.global_position, Vector2.ZERO)
+		upgrade_click("click_up5", 5000, 70, 10, null)

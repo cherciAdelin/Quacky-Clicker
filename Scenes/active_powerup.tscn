@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccvbda5te4avd"]
+
+[ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="1_v26ai"]
+
+[node name="Active_Powerup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Powerup_body" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -6.0
+offset_right = 1281.0
+offset_bottom = 1045.0
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 800.0
+offset_right = 1079.0
+offset_bottom = 1079.0
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("1_v26ai")
+theme_override_font_sizes/font_size = 256
+text = "Waaaaa"
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="ActiveTimer" type="Timer" parent="."]
