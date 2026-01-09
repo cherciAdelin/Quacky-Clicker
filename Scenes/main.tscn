@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=46 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
@@ -10,6 +10,26 @@
 [ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="6_6bp64"]
 [ext_resource type="PackedScene" uid="uid://b81tfanlc847y" path="res://Scenes/autoclick_up_menu.tscn" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://lq30jipgbnqm" path="res://Scenes/duck.tscn" id="10_hptm8"]
+[ext_resource type="PackedScene" uid="uid://ccvbda5te4avd" path="res://Scenes/active_powerup.tscn" id="11_ee4r6"]
+[ext_resource type="Texture2D" uid="uid://ch1av720l8k8u" path="res://Assets/Sprites/ActivePowerups/Fih_ready.png" id="12_gt3je"]
+[ext_resource type="Script" uid="uid://cjothox1da3po" path="res://Scripts/Fih_bucket_powerup.gd" id="12_k12tt"]
+[ext_resource type="Texture2D" uid="uid://b74vm82hmm5rp" path="res://Assets/Sprites/ActivePowerups/Fih_cooldown.png" id="13_3pmx8"]
+[ext_resource type="Texture2D" uid="uid://bleb6otaxma34" path="res://Assets/Sprites/ActivePowerups/Fih_active.png" id="14_u50mg"]
+[ext_resource type="Texture2D" uid="uid://dls7mqouplh58" path="res://Assets/Sprites/ActivePowerups/Whiskey_glass_ready.png" id="15_cbgmd"]
+[ext_resource type="Texture2D" uid="uid://cfcn0tl3qlcjw" path="res://Assets/Sprites/ActivePowerups/Whiskey_glass_cooldown.png" id="16_1w6v2"]
+[ext_resource type="PackedScene" uid="uid://d1e8ocowk7rhi" path="res://Scenes/fih_particles.tscn" id="16_fevyy"]
+[ext_resource type="Script" uid="uid://cuftwtj41fxgy" path="res://Scripts/whiskey_glass_powerup.gd" id="17_hibaj"]
+[ext_resource type="Texture2D" uid="uid://c4e2or1t24eq6" path="res://Assets/Sprites/ActivePowerups/Whiskey_glass_active.png" id="17_ueoa1"]
+[ext_resource type="Texture2D" uid="uid://bofdfdisihs62" path="res://Assets/Sprites/ActivePowerups/Cauldron-Ready-Active.png" id="18_6vcvc"]
+[ext_resource type="Texture2D" uid="uid://woehyeuctpim" path="res://Assets/Sprites/ActivePowerups/Potion-Ready.png" id="20_hpc6h"]
+[ext_resource type="PackedScene" uid="uid://bxjdnsmwoyt0l" path="res://Scenes/whiskey_particles.tscn" id="21_gt3je"]
+[ext_resource type="Script" uid="uid://bryefgfdwmygh" path="res://Scripts/cauldron_powerup.gd" id="22_3pmx8"]
+[ext_resource type="Texture2D" uid="uid://1t5fak67fui4" path="res://Assets/Sprites/ActivePowerups/Cauldron-Cooldown.png" id="24_u50mg"]
+[ext_resource type="PackedScene" uid="uid://b7a80phpdiv2c" path="res://Scenes/cauldron_particles.tscn" id="25_cbgmd"]
+[ext_resource type="Script" uid="uid://jalqwx24rqvo" path="res://Scripts/elixir_powerup.gd" id="26_1w6v2"]
+[ext_resource type="Texture2D" uid="uid://cps7fd0sg37yf" path="res://Assets/Sprites/ActivePowerups/Potion-Cooldown.png" id="28_6vcvc"]
+[ext_resource type="Texture2D" uid="uid://doym4rd8mlsbd" path="res://Assets/Sprites/ActivePowerups/Potion-Active.png" id="29_7k868"]
+[ext_resource type="PackedScene" uid="uid://361vj23hvlqo" path="res://Scenes/elixir_particles.tscn" id="30_7k868"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
 atlas = ExtResource("5_344ge")
@@ -115,44 +135,44 @@ expand_mode = 1
 
 [node name="Score" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 92.0
-offset_right = 282.0
-offset_bottom = 150.0
+offset_left = 59.0
+offset_top = 117.0
+offset_right = 349.32
+offset_bottom = 177.23999
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_8gbba")
-theme_override_font_sizes/font_size = 30
-text = "Money:"
+theme_override_font_sizes/font_size = 32
+text = "Money: "
+vertical_alignment = 1
+
+[node name="EggshellLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 162.0
+offset_right = 366.0
+offset_bottom = 239.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_8gbba")
+theme_override_font_sizes/font_size = 32
+text = "EggShells: "
 vertical_alignment = 1
 
 [node name="Click_val" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 166.0
-offset_right = 282.0
-offset_bottom = 241.0
+offset_left = 60.0
+offset_top = 222.0
+offset_right = 288.0
+offset_bottom = 297.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 31
 text = "Click value:"
-vertical_alignment = 1
-
-[node name="EggsBr" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 55.0
-offset_top = 121.0
-offset_right = 283.0
-offset_bottom = 196.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("3_8gbba")
-theme_override_font_sizes/font_size = 31
-text = "Eggs broken:"
 vertical_alignment = 1
 
 [node name="StatsLabel" type="Label" parent="UI"]
@@ -168,20 +188,6 @@ theme_override_fonts/font = ExtResource("3_8gbba")
 theme_override_font_sizes/font_size = 31
 text = "Stats"
 horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EggshellLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 209.0
-offset_right = 284.0
-offset_bottom = 284.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("3_8gbba")
-theme_override_font_sizes/font_size = 31
-text = "Eggshells:"
 vertical_alignment = 1
 
 [node name="UpMenuOpen" type="Button" parent="UI"]
@@ -236,8 +242,143 @@ offset_bottom = 120.0
 scale = Vector2(0.5, 0.5)
 
 [node name="Duck" parent="." instance=ExtResource("10_hptm8")]
-position = Vector2(1621, 597)
+position = Vector2(1602, 639)
 scale = Vector2(0.2, 0.2)
+
+[node name="active_powerups" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Fih_bucket" parent="active_powerups" instance=ExtResource("11_ee4r6")]
+layout_mode = 1
+offset_left = 1265.0
+offset_top = 117.0
+offset_right = 1384.0
+offset_bottom = 382.0
+script = ExtResource("12_k12tt")
+readyTexture = ExtResource("12_gt3je")
+cooldownTexture = ExtResource("13_3pmx8")
+activeTexture = ExtResource("14_u50mg")
+particleScene = ExtResource("16_fevyy")
+
+[node name="Powerup_body" parent="active_powerups/Fih_bucket" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.563
+anchor_top = 0.208
+anchor_right = 0.563
+anchor_bottom = 0.208
+offset_left = -110.51697
+offset_top = -43.44001
+offset_right = 2369.483
+offset_bottom = 3463.56
+scale = Vector2(0.07, 0.07)
+pivot_offset = Vector2(14.285156, -14.285645)
+texture_normal = ExtResource("12_gt3je")
+
+[node name="TimerLabel" parent="active_powerups/Fih_bucket" index="1"]
+offset_left = 1.0
+offset_top = 236.0
+offset_right = 151.0
+offset_bottom = 298.0
+
+[node name="Whiskey_glass" parent="active_powerups" instance=ExtResource("11_ee4r6")]
+layout_mode = 1
+offset_left = 1431.0
+offset_top = 234.0
+offset_right = 1531.0
+offset_bottom = 367.0
+script = ExtResource("17_hibaj")
+readyTexture = ExtResource("15_cbgmd")
+cooldownTexture = ExtResource("16_1w6v2")
+activeTexture = ExtResource("17_ueoa1")
+particleScene = ExtResource("21_gt3je")
+
+[node name="Powerup_body" parent="active_powerups/Whiskey_glass" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.54700005
+anchor_top = 0.268
+anchor_right = 0.54700005
+anchor_bottom = 0.268
+offset_left = -94.58002
+offset_top = -121.364
+offset_right = 2385.42
+offset_bottom = 3385.636
+scale = Vector2(0.07, 0.07)
+texture_normal = ExtResource("15_cbgmd")
+
+[node name="TimerLabel" parent="active_powerups/Whiskey_glass" index="1"]
+offset_left = 5.0
+offset_top = 127.0
+offset_right = 136.0
+offset_bottom = 178.0
+
+[node name="Cauldron" parent="active_powerups" instance=ExtResource("11_ee4r6")]
+layout_mode = 1
+offset_left = 1576.0
+offset_top = 183.0
+offset_right = 1690.0
+offset_bottom = 374.0
+script = ExtResource("22_3pmx8")
+readyTexture = ExtResource("18_6vcvc")
+cooldownTexture = ExtResource("24_u50mg")
+activeTexture = ExtResource("18_6vcvc")
+particleScene = ExtResource("25_cbgmd")
+
+[node name="Powerup_body" parent="active_powerups/Cauldron" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.259
+anchor_right = 0.5
+anchor_bottom = 0.259
+offset_left = -86.0
+offset_top = -82.829
+offset_right = 2394.0
+offset_bottom = 3424.171
+scale = Vector2(0.07, 0.07)
+texture_normal = ExtResource("18_6vcvc")
+
+[node name="TimerLabel" parent="active_powerups/Cauldron" index="1"]
+offset_left = 19.0
+offset_top = 183.0
+offset_right = 129.0
+offset_bottom = 227.0
+
+[node name="Elixir" parent="active_powerups" instance=ExtResource("11_ee4r6")]
+layout_mode = 1
+offset_left = 1727.0
+offset_top = 154.0
+offset_right = 1844.0
+offset_bottom = 366.0
+script = ExtResource("26_1w6v2")
+readyTexture = ExtResource("20_hpc6h")
+cooldownTexture = ExtResource("28_6vcvc")
+activeTexture = ExtResource("29_7k868")
+particleScene = ExtResource("30_7k868")
+
+[node name="Powerup_body" parent="active_powerups/Elixir" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44900003
+anchor_top = 0.19500001
+anchor_right = 0.44900003
+anchor_bottom = 0.19500001
+offset_left = -84.49301
+offset_top = -83.14
+offset_right = 2395.507
+offset_bottom = 3423.86
+scale = Vector2(0.07, 0.07)
+texture_normal = ExtResource("20_hpc6h")
+
+[node name="TimerLabel" parent="active_powerups/Elixir" index="1"]
+offset_left = -1.0
+offset_top = 221.0
+offset_right = 138.0
+offset_bottom = 250.0
 
 [connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
 [connection signal="up_menu" from="." to="autoclick_up_menu" method="_on_main_up_menu"]
@@ -248,6 +389,14 @@ scale = Vector2(0.2, 0.2)
 [connection signal="pressed" from="UI/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="UI/AutoclickUpMenuOpen" to="." method="_on_autoclick_up_menu_open_pressed"]
 [connection signal="UpMenuChange" from="UpgradeMenu" to="." method="_on_upgrade_menu_up_menu_change"]
+[connection signal="ActivePowerupUnlock" from="autoclick_up_menu" to="." method="_on_active_powerup_unlock"]
 [connection signal="AutoclickMenuChange" from="autoclick_up_menu" to="." method="_on_autoclick_menu_change"]
 [connection signal="DuckHatChange" from="autoclick_up_menu" to="Duck" method="_on_duck_hat_change"]
 [connection signal="DuckWeaponChange" from="autoclick_up_menu" to="Duck" method="_on_duck_weapon_change"]
+[connection signal="multiplied_upgrades" from="active_powerups/Fih_bucket" to="UpgradeMenu" method="_on_fih_bucket_active"]
+[connection signal="multiplied_autoclicker_upgrades" from="active_powerups/Whiskey_glass" to="autoclick_up_menu" method="_on_whiskey_glass_active"]
+
+[editable path="active_powerups/Fih_bucket"]
+[editable path="active_powerups/Whiskey_glass"]
+[editable path="active_powerups/Cauldron"]
+[editable path="active_powerups/Elixir"]

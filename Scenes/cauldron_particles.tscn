@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7a80phpdiv2c"]
+
+[ext_resource type="Texture2D" uid="uid://srv0y2gg6rj4" path="res://Assets/Sprites/Particle-effects/Particles-1.png" id="1_itrjb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nil3t"]
+atlas = ExtResource("1_itrjb")
+region = Rect2(820.55383, 1086.3693, 867.7252, 780.4811)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_we425"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(40, 1, 1)
+direction = Vector3(0, -10, 0)
+initial_velocity_min = 26.199999
+initial_velocity_max = 100.439995
+gravity = Vector3(0, -45, 0)
+scale_min = 0.02
+scale_max = 0.04
+
+[node name="CauldronParticles" type="GPUParticles2D"]
+amount = 10
+texture = SubResource("AtlasTexture_nil3t")
+lifetime = 3.5
+process_material = SubResource("ParticleProcessMaterial_we425")

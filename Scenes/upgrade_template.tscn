@@ -45,10 +45,11 @@ stretch_mode = 2
 
 [node name="UpName" type="Label" parent="."]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 69.0
-offset_right = 750.0
-offset_bottom = 186.0
+offset_left = 73.0
+offset_top = 42.0
+offset_right = 745.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(0.907915, 0.807336, 0.70697784, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("2_rgau5")
@@ -58,15 +59,29 @@ vertical_alignment = 1
 
 [node name="LvL" type="Label" parent="."]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 196.0
-offset_right = 293.0
-offset_bottom = 257.0
+offset_left = 72.0
+offset_top = 217.0
+offset_right = 290.0
+offset_bottom = 263.0
+theme_override_colors/font_color = Color(0.9390394, 0.72342825, 0.5143812, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("2_rgau5")
 theme_override_font_sizes/font_size = 30
 text = "LVL: 0"
+vertical_alignment = 1
+
+[node name="Details" type="Label" parent="."]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 157.0
+offset_right = 289.0
+offset_bottom = 203.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_rgau5")
+theme_override_font_sizes/font_size = 30
+text = "Details:"
 vertical_alignment = 1
 
 [node name="UpButton" type="Button" parent="."]
@@ -98,7 +113,7 @@ mouse_filter = 2
 layout_mode = 0
 offset_left = 779.0
 offset_top = 195.0
-offset_right = 914.0
+offset_right = 974.0
 offset_bottom = 240.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
@@ -115,10 +130,3 @@ offset_top = -9.0
 offset_right = 1100.0
 offset_bottom = 301.0
 texture = SubResource("AtlasTexture_lhh40")
-
-[node name="currencySprite" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 927.0
-offset_top = 198.0
-offset_right = 967.0
-offset_bottom = 238.0

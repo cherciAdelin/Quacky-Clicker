@@ -78,7 +78,7 @@ script = ExtResource("1_6gn5s")
 anchors_preset = 0
 offset_left = -9.0
 offset_right = 1418.0
-offset_bottom = 1975.0
+offset_bottom = 1919.0
 
 [node name="MainSprite" type="TextureRect" parent="Control"]
 layout_mode = 0
@@ -107,7 +107,7 @@ layout_mode = 0
 offset_left = 176.0
 offset_top = 262.0
 offset_right = 1291.0
-offset_bottom = 1725.0
+offset_bottom = 1734.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/UpgradesContainer"]
 layout_mode = 2
@@ -120,7 +120,7 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="0"]
 text = "Toothpicks"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="3"]
 offset_left = 778.0
 offset_top = 257.0
 offset_right = 978.0
@@ -128,7 +128,7 @@ offset_bottom = 458.0
 rotation = -1.5707964
 theme_override_styles/normal = SubResource("StyleBoxTexture_ttpbb")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="4"]
 offset_left = 784.0
 offset_top = 6.0
 offset_right = 3264.0
@@ -136,12 +136,12 @@ offset_bottom = 3513.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("5_d1lbs")
 
-[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="4"]
+[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="5"]
 offset_left = 788.0
 offset_top = 201.0
 offset_bottom = 246.0
 
-[node name="Locked" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="5"]
+[node name="Locked" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="6"]
 visible = false
 
 [node name="click_up2" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
@@ -150,13 +150,13 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="0"]
 text = "Butterknife"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="3"]
 offset_left = 778.0
 offset_top = 48.0
 offset_right = 981.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_fm0cu")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="4"]
 offset_left = 773.0
 offset_top = 19.0
 offset_right = 3253.0
@@ -164,10 +164,8 @@ offset_bottom = 3526.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("6_m70ya")
 
-[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="4"]
+[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="5"]
 offset_left = 789.0
-offset_top = 197.0
-offset_bottom = 242.0
 
 [node name="click_up3" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
 layout_mode = 2
@@ -175,14 +173,14 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="0"]
 text = "Hammer"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="3"]
 offset_left = 780.0
 offset_top = 50.0
 offset_right = 977.0
 offset_bottom = 254.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_s2rwv")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="4"]
 offset_left = 776.0
 offset_top = 14.000015
 offset_right = 3256.0
@@ -190,11 +188,11 @@ offset_bottom = 3521.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("7_60tjm")
 
-[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="4"]
-offset_left = 786.0
-offset_top = 200.0
-offset_right = 971.0
-offset_bottom = 245.0
+[node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="5"]
+offset_left = 790.0
+offset_top = 199.0
+offset_right = 966.0
+offset_bottom = 244.0
 
 [node name="click_up4" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
 layout_mode = 2
@@ -202,14 +200,14 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="0"]
 text = "Drill"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="3"]
 offset_left = 771.0
 offset_top = 46.0
 offset_right = 973.0
 offset_bottom = 254.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ojj7b")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="4"]
 offset_left = 764.0
 offset_top = 22.0
 offset_right = 3244.0
@@ -223,13 +221,13 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="0"]
 text = "Nuke"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="3"]
 offset_left = 784.0
 offset_top = 39.0
 offset_right = 973.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_d2q0m")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="4"]
 offset_left = 787.0
 offset_top = 7.0000305
 offset_right = 3267.0

@@ -1,12 +1,20 @@
 extends Control
 
 signal UpMenuChange
+var multiplied_upgrade_active := false
+var multiplied_upgrade_value := 1.0
 @onready var Menu = $Control
 @onready var clickup1Cost = $Control/UpgradesContainer/VBoxContainer/click_up1/Cost
 @onready var clickup2Cost = $Control/UpgradesContainer/VBoxContainer/click_up2/Cost
 @onready var clickup3Cost = $Control/UpgradesContainer/VBoxContainer/click_up3/Cost
 @onready var clickup4Cost = $Control/UpgradesContainer/VBoxContainer/click_up4/Cost
 @onready var clickup5Cost = $Control/UpgradesContainer/VBoxContainer/click_up5/Cost
+
+@onready var clickup1Details = $Control/UpgradesContainer/VBoxContainer/click_up1/Details
+@onready var clickup2Details = $Control/UpgradesContainer/VBoxContainer/click_up2/Details
+@onready var clickup3Details = $Control/UpgradesContainer/VBoxContainer/click_up3/Details
+@onready var clickup4Details = $Control/UpgradesContainer/VBoxContainer/click_up4/Details
+@onready var clickup5Details = $Control/UpgradesContainer/VBoxContainer/click_up5/Details
 
 @onready var clickup1LvL = $Control/UpgradesContainer/VBoxContainer/click_up1/LvL
 @onready var clickup2LvL = $Control/UpgradesContainer/VBoxContainer/click_up2/LvL
@@ -30,20 +38,26 @@ func upgrade_click(upgrade: String, cost_inc: int, val_inc: float, threshold: in
 	Global.currency -= Global.upgrades[upgrade]["cost"]
 	Global.upgrades[upgrade]["cost"] += cost_inc
 	Global.upgrades[upgrade]["level"] += 1
-	Global.click_value += Global.upgrades[upgrade]["value"]
+	if(multiplied_upgrade_active):
+		Global.click_value += Global.upgrades[upgrade]["value"] * multiplied_upgrade_value
+	else:
+		Global.click_value += Global.upgrades[upgrade]["value"]
 	Global.upgrades[upgrade]["value"] += val_inc
 	if (Global.upgrades[upgrade]["level"] == threshold and next_upgrade != null):
 		next_upgrade.visible = false
 	UpMenuChange.emit()
 
 func insufficient_funds(costLabel: Control):
+	costLabel.add_theme_color_override("font_color", Color(1.0, 0.0, 0.0, 1.0))
 	costLabel.text = "Insufficient"
 	await get_tree().create_timer(2).timeout
 	UpMenuChange.emit()
 
-func UI_change(upgrade: String, costLabel: Control, lvlLabel: Control):
+func UI_change(upgrade: String, costLabel: Control, lvlLabel: Control, detailsLabel: Control):
+	costLabel.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	costLabel.text = str(Global.upgrades[upgrade]["cost"]) + "$"
 	lvlLabel.text = "LVL" + str(Global.upgrades[upgrade]["level"])
+	detailsLabel.text = "Next click upgrade value is " + str(Global.upgrades[upgrade]["value"]) 
 
 func bought_popup(origin: Vector2, offset: Vector2):
 	var pop := Label.new()
@@ -79,11 +93,11 @@ func _on_close_menu_pressed() -> void:
 
 
 func _on_main_up_menu() -> void:
-	UI_change("click_up", clickup1Cost, clickup1LvL)
-	UI_change("click_up2", clickup2Cost, clickup2LvL)
-	UI_change("click_up3", clickup3Cost, clickup3LvL)
-	UI_change("click_up4", clickup4Cost, clickup4LvL)
-	UI_change("click_up5", clickup5Cost, clickup5LvL)
+	UI_change("click_up", clickup1Cost, clickup1LvL, clickup1Details)
+	UI_change("click_up2", clickup2Cost, clickup2LvL, clickup2Details)
+	UI_change("click_up3", clickup3Cost, clickup3LvL, clickup3Details)
+	UI_change("click_up4", clickup4Cost, clickup4LvL, clickup4Details)
+	UI_change("click_up5", clickup5Cost, clickup5LvL, clickup5Details)
 
 
 
@@ -127,3 +141,8 @@ func _on_up_button_pressed_clickval5() -> void:
 	else:
 		bought_popup(clickUp5ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up5", 5000, 70, 10, null)
+
+
+func _on_fih_bucket_active(active: bool, multiplier: float) -> void:
+	multiplied_upgrade_active = active
+	multiplied_upgrade_value = multiplier

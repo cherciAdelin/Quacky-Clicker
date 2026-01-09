@@ -9,29 +9,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
 offset_top = -2.0
-offset_right = -1.0
-offset_bottom = -2.0
+offset_right = -1233.0
+offset_bottom = -390.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Powerup_body" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 12.0
-offset_top = -6.0
-offset_right = 1281.0
-offset_bottom = 1045.0
+offset_left = 38.0
+offset_top = 15.0
+offset_right = 635.0
+offset_bottom = 495.0
 
 [node name="TimerLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 800.0
-offset_right = 1079.0
-offset_bottom = 1079.0
-theme_override_constants/outline_size = 40
+offset_left = 79.0
+offset_top = 470.0
+offset_right = 578.0
+offset_bottom = 604.0
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_v26ai")
-theme_override_font_sizes/font_size = 256
-text = "Waaaaa"
+theme_override_font_sizes/font_size = 20
+text = "READY"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CooldownTimer" type="Timer" parent="."]
 
 [node name="ActiveTimer" type="Timer" parent="."]
+
+[connection signal="mouse_entered" from="Powerup_body" to="." method="_on_sprite_mouse_entered"]
+[connection signal="mouse_exited" from="Powerup_body" to="." method="_on_sprite_mouse_exited"]
+[connection signal="pressed" from="Powerup_body" to="." method="_on_powerup_pressed"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]

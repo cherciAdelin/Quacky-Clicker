@@ -131,10 +131,10 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="0"]
 text = "Fishing Pole"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="3"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_k3b1m")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="4"]
 offset_left = 746.0
 offset_top = -16.000023
 offset_right = 3226.0
@@ -148,10 +148,10 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/straw_hat" index="0"]
 text = "Straw Hat"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/straw_hat" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/straw_hat" index="3"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_tld15")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/straw_hat" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/straw_hat" index="4"]
 offset_left = 738.0
 offset_top = -40.999992
 offset_right = 3218.0
@@ -164,10 +164,10 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="0"]
 text = "Revolver"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="3"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_vs0mw")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="4"]
 offset_left = 689.99994
 offset_top = -275.00003
 offset_right = 3170.0
@@ -180,10 +180,10 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/cowboy_hat" index="0"]
 text = "Cowboy Hat"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/cowboy_hat" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/cowboy_hat" index="3"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_73w0o")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/cowboy_hat" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/cowboy_hat" index="4"]
 offset_left = 745.0
 offset_top = -12.999992
 offset_right = 3225.0
@@ -196,10 +196,10 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="0"]
 text = "Witch Broom"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="3"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_jbvtb")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="4"]
 offset_left = 846.00006
 offset_top = -136.99997
 offset_right = 3326.0
@@ -214,10 +214,10 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/witch_hat" index="0"]
 text = "Witch Hat"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/witch_hat" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/witch_hat" index="3"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_ui2qe")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/witch_hat" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/witch_hat" index="4"]
 offset_left = 740.0
 offset_top = 4.0000076
 offset_right = 3220.0
@@ -230,10 +230,10 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="0"]
 text = "Gandalf's Staff"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="3"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_eceln")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="4"]
 offset_left = 750.0
 offset_top = -102.99997
 offset_right = 3230.0
@@ -247,10 +247,10 @@ layout_mode = 2
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/wizard_hat" index="0"]
 text = "Gandalf's Hat"
 
-[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/wizard_hat" index="2"]
+[node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/wizard_hat" index="3"]
 theme_override_styles/normal = SubResource("StyleBoxTexture_75p4w")
 
-[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/wizard_hat" index="3"]
+[node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/wizard_hat" index="4"]
 offset_left = 717.0
 offset_top = -12.999992
 offset_right = 3197.0

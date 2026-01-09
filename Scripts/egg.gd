@@ -39,7 +39,7 @@ func show_dmg(dmg_val: float, origin: Vector2):
 	pop.text = "+ " + str(dmg_val) + "$"
 	pop.add_theme_font_override("font", font)
 	pop.add_theme_font_size_override("font_size", 300)
-	pop.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
+	pop.add_theme_color_override("font_color", Color(0.0, 0.914, 0.0, 1.0))
 	pop.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 	pop.add_theme_constant_override("outline_size", 70)
 	pop.global_position = origin + Vector2(pos_x, pos_y)
