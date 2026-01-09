@@ -7,9 +7,12 @@ func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_start_button_pressed() -> void:
+	$Buttons/StartButton.disabled = true
 	open_door()
 	await get_tree().create_timer(0.1).timeout
 	StartPressed.emit()
+	await get_tree().create_timer(1.5).timeout
+	$Buttons/StartButton.disabled = false
 
 func open_door():
 	var tween = create_tween()

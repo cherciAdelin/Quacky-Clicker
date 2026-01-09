@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b81tfanlc847y"]
+[gd_scene load_steps=35 format=3 uid="uid://b81tfanlc847y"]
 
 [ext_resource type="Script" uid="uid://j745132cbrmb" path="res://Scripts/autoclick_up_menu.gd" id="1_614lw"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_f2sfo"]
@@ -79,6 +79,13 @@ region = Rect2(856.23785, 1691.2937, 763.4294, 762.5415)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lwnqu"]
 texture = SubResource("AtlasTexture_vs0mw")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eceln"]
+atlas = ExtResource("5_44sy5")
+region = Rect2(25.429966, 1692.3779, 764.62244, 762.2527)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8vt5a"]
+texture = SubResource("AtlasTexture_eceln")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbvtb"]
 
@@ -266,6 +273,7 @@ offset_bottom = 167.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_xjetp")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_o7p5u")
 theme_override_styles/hover = SubResource("StyleBoxTexture_lwnqu")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8vt5a")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jbvtb")
 
 [connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclick_up1/UpButton" to="." method="_on_up_button_pressed_autoclick1"]

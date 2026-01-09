@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3x168mtsjgq3"]
+
+[ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_plplt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj0ok"]
+atlas = ExtResource("1_plplt")
+region = Rect2(74.972595, 1649.4608, 919.78186, 1483.2142)
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 919.0
+offset_bottom = 1483.0
+texture = SubResource("AtlasTexture_uj0ok")

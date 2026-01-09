@@ -71,7 +71,6 @@ func take_dmg(amount:float):
 
 func egg_broken() -> void:
 	Global.eggsBroken += 1
-	Global.currency += int(Global.currency*0.2)
 	if Global.eggsBroken == 5:
 		autoclickUnlock.emit()
 		$autoclicker.start(0.5)

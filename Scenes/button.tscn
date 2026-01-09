@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://h3kbhghj3j7d"]
+[gd_scene load_steps=11 format=3 uid="uid://h3kbhghj3j7d"]
 
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="1_iju5o"]
 [ext_resource type="Texture2D" uid="uid://bcbqsd2ik740s" path="res://Assets/Sprites/Other/SignSprites.png" id="2_0kpiu"]
@@ -24,6 +24,13 @@ region = Rect2(518.9988, 2218.2273, 1437.1478, 605.77466)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rmklx"]
 texture = SubResource("AtlasTexture_edukx")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kpiu"]
+atlas = ExtResource("2_0kpiu")
+region = Rect2(520.5506, 789.6678, 1436.5776, 604.1353)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_smycg"]
+texture = SubResource("AtlasTexture_0kpiu")
+
 [node name="Button" type="Button"]
 anchors_preset = 3
 anchor_left = 1.0
@@ -43,3 +50,4 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_c4mwi")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ur6nl")
 theme_override_styles/hover = SubResource("StyleBoxTexture_rmklx")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_smycg")

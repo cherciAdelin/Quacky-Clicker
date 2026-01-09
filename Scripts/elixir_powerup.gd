@@ -1,10 +1,16 @@
 extends "res://Scripts/powerup.gd"
 
+var applied_multiplier := 1.0
+signal multiplied_autoclicker_upgrades(active: bool, multiplier: float)
+
 func apply_effect() -> void:
-	pass
+	applied_multiplier *= 2*Global.active_powerup_multiplier
+	Global.autoclick_value *= applied_multiplier
+	multiplied_autoclicker_upgrades.emit(true, applied_multiplier)
 
 func remove_effect() -> void:
-	pass
+	Global.autoclick_value /= applied_multiplier
+	multiplied_autoclicker_upgrades.emit(false, applied_multiplier)
 
 func start_active_timer() -> void:
 	activeTimer.start(Global.active_powerups["elixir"]["duration"])

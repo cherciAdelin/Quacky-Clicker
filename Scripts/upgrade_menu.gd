@@ -86,11 +86,13 @@ func bought_popup(origin: Vector2, offset: Vector2):
 
 
 func _on_close_menu_pressed() -> void:
+	$Control/CloseMenu.disabled = true
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(Menu, "position:x", Menu.position.x - 1500, 1)
-
+	await get_tree().create_timer(1.5).timeout
+	$Control/CloseMenu.disabled = false
 
 func _on_main_up_menu() -> void:
 	UI_change("click_up", clickup1Cost, clickup1LvL, clickup1Details)

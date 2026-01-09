@@ -80,17 +80,17 @@ offset = Vector2(-77, -3)
 
 [node name="GameName" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1294.0
-offset_top = 101.0
-offset_right = 1842.0
-offset_bottom = 463.0
+offset_left = 1087.0
+offset_top = 58.0
+offset_right = 1878.0
+offset_bottom = 420.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -44
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 165
-text = "QUACKY
-			CLICKER"
+text = "      QUACKY
+	CLICKER"
 horizontal_alignment = 1
 vertical_alignment = 1
 

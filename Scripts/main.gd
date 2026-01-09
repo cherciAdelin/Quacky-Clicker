@@ -38,6 +38,7 @@ func _on_egg_egg() -> void:
 	update_ui()
 
 func _on_main_menu_button_pressed() -> void:
+	$UI/MainMenuButton.disabled = true
 	var camera = $Camera2D
 	var tint = $ColorRect
 	var mainMenu = $MainMenu/Background
@@ -46,10 +47,12 @@ func _on_main_menu_button_pressed() -> void:
 	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1)
 	cameraTween.tween_property(camera, "position", mainMenu.global_position, 0.1)
 	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
-
+	await get_tree().create_timer(1.5).timeout
+	$UI/MainMenuButton.disabled = false
 
 
 func _on_up_menu_open_pressed() -> void:
+	$UI/UpMenuOpen.disabled = true
 	var menu = $UpgradeMenu/Control
 	if(menuTween):
 		menuTween.kill()
@@ -58,6 +61,8 @@ func _on_up_menu_open_pressed() -> void:
 	menuTween.set_trans(Tween.TRANS_SINE)
 	menuTween.set_ease(Tween.EASE_OUT)
 	menuTween.tween_property(menu, "position:x", menu.position.x + 1500, 1)
+	await get_tree().create_timer(0.5).timeout
+	$UI/UpMenuOpen.disabled = false
 
 
 func _on_main_menu_start_pressed() -> void:
@@ -79,6 +84,7 @@ func _on_main_menu_start_pressed() -> void:
 
 
 func _on_autoclick_up_menu_open_pressed() -> void:
+	$UI/AutoclickUpMenuOpen.disabled = true
 	var menu = $autoclick_up_menu
 	if(menuTween):
 		menuTween.kill()
@@ -87,7 +93,8 @@ func _on_autoclick_up_menu_open_pressed() -> void:
 	menuTween.set_trans(Tween.TRANS_SINE)
 	menuTween.set_ease(Tween.EASE_OUT)
 	menuTween.tween_property(menu, "position:x", menu.position.x + 750, 1)
-
+	await get_tree().create_timer(0.5).timeout
+	$UI/AutoclickUpMenuOpen.disabled = false
 
 
 

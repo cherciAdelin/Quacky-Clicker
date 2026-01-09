@@ -104,6 +104,8 @@ func UI_change(upgrade: String, costLabel: Control, lvlLabel: Control, detailsLa
 	detailsLabel.text = "Next autoclick up value is " + str(Global.upgrades[upgrade]["value"])
 
 func UI_change_hats(upgrade: String, costLabel: Control, lvlLabel: Control, detailsLabel: Control, txt: String):
+	if(Global.hats[upgrade]["level"] == Global.special_lvl_limit):
+		return
 	costLabel.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	costLabel.text = str(Global.hats[upgrade]["cost"]) + "shells"
 	lvlLabel.text = "LVL" + str(Global.hats[upgrade]["level"])
@@ -136,10 +138,13 @@ func bought_popup(origin: Vector2, offset: Vector2):
 
 
 func _on_close_menu_pressed() -> void:
+	$Control/CloseMenu.disabled = true
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(Menu, "position:x", Menu.position.x - 1500, 1)
+	await get_tree().create_timer(1.5).timeout
+	$Control/CloseMenu.disabled = false
 
 func _on_egg_autoclick_unlock() -> void:
 	autoclick1lock.visible = false
@@ -149,10 +154,10 @@ func _on_main_up_menu() -> void:
 	UI_change("autoclick_up2", autoclick2Cost, autoclick2LVL, autoclick2Details)
 	UI_change("autoclick_up3", autoclick3Cost, autoclick3LVL, autoclick3Details)
 	UI_change("autoclick_up4", autoclick4Cost, autoclick4LVL, autoclick4Details)
-	UI_change_hats("straw_hat", strawHatCost, strawHatLVL, strawHatDetails, "Next eggshell multiplier up value is ")
-	UI_change_hats("cowboy_hat", cowboyHatCost, cowboyHatLVL, cowboyHatDetails, "Next eggshell min/max gain up value is ")
-	UI_change_hats("witch_hat", witchHatCost, witchHatLVL, witchHatDetails, "Next active powerup cdr value is ")
-	UI_change_hats("wizard_hat", wizardHatCost, wizardHatLVL, wizardHatDetails, "Next active powerup mult up value is ")
+	UI_change_hats("straw_hat", strawHatCost, strawHatLVL, strawHatDetails, "Next eggshell multiplier upgrade: ")
+	UI_change_hats("cowboy_hat", cowboyHatCost, cowboyHatLVL, cowboyHatDetails, "Next eggshell min/max gain upgrade: ")
+	UI_change_hats("witch_hat", witchHatCost, witchHatLVL, witchHatDetails, "Next active powerup cdr upgrade: ")
+	UI_change_hats("wizard_hat", wizardHatCost, wizardHatLVL, wizardHatDetails, "Next active powerup mult upgrade: ")
 
 
 
@@ -196,8 +201,13 @@ func _on_up_button_pressed_straw_hat() -> void:
 		bought_popup(strawHatUpButton.global_position, Vector2.ZERO)
 		var eggshell_mult = special_up("straw_hat", 50, 0.1, apw.FIH, strawHatTexture)
 		Global.eggshell_multiplier += eggshell_mult
+		
+		if(Global.hats["straw_hat"]["level"] == Global.special_lvl_limit):
+			strawHatUpButton.disabled = true
+			strawHatCost.text = "MAX LVL"
+			strawHatDetails.text = "Eggshell multiplier value: " + str(Global.eggshell_multiplier)
 
-func _on_up_button_pressed_cowboy_hat() -> void:
+func _on_up_button_pressed_cowboy_hat() -> void:	
 	if(Global.eggshell_currency < Global.hats["cowboy_hat"]["cost"]):
 		insufficient_funds(cowboyHatCost)
 	else:
@@ -205,6 +215,11 @@ func _on_up_button_pressed_cowboy_hat() -> void:
 		var eggshell_limitbreak = special_up("cowboy_hat", 150, 1, apw.WHISKEY, cowboyHatTexture)
 		Global.eggshell_lower_limit += int(eggshell_limitbreak)
 		Global.eggshell_upper_limit += int(eggshell_limitbreak)
+		
+		if(Global.hats["cowboy_hat"]["level"] == Global.special_lvl_limit):
+			cowboyHatUpButton.disabled = true
+			cowboyHatCost.text = "MAX LVL"
+			cowboyHatDetails.text = "Eggshell drop lower/upper limit values: " + str(Global.eggshell_lower_limit) + "/" + str(Global.eggshell_upper_limit)
 
 func _on_up_button_pressed_witch_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["witch_hat"]["cost"]):
@@ -213,6 +228,11 @@ func _on_up_button_pressed_witch_hat() -> void:
 		bought_popup(witchHatUpButton.global_position, Vector2.ZERO)
 		var active_pw_cdr = special_up("witch_hat", 300, 2.5, apw.CAULDRON, witchHatTexture)
 		Global.active_powerup_cdr += active_pw_cdr
+		
+		if(Global.hats["witch_hat"]["level"] == Global.special_lvl_limit):
+			witchHatUpButton.disabled = true
+			witchHatCost.text = "MAX LVL"
+			witchHatDetails.text = "Active powerups cdr value: " + str(Global.active_powerup_cdr)
 
 func _on_up_button_pressed_wizard_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["wizard_hat"]["cost"]):
@@ -220,9 +240,13 @@ func _on_up_button_pressed_wizard_hat() -> void:
 	else:
 		bought_popup(wizardHatUpButton.global_position, Vector2.ZERO)
 		var active_powerup_mult = special_up("wizard_hat", 500, 0.1, apw.ELIXIR, wizardHatTexture)
-		Global.active_powerup_multiplier = active_powerup_mult
+		Global.active_powerup_multiplier += active_powerup_mult
 
+		if(Global.hats["wizard_hat"]["level"] == Global.special_lvl_limit):
+			wizardHatUpButton.disabled = true
+			wizardHatCost.text = "MAX LVL"
+			wizardHatDetails.text = "Active powerups multiplier value: " + str(Global.active_powerup_multiplier)
 
-func _on_whiskey_glass_active(active: bool, multiplier: float) -> void:
+func _on_elixir_active(active: bool, multiplier: float) -> void:
 	multiplied_upgrade_active = active
 	multiplied_upgrade_value = multiplier

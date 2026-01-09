@@ -1,8 +1,9 @@
 extends Node
 
-var currency := 100000.0
-var eggshell_currency := 0
+var currency := 10000000.0
+var eggshell_currency := 100000
 var eggsBroken := 0
+var special_lvl_limit := 10
 
 var click_value := 1.0
 var autoclick_value := 0.0
@@ -107,7 +108,7 @@ var active_powerups := {
 	
 	"whiskey_glass":{
 		"cooldown": 500,
-		"duration": 20,
+		"duration": 0,
 	},
 	
 	"cauldron":{

@@ -33,7 +33,7 @@ func _process(_delta) -> void:
 	elif(state == State.COOLDOWN):
 		label.text = "CD: " + str(int(ceil(cooldownTimer.time_left))) + "s"
 	else:
-		label.text = ""
+		label.text = "Ready"
 
 func active_animation() -> void:
 	
