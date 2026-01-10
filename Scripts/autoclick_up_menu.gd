@@ -4,6 +4,7 @@ signal AutoclickMenuChange
 signal DuckWeaponChange(texture: Texture2D)
 signal DuckHatChange(texture: Texture2D)
 signal ActivePowerupUnlock(apwu: int)
+signal autoclickMenuClose
 enum apw{FIH, WHISKEY, CAULDRON, ELIXIR}
 var multiplied_upgrade_active := false
 var multiplied_upgrade_value := 1.0
@@ -143,6 +144,7 @@ func _on_close_menu_pressed() -> void:
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(Menu, "position:x", Menu.position.x - 1500, 1)
+	autoclickMenuClose.emit()
 	await get_tree().create_timer(1.5).timeout
 	$Control/CloseMenu.disabled = false
 
@@ -206,6 +208,7 @@ func _on_up_button_pressed_straw_hat() -> void:
 			strawHatUpButton.disabled = true
 			strawHatCost.text = "MAX LVL"
 			strawHatDetails.text = "Eggshell multiplier value: " + str(Global.eggshell_multiplier)
+			strawHatLVL.text = "LVL: " + str(Global.hats["straw_hat"]["level"])
 
 func _on_up_button_pressed_cowboy_hat() -> void:	
 	if(Global.eggshell_currency < Global.hats["cowboy_hat"]["cost"]):
@@ -220,6 +223,7 @@ func _on_up_button_pressed_cowboy_hat() -> void:
 			cowboyHatUpButton.disabled = true
 			cowboyHatCost.text = "MAX LVL"
 			cowboyHatDetails.text = "Eggshell drop lower/upper limit values: " + str(Global.eggshell_lower_limit) + "/" + str(Global.eggshell_upper_limit)
+			cowboyHatLVL.text = "LVL: " + str(Global.hats["cowboy_hat"]["level"])
 
 func _on_up_button_pressed_witch_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["witch_hat"]["cost"]):
@@ -233,6 +237,7 @@ func _on_up_button_pressed_witch_hat() -> void:
 			witchHatUpButton.disabled = true
 			witchHatCost.text = "MAX LVL"
 			witchHatDetails.text = "Active powerups cdr value: " + str(Global.active_powerup_cdr)
+			witchHatLVL.text = "LVL: " + str(Global.hats["witch_hat"]["level"])
 
 func _on_up_button_pressed_wizard_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["wizard_hat"]["cost"]):
@@ -246,6 +251,7 @@ func _on_up_button_pressed_wizard_hat() -> void:
 			wizardHatUpButton.disabled = true
 			wizardHatCost.text = "MAX LVL"
 			wizardHatDetails.text = "Active powerups multiplier value: " + str(Global.active_powerup_multiplier)
+			wizardHatLVL.text = "LVL: " + str(Global.hats["wizard_hat"]["level"])
 
 func _on_elixir_active(active: bool, multiplier: float) -> void:
 	multiplied_upgrade_active = active

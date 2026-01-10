@@ -8,7 +8,12 @@ extends Node2D
 @onready var cauldron_active_up = $active_powerups/Cauldron
 @onready var elixir_active_Up = $active_powerups/Elixir
 
+signal clickMenuClose
+signal duckMenuClose
+signal questMenuClose
+signal optionsMenuClose
 signal up_menu
+
 var shownCurrency := 0.0
 var currencyTween: Tween
 var cameraTween: Tween
@@ -37,33 +42,6 @@ func _on_upgrade_menu_up_menu_change() -> void:
 func _on_egg_egg() -> void:
 	update_ui()
 
-func _on_main_menu_button_pressed() -> void:
-	$UI/MainMenuButton.disabled = true
-	var camera = $Camera2D
-	var tint = $ColorRect
-	var mainMenu = $MainMenu/Background
-	cameraTween = create_tween()
-	
-	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1)
-	cameraTween.tween_property(camera, "position", mainMenu.global_position, 0.1)
-	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
-	await get_tree().create_timer(1.5).timeout
-	$UI/MainMenuButton.disabled = false
-
-
-func _on_up_menu_open_pressed() -> void:
-	$UI/UpMenuOpen.disabled = true
-	var menu = $UpgradeMenu/Control
-	if(menuTween):
-		menuTween.kill()
-	menuTween = create_tween()
-	
-	menuTween.set_trans(Tween.TRANS_SINE)
-	menuTween.set_ease(Tween.EASE_OUT)
-	menuTween.tween_property(menu, "position:x", menu.position.x + 1500, 1)
-	await get_tree().create_timer(0.5).timeout
-	$UI/UpMenuOpen.disabled = false
-
 
 func _on_main_menu_start_pressed() -> void:
 	var camera = $Camera2D
@@ -83,21 +61,6 @@ func _on_main_menu_start_pressed() -> void:
 	tween2.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0), 1.0)
 
 
-func _on_autoclick_up_menu_open_pressed() -> void:
-	$UI/AutoclickUpMenuOpen.disabled = true
-	var menu = $autoclick_up_menu
-	if(menuTween):
-		menuTween.kill()
-	menuTween = create_tween()
-	
-	menuTween.set_trans(Tween.TRANS_SINE)
-	menuTween.set_ease(Tween.EASE_OUT)
-	menuTween.tween_property(menu, "position:x", menu.position.x + 750, 1)
-	await get_tree().create_timer(0.5).timeout
-	$UI/AutoclickUpMenuOpen.disabled = false
-
-
-
 func _on_active_powerup_unlock(apwu: int) -> void:
 	if(apwu == apw.FIH):
 		fih_active_up.visible = true
@@ -109,3 +72,52 @@ func _on_active_powerup_unlock(apwu: int) -> void:
 		elixir_active_Up.visible = true
 	else:
 		return
+
+
+func _on_click_menu_open() -> void:
+	var menu = $UpgradeMenu/Control
+	menuTween = create_tween()
+	
+	menuTween.set_trans(Tween.TRANS_SINE)
+	menuTween.set_ease(Tween.EASE_OUT)
+	menuTween.tween_property(menu, "position:x", menu.position.x + 1500, 1)
+
+
+func _on_duck_menu_open() -> void:
+	var menu = $autoclick_up_menu
+	if(menuTween):
+		menuTween.kill()
+	menuTween = create_tween()
+	
+	menuTween.set_trans(Tween.TRANS_SINE)
+	menuTween.set_ease(Tween.EASE_OUT)
+	menuTween.tween_property(menu, "position:x", menu.position.x + 750, 1)
+
+
+func _on_options_menu_open() -> void:
+	var opMenu := $OptionsMenu
+	opMenu.visible = true
+
+func _on_quest_menu_open() -> void:
+	pass # Replace with function body.
+
+
+func _on_up_menu_close() -> void:
+	clickMenuClose.emit()
+
+func _on_autoclick_menu_close() -> void:
+	duckMenuClose.emit()
+
+func _on_options_menu_resume() -> void:
+	optionsMenuClose.emit()
+
+func _on_options_menu_exit() -> void:
+	var camera = $Camera2D
+	var tint = $ColorRect
+	var mainMenu = $MainMenu/Background
+	cameraTween = create_tween()
+	
+	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1)
+	cameraTween.tween_property(camera, "position", mainMenu.global_position, 0.1)
+	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
+	optionsMenuClose.emit()

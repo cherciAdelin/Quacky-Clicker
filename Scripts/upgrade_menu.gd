@@ -1,6 +1,7 @@
 extends Control
 
 signal UpMenuChange
+signal upMenuClose
 var multiplied_upgrade_active := false
 var multiplied_upgrade_value := 1.0
 @onready var Menu = $Control
@@ -91,6 +92,7 @@ func _on_close_menu_pressed() -> void:
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(Menu, "position:x", Menu.position.x - 1500, 1)
+	upMenuClose.emit()
 	await get_tree().create_timer(1.5).timeout
 	$Control/CloseMenu.disabled = false
 

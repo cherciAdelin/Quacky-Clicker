@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=33 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvimpsu3c6ub" path="res://Scenes/main_menu.tscn" id="5_6bp64"]
 [ext_resource type="PackedScene" uid="uid://ybq2e658v4de" path="res://Scenes/upgrade_menu.tscn" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="5_344ge"]
-[ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="6_6bp64"]
+[ext_resource type="PackedScene" uid="uid://b3x168mtsjgq3" path="res://Scenes/buttons_menu.tscn" id="8_hpc6h"]
 [ext_resource type="PackedScene" uid="uid://b81tfanlc847y" path="res://Scenes/autoclick_up_menu.tscn" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://lq30jipgbnqm" path="res://Scenes/duck.tscn" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://ccvbda5te4avd" path="res://Scenes/active_powerup.tscn" id="11_ee4r6"]
@@ -30,77 +30,11 @@
 [ext_resource type="Texture2D" uid="uid://cps7fd0sg37yf" path="res://Assets/Sprites/ActivePowerups/Potion-Cooldown.png" id="28_6vcvc"]
 [ext_resource type="Texture2D" uid="uid://doym4rd8mlsbd" path="res://Assets/Sprites/ActivePowerups/Potion-Active.png" id="29_7k868"]
 [ext_resource type="PackedScene" uid="uid://361vj23hvlqo" path="res://Scenes/elixir_particles.tscn" id="30_7k868"]
+[ext_resource type="PackedScene" uid="uid://c15berw4qgqi0" path="res://Scenes/options_menu.tscn" id="32_kltya"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
 atlas = ExtResource("5_344ge")
 region = Rect2(1048.6997, 532.2451, 606.83594, 409.35486)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6bp64"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(24.204388, 29.218128, 763.64655, 762.6356)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_344ge"]
-texture = SubResource("AtlasTexture_6bp64")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hptm8"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(1691.1123, 29.180363, 763.8318, 762.7709)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1ilt"]
-texture = SubResource("AtlasTexture_hptm8")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6iyac"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(856.2388, 27.645044, 763.29297, 762.2571)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdnlq"]
-texture = SubResource("AtlasTexture_6iyac")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7k868"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(23.824793, 29.03873, 764.56006, 762.7432)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hpc6h"]
-texture = SubResource("AtlasTexture_7k868")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jkdf5"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_344ge"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(24.930883, 2525.5564, 760.1619, 759.46045)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynf5e"]
-texture = SubResource("AtlasTexture_344ge")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d1ilt"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(1689.9186, 2524.4587, 762.1471, 760.0532)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6iyac"]
-texture = SubResource("AtlasTexture_d1ilt")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fdnlq"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(854.1869, 2522.4814, 763.5216, 760.5303)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jkdf5"]
-texture = SubResource("AtlasTexture_fdnlq")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hpc6h"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(22.701878, 2524.8643, 762.26886, 759.67505)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kltya"]
-texture = SubResource("AtlasTexture_hpc6h")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_344ge"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kltya"]
-atlas = ExtResource("6_6bp64")
-region = Rect2(24.087208, 29.209887, 763.69965, 762.5828)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e08e2"]
-texture = SubResource("AtlasTexture_kltya")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
@@ -111,7 +45,7 @@ scale = Vector2(0.1, 0.1)
 limit_enabled = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
-z_index = 1
+z_index = 2
 custom_minimum_size = Vector2(7000, 7000)
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,10 +68,6 @@ offset_left = 2751.0
 offset_top = -1.0
 offset_right = 2751.0
 offset_bottom = -1.0
-
-[node name="Egg" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(760, 601)
-scale = Vector2(0.12, 0.12)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -211,45 +141,16 @@ text = "Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UpMenuOpen" type="Button" parent="UI"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 795.0
-offset_right = 156.0
-offset_bottom = 908.0
-tooltip_text = "Click upgrades"
-theme_override_styles/normal = SubResource("StyleBoxTexture_344ge")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_d1ilt")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fdnlq")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_hpc6h")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_jkdf5")
+[node name="Egg" parent="." instance=ExtResource("2_bo1nx")]
+position = Vector2(760, 601)
+scale = Vector2(0.12, 0.12)
 
-[node name="MainMenuButton" type="Button" parent="UI"]
-layout_mode = 0
-offset_left = 1858.0
-offset_top = 2.0
-offset_right = 1921.0
-offset_bottom = 62.0
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_8gbba")
-theme_override_styles/normal = SubResource("StyleBoxTexture_ynf5e")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6iyac")
-theme_override_styles/hover = SubResource("StyleBoxTexture_jkdf5")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_kltya")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_344ge")
-
-[node name="AutoclickUpMenuOpen" type="Button" parent="UI"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 915.0
-offset_right = 156.0
-offset_bottom = 1028.0
-tooltip_text = "Autoclickers"
-theme_override_styles/normal = SubResource("StyleBoxTexture_344ge")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_d1ilt")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fdnlq")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_e08e2")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_jkdf5")
+[node name="ButtonMenu" parent="." instance=ExtResource("8_hpc6h")]
+offset_left = 11.000002
+offset_top = 893.00006
+offset_right = 108.0
+offset_bottom = 893.00006
+scale = Vector2(0.3, 0.3)
 
 [node name="UpgradeMenu" parent="." instance=ExtResource("5_21xkr")]
 offset_left = -719.0
@@ -404,22 +305,38 @@ offset_top = 221.0
 offset_right = 138.0
 offset_bottom = 250.0
 
+[node name="OptionsMenu" parent="." instance=ExtResource("32_kltya")]
+visible = false
+z_index = 1
+offset_left = 7.0
+offset_top = -2.0
+offset_right = 7.0
+offset_bottom = -2.0
+
+[connection signal="clickMenuClose" from="." to="ButtonMenu" method="_on_main_click_menu_close"]
+[connection signal="duckMenuClose" from="." to="ButtonMenu" method="_on_main_duck_menu_close"]
+[connection signal="optionsMenuClose" from="." to="ButtonMenu" method="_on_main_options_menu_close"]
+[connection signal="questMenuClose" from="." to="ButtonMenu" method="_on_main_quest_menu_close"]
 [connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
 [connection signal="up_menu" from="." to="autoclick_up_menu" method="_on_main_up_menu"]
 [connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
 [connection signal="autoclickUnlock" from="Egg" to="autoclick_up_menu" method="_on_egg_autoclick_unlock"]
 [connection signal="egg" from="Egg" to="." method="_on_egg_egg"]
-[connection signal="pressed" from="UI/UpMenuOpen" to="." method="_on_up_menu_open_pressed"]
-[connection signal="pressed" from="UI/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="UI/MainMenuButton" to="UI/MainMenuButton" method="_on_pressed"]
-[connection signal="pressed" from="UI/AutoclickUpMenuOpen" to="." method="_on_autoclick_up_menu_open_pressed"]
+[connection signal="clickMenuOpen" from="ButtonMenu" to="." method="_on_click_menu_open"]
+[connection signal="duckMenuOpen" from="ButtonMenu" to="." method="_on_duck_menu_open"]
+[connection signal="optionsMenuOpen" from="ButtonMenu" to="." method="_on_options_menu_open"]
+[connection signal="questMenuOpen" from="ButtonMenu" to="." method="_on_quest_menu_open"]
 [connection signal="UpMenuChange" from="UpgradeMenu" to="." method="_on_upgrade_menu_up_menu_change"]
+[connection signal="upMenuClose" from="UpgradeMenu" to="." method="_on_up_menu_close"]
 [connection signal="ActivePowerupUnlock" from="autoclick_up_menu" to="." method="_on_active_powerup_unlock"]
 [connection signal="AutoclickMenuChange" from="autoclick_up_menu" to="." method="_on_autoclick_menu_change"]
 [connection signal="DuckHatChange" from="autoclick_up_menu" to="Duck" method="_on_duck_hat_change"]
 [connection signal="DuckWeaponChange" from="autoclick_up_menu" to="Duck" method="_on_duck_weapon_change"]
+[connection signal="autoclickMenuClose" from="autoclick_up_menu" to="." method="_on_autoclick_menu_close"]
 [connection signal="multiplied_upgrades" from="active_powerups/Fih_bucket" to="UpgradeMenu" method="_on_fih_bucket_active"]
 [connection signal="multiplied_autoclicker_upgrades" from="active_powerups/Elixir" to="autoclick_up_menu" method="_on_elixir_active"]
+[connection signal="optionsMenuExit" from="OptionsMenu" to="." method="_on_options_menu_exit"]
+[connection signal="optionsMenuResume" from="OptionsMenu" to="." method="_on_options_menu_resume"]
 
 [editable path="active_powerups/Fih_bucket"]
 [editable path="active_powerups/Whiskey_glass"]
