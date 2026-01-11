@@ -26,6 +26,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func egg_press() -> void:
 	Global.currency += Global.click_value
+	Global.total_currency += Global.click_value
 	show_dmg(Global.click_value,sprite.position)
 	egg.emit()
 
@@ -79,6 +80,7 @@ func egg_broken() -> void:
 func gain_eggshells(multiplier: float, lowerLimit: int, upperLimit: int):
 	var eggshellsGained := randi_range(lowerLimit, upperLimit) * multiplier
 	Global.eggshell_currency += int(eggshellsGained)
+	Global.total_eggshell_currency += int(eggshellsGained)
 
 func break_animation():
 	var particle := breakParticles.instantiate()
@@ -125,6 +127,7 @@ func animate_tween():
 func _on_autoclicker_timeout() -> void:
 	take_dmg(Global.autoclick_value)
 	Global.currency += Global.autoclick_value
+	Global.total_currency += Global.autoclick_value
 	egg.emit()
 
 

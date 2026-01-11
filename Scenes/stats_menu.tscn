@@ -1,0 +1,181 @@
+[gd_scene load_steps=15 format=3 uid="uid://bnbedlcrodghw"]
+
+[ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_bwcy1"]
+[ext_resource type="Script" uid="uid://dich5u5wngduq" path="res://Scripts/stats_menu.gd" id="1_lw5tf"]
+[ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_lw5tf"]
+[ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="4_jbiq1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbiq1"]
+atlas = ExtResource("1_bwcy1")
+region = Rect2(68.101845, 78.32403, 917.2211, 1484.4076)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i22h4"]
+atlas = ExtResource("4_jbiq1")
+region = Rect2(24.250414, 1693.7651, 763.3527, 762.0093)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mxqsg"]
+texture = SubResource("AtlasTexture_i22h4")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omt8c"]
+atlas = ExtResource("4_jbiq1")
+region = Rect2(1692.2968, 1694.824, 762.1749, 760.71606)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ryrba"]
+texture = SubResource("AtlasTexture_omt8c")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex5l6"]
+atlas = ExtResource("4_jbiq1")
+region = Rect2(856.3232, 1691.6523, 763.28424, 762.13354)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_21w14"]
+texture = SubResource("AtlasTexture_ex5l6")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xibm"]
+atlas = ExtResource("4_jbiq1")
+region = Rect2(24.503952, 1693.4232, 763.17035, 762.2706)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ij35r"]
+texture = SubResource("AtlasTexture_6xibm")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ydip"]
+
+[node name="StatsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lw5tf")
+
+[node name="Sprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_jbiq1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 235.0
+offset_right = 742.0
+offset_bottom = 1342.0
+theme_override_constants/separation = 32
+
+[node name="TotalMoney" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Total money earned:"
+
+[node name="CurrentMoney" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Current money earned:"
+
+[node name="TotalEggshells" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Total eggshells: "
+
+[node name="CurrentEggshells" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Current eggshells:"
+
+[node name="EggsBroken" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Eggs broken:"
+
+[node name="ClickValue" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Click value:"
+
+[node name="AutoclickValue" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Autoclick value:"
+
+[node name="EggshellMult" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Eggshell multiplier:"
+
+[node name="EggshellLower" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Eggshell lower limit:"
+
+[node name="EggshellUpper" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Eggshell upper limit:"
+
+[node name="APWCDR" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Active powerup cdr:"
+
+[node name="APWMult" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Active powerup multiplier:"
+
+[node name="SpUpLVLLim" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 29
+text = "Special upgrades level limit:"
+
+[node name="StatsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 115.0
+offset_right = 614.0
+offset_bottom = 197.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 44
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 857.0
+offset_top = 80.0
+offset_right = 905.0
+offset_bottom = 129.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_mxqsg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ryrba")
+theme_override_styles/hover = SubResource("StyleBoxTexture_21w14")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ij35r")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5ydip")
+
+[connection signal="pressed" from="CloseMenuButton" to="." method="_on_close_menu_button_pressed"]

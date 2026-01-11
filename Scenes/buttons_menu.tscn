@@ -99,36 +99,6 @@ texture = SubResource("AtlasTexture_nsbk5")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iw484"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_glt6o"]
-atlas = ExtResource("3_m6e8v")
-region = Rect2(21.402452, 2525.1172, 762.52386, 760.52246)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c05hx"]
-texture = SubResource("AtlasTexture_glt6o")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j3wqx"]
-atlas = ExtResource("3_m6e8v")
-region = Rect2(1689.7059, 2524.2046, 763.0123, 759.6753)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fewjm"]
-texture = SubResource("AtlasTexture_j3wqx")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uen16"]
-atlas = ExtResource("3_m6e8v")
-region = Rect2(854.96515, 2522.1804, 761.90375, 759.54565)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opl43"]
-texture = SubResource("AtlasTexture_uen16")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vl7s3"]
-atlas = ExtResource("3_m6e8v")
-region = Rect2(21.837252, 2525.9993, 761.80945, 758.9866)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xp826"]
-texture = SubResource("AtlasTexture_vl7s3")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ol2go"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5apd"]
 atlas = ExtResource("2_inh3s")
 region = Rect2(22.45354, 1692.6423, 763.71405, 761.80176)
@@ -158,6 +128,36 @@ region = Rect2(22.472862, 1693.3516, 763.31146, 761.5591)
 texture = SubResource("AtlasTexture_c6qaa")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxq16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glt6o"]
+atlas = ExtResource("3_m6e8v")
+region = Rect2(21.402452, 2525.1172, 762.52386, 760.52246)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c05hx"]
+texture = SubResource("AtlasTexture_glt6o")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3wqx"]
+atlas = ExtResource("3_m6e8v")
+region = Rect2(1689.7059, 2524.2046, 763.0123, 759.6753)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fewjm"]
+texture = SubResource("AtlasTexture_j3wqx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uen16"]
+atlas = ExtResource("3_m6e8v")
+region = Rect2(854.96515, 2522.1804, 761.90375, 759.54565)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opl43"]
+texture = SubResource("AtlasTexture_uen16")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl7s3"]
+atlas = ExtResource("3_m6e8v")
+region = Rect2(21.837252, 2525.9993, 761.80945, 758.9866)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xp826"]
+texture = SubResource("AtlasTexture_vl7s3")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ol2go"]
 
 [node name="ButtonMenu" type="Control"]
 layout_mode = 3
@@ -212,6 +212,15 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_bfgvb")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bvuc7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_iw484")
 
+[node name="StatsMenu" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_kuavi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a18tl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g4j5t")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_dx6ho")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lxq16")
+
 [node name="OptionsMenu" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -221,16 +230,8 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_opl43")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_xp826")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ol2go")
 
-[node name="Button" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxTexture_kuavi")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_a18tl")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g4j5t")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_dx6ho")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lxq16")
-
 [connection signal="pressed" from="HBoxContainer/ClickUpMenu" to="." method="_on_click_up_menu_pressed"]
 [connection signal="pressed" from="HBoxContainer/DuckUpMenu" to="." method="_on_duck_up_menu_pressed"]
 [connection signal="pressed" from="HBoxContainer/QuestMenu" to="." method="_on_quest_menu_pressed"]
+[connection signal="pressed" from="HBoxContainer/StatsMenu" to="." method="_on_stats_menu_pressed"]
 [connection signal="pressed" from="HBoxContainer/OptionsMenu" to="." method="_on_options_menu_pressed"]

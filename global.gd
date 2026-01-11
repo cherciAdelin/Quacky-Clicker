@@ -1,7 +1,9 @@
 extends Node
 
 var currency := 10000000.0
+var total_currency := 0.0
 var eggshell_currency := 100000
+var total_eggshell_currency := 0
 var eggsBroken := 0
 var special_lvl_limit := 10
 

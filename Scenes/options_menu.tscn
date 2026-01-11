@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c15berw4qgqi0"]
+[gd_scene load_steps=30 format=3 uid="uid://c15berw4qgqi0"]
 
 [ext_resource type="Script" uid="uid://bnhf57rb4r3sy" path="res://Scripts/options_menu.gd" id="1_inh3s"]
 [ext_resource type="Texture2D" uid="uid://c4ehevte6h1m8" path="res://Assets/Sprites/Other/LabelSpriteSheet2.png" id="1_l1wg4"]
@@ -12,21 +12,21 @@ region = Rect2(1053.5143, 105.18129, 588.18823, 398.1748)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m6e8v"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(398.9797, 752.21344, 1518.5223, 430.35455)
+region = Rect2(431.90997, 1599.8258, 1462.1018, 306.44336)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqe32"]
 texture = SubResource("AtlasTexture_m6e8v")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqe32"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(393.94437, 1664.3572, 1514.645, 438.8816)
+region = Rect2(446.23495, 2253.459, 1440.0063, 284.7976)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qfavn"]
 texture = SubResource("AtlasTexture_tqe32")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qfavn"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(399.15643, 1207.8641, 1513.7813, 440.23694)
+region = Rect2(432.5733, 1923.1188, 1462.436, 306.6864)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_syw6n"]
 texture = SubResource("AtlasTexture_qfavn")
@@ -35,45 +35,54 @@ texture = SubResource("AtlasTexture_qfavn")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ndqe"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(388.0868, 2577.9426, 1514.1144, 439.708)
+region = Rect2(207.97498, 849.6278, 1994.3483, 203.82324)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rf7jh"]
 texture = SubResource("AtlasTexture_1ndqe")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_syw6n"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(389.4373, 2128.9111, 1517.3114, 428.93408)
+region = Rect2(220.97235, 1381.8644, 1966.8606, 173.9884)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cvaji"]
 texture = SubResource("AtlasTexture_syw6n")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rf7jh"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(384.7209, 3037.4446, 1516.4456, 439.7129)
+region = Rect2(208.44455, 1102.8655, 1994.5154, 201.75781)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wbndg"]
 texture = SubResource("AtlasTexture_rf7jh")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6e8v"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wbndg"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(399.78088, 747.1457, 1516.0574, 439.5412)
+region = Rect2(431.93674, 1599.1372, 1462.6217, 307.59192)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uyb61"]
 texture = SubResource("AtlasTexture_wbndg")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uyb61"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(393.5779, 1664.4673, 1515.8813, 438.4895)
+region = Rect2(445.92923, 2254.6682, 1438.6437, 282.636)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_064ll"]
 texture = SubResource("AtlasTexture_uyb61")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_064ll"]
 atlas = ExtResource("1_l1wg4")
-region = Rect2(397.62576, 1208.0173, 1515.104, 439.63123)
+region = Rect2(432.76016, 1923.1326, 1462.914, 306.42212)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6r4q"]
 texture = SubResource("AtlasTexture_064ll")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvaji"]
+atlas = ExtResource("1_l1wg4")
+region = Rect2(431.6529, 1600.2668, 1462.1338, 305.67944)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ndqe"]
+texture = SubResource("AtlasTexture_cvaji")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_838ek"]
 
@@ -118,9 +127,9 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 731.0
-offset_top = 372.0
+offset_top = 400.0
 offset_right = 1074.0
-offset_bottom = 736.0
+offset_bottom = 724.0
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -135,6 +144,7 @@ text = "RESUME"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/line_spacing = 3
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("2_uj0ok")
@@ -144,11 +154,15 @@ vertical_alignment = 1
 
 [node name="WindowModeButton" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.7
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_uj0ok")
 theme_override_styles/normal = SubResource("StyleBoxTexture_rf7jh")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_cvaji")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wbndg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m6e8v")
+alignment = 1
 script = ExtResource("4_inh3s")
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -172,6 +186,7 @@ theme_override_fonts/font = ExtResource("2_uj0ok")
 theme_override_styles/normal = SubResource("StyleBoxTexture_uyb61")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_064ll")
 theme_override_styles/hover = SubResource("StyleBoxTexture_a6r4q")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_1ndqe")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_838ek")
 text = "MAIN MENU"
 

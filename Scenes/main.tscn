@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=34 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cps7fd0sg37yf" path="res://Assets/Sprites/ActivePowerups/Potion-Cooldown.png" id="28_6vcvc"]
 [ext_resource type="Texture2D" uid="uid://doym4rd8mlsbd" path="res://Assets/Sprites/ActivePowerups/Potion-Active.png" id="29_7k868"]
 [ext_resource type="PackedScene" uid="uid://361vj23hvlqo" path="res://Scenes/elixir_particles.tscn" id="30_7k868"]
+[ext_resource type="PackedScene" uid="uid://bnbedlcrodghw" path="res://Scenes/stats_menu.tscn" id="32_e08e2"]
 [ext_resource type="PackedScene" uid="uid://c15berw4qgqi0" path="res://Scenes/options_menu.tscn" id="32_kltya"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
@@ -146,11 +147,11 @@ position = Vector2(760, 601)
 scale = Vector2(0.12, 0.12)
 
 [node name="ButtonMenu" parent="." instance=ExtResource("8_hpc6h")]
-offset_left = 11.000002
-offset_top = 893.00006
-offset_right = 108.0
-offset_bottom = 893.00006
-scale = Vector2(0.3, 0.3)
+offset_left = 22.0
+offset_top = 918.0
+offset_right = 119.0
+offset_bottom = 918.0
+scale = Vector2(0.24, 0.24)
 
 [node name="UpgradeMenu" parent="." instance=ExtResource("5_21xkr")]
 offset_left = -719.0
@@ -313,10 +314,19 @@ offset_top = -2.0
 offset_right = 7.0
 offset_bottom = -2.0
 
+[node name="StatsMenu" parent="." instance=ExtResource("32_e08e2")]
+offset_left = -687.0
+offset_top = 43.0
+offset_right = -687.0
+offset_bottom = 43.0
+scale = Vector2(0.6, 0.6)
+
 [connection signal="clickMenuClose" from="." to="ButtonMenu" method="_on_main_click_menu_close"]
 [connection signal="duckMenuClose" from="." to="ButtonMenu" method="_on_main_duck_menu_close"]
 [connection signal="optionsMenuClose" from="." to="ButtonMenu" method="_on_main_options_menu_close"]
 [connection signal="questMenuClose" from="." to="ButtonMenu" method="_on_main_quest_menu_close"]
+[connection signal="stat_menu" from="." to="StatsMenu" method="_on_main_stat_menu"]
+[connection signal="statsMenuClose" from="." to="ButtonMenu" method="_on_main_stats_menu_close"]
 [connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
 [connection signal="up_menu" from="." to="autoclick_up_menu" method="_on_main_up_menu"]
 [connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
@@ -326,6 +336,7 @@ offset_bottom = -2.0
 [connection signal="duckMenuOpen" from="ButtonMenu" to="." method="_on_duck_menu_open"]
 [connection signal="optionsMenuOpen" from="ButtonMenu" to="." method="_on_options_menu_open"]
 [connection signal="questMenuOpen" from="ButtonMenu" to="." method="_on_quest_menu_open"]
+[connection signal="statsMenuOpen" from="ButtonMenu" to="." method="_on_stats_menu_open"]
 [connection signal="UpMenuChange" from="UpgradeMenu" to="." method="_on_upgrade_menu_up_menu_change"]
 [connection signal="upMenuClose" from="UpgradeMenu" to="." method="_on_up_menu_close"]
 [connection signal="ActivePowerupUnlock" from="autoclick_up_menu" to="." method="_on_active_powerup_unlock"]
@@ -337,6 +348,7 @@ offset_bottom = -2.0
 [connection signal="multiplied_autoclicker_upgrades" from="active_powerups/Elixir" to="autoclick_up_menu" method="_on_elixir_active"]
 [connection signal="optionsMenuExit" from="OptionsMenu" to="." method="_on_options_menu_exit"]
 [connection signal="optionsMenuResume" from="OptionsMenu" to="." method="_on_options_menu_resume"]
+[connection signal="stats_menu_close" from="StatsMenu" to="." method="_on_stats_menu_close"]
 
 [editable path="active_powerups/Fih_bucket"]
 [editable path="active_powerups/Whiskey_glass"]

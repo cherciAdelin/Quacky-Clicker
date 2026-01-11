@@ -1,7 +1,9 @@
 extends "res://Scripts/powerup.gd"
 
 func apply_effect() -> void:
-	Global.currency += int(Global.currency * 0.2)
+	var inc_val := int(Global.currency * 0.2)
+	Global.currency += inc_val
+	Global.total_currency += inc_val
 
 func remove_effect() -> void:
 	return
