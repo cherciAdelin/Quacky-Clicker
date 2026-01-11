@@ -7,8 +7,10 @@ var egg_health := 100.0
 var max_egg_health := 100.0
 var egg_threshold := 10
 
+@export var clickAnimation: PackedScene
 @export var breakParticles: PackedScene
 @onready var sprite = $egg_sprite
+@onready var egg_collision = $egg_collision_shape
 @onready var egg_textures := {
 	100:	preload("res://Assets/Sprites/Egg/Egg_full.png"),
 	75:		preload("res://Assets/Sprites/Egg/Egg_cracked1.png"),
@@ -19,6 +21,8 @@ var egg_threshold := 10
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if(event.is_action_pressed("left_click")):
+		Global.click_number += 1
+		animate_click()
 		egg_press()
 		var damage = Global.click_value
 		take_dmg(damage)
@@ -63,11 +67,13 @@ func take_dmg(amount:float):
 		$egg_hp.text = "Egg health: " + String.num(percent, 2) + "%"
 	change_sprite()
 	if(egg_health < 0):
+		egg_collision.disabled = true
 		egg_health = 0
 		change_sprite()
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.1).timeout
 		egg_broken()
 		reset_egg()
+		egg_collision.disabled = false
 
 
 func egg_broken() -> void:
@@ -81,6 +87,13 @@ func gain_eggshells(multiplier: float, lowerLimit: int, upperLimit: int):
 	var eggshellsGained := randi_range(lowerLimit, upperLimit) * multiplier
 	Global.eggshell_currency += int(eggshellsGained)
 	Global.total_eggshell_currency += int(eggshellsGained)
+
+func animate_click():
+	var click := clickAnimation.instantiate()
+	click.global_position = get_global_mouse_position()
+	get_tree().current_scene.add_child(click)
+	click.emitting = true
+	click.finished.connect(click.queue_free)
 
 func break_animation():
 	var particle := breakParticles.instantiate()

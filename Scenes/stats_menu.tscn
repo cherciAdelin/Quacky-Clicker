@@ -62,95 +62,102 @@ offset_right = 742.0
 offset_bottom = 1342.0
 theme_override_constants/separation = 32
 
+[node name="TotalClicks" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_lw5tf")
+theme_override_font_sizes/font_size = 24
+text = "Total click number:"
+
 [node name="TotalMoney" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Total money earned:"
 
 [node name="CurrentMoney" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Current money earned:"
 
 [node name="TotalEggshells" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Total eggshells: "
 
 [node name="CurrentEggshells" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Current eggshells:"
 
 [node name="EggsBroken" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Eggs broken:"
 
 [node name="ClickValue" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Click value:"
 
 [node name="AutoclickValue" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Autoclick value:"
 
 [node name="EggshellMult" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Eggshell multiplier:"
 
 [node name="EggshellLower" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Eggshell lower limit:"
 
 [node name="EggshellUpper" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Eggshell upper limit:"
 
 [node name="APWCDR" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Active powerup cdr:"
 
 [node name="APWMult" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Active powerup multiplier:"
 
 [node name="SpUpLVLLim" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lw5tf")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 24
 text = "Special upgrades level limit:"
 
 [node name="StatsLabel" type="Label" parent="."]

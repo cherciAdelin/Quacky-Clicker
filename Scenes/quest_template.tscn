@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://tgtsvg0jc3yn"]
+
+[ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_25qkf"]
+[ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_6a04o"]
+[ext_resource type="Texture2D" uid="uid://b18bafpfn5rty" path="res://Assets/Sprites/Other/UpButtonStatic.png" id="3_5ghqc"]
+[ext_resource type="Texture2D" uid="uid://3nv0d65wstr1" path="res://Assets/Sprites/Other/UpButtonPressed.png" id="4_7ukaf"]
+[ext_resource type="Texture2D" uid="uid://cqk1k01dschii" path="res://Assets/Sprites/Other/UpButtonHover.png" id="5_2lbyp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvdtw"]
+atlas = ExtResource("1_25qkf")
+region = Rect2(1187.5822, 2119.7224, 1093.7484, 306.77075)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foqqr"]
+atlas = ExtResource("3_5ghqc")
+region = Rect2(282.21378, 662.17804, 1919.8954, 1925.5483)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1uwjh"]
+texture = SubResource("AtlasTexture_foqqr")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8fdd"]
+atlas = ExtResource("4_7ukaf")
+region = Rect2(282.214, 662.178, 1919.895, 1925.548)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_35p12"]
+texture = SubResource("AtlasTexture_f8fdd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b53hf"]
+atlas = ExtResource("5_2lbyp")
+region = Rect2(282.25647, 662.7376, 1918.6581, 1923.7019)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ilijo"]
+texture = SubResource("AtlasTexture_b53hf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbwqr"]
+atlas = ExtResource("3_5ghqc")
+region = Rect2(282.98328, 662.9008, 1918.9835, 1924.3281)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xbbq"]
+texture = SubResource("AtlasTexture_nbwqr")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j2lce"]
+
+[node name="quest_template" type="Control"]
+custom_minimum_size = Vector2(0, 310)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -818.0
+offset_bottom = -773.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="sprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 1098.0
+offset_bottom = 306.0
+texture = SubResource("AtlasTexture_cvdtw")
+
+[node name="quest_conditions" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 84.0
+offset_right = 778.0
+offset_bottom = 189.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_6a04o")
+theme_override_font_sizes/font_size = 40
+text = "Quest conditions"
+
+[node name="quest_progress" type="Label" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 223.0
+offset_right = 409.0
+offset_bottom = 257.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_6a04o")
+theme_override_font_sizes/font_size = 30
+text = "Status: "
+
+[node name="quest_status" type="Label" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 221.0
+offset_right = 909.0
+offset_bottom = 255.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_6a04o")
+theme_override_font_sizes/font_size = 30
+text = "Progress: 0/x"
+
+[node name="claim_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 66.0
+offset_right = 998.0
+offset_bottom = 208.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_1uwjh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_35p12")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ilijo")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2xbbq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j2lce")
+
+[node name="quest_reward" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 859.0
+offset_top = 81.0
+offset_right = 981.0
+offset_bottom = 192.0
+mouse_filter = 2
+stretch_mode = 4

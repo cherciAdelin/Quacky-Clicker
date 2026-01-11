@@ -1,6 +1,7 @@
 extends Control
 
 signal stats_menu_close
+@onready var total_clicks := $VBoxContainer/TotalClicks
 @onready var total_money := $VBoxContainer/TotalMoney
 @onready var current_money := $VBoxContainer/CurrentMoney
 @onready var total_eggshells := $VBoxContainer/TotalEggshells
@@ -16,6 +17,7 @@ signal stats_menu_close
 @onready var sp_up_lvl_lim := $VBoxContainer/SpUpLVLLim
 
 func set_stats():
+	total_clicks.text = "Total clicks: " + str(Global.click_number)
 	total_money.text = "Total money earned: " + str(int(Global.total_currency)) + "$"
 	current_money.text = "Current money earned: " + str(int(Global.currency)) + "$"
 	total_eggshells.text = "Total eggshells earned: " + str(Global.total_eggshell_currency) + " eggshells"

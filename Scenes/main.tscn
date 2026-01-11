@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=35 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://361vj23hvlqo" path="res://Scenes/elixir_particles.tscn" id="30_7k868"]
 [ext_resource type="PackedScene" uid="uid://bnbedlcrodghw" path="res://Scenes/stats_menu.tscn" id="32_e08e2"]
 [ext_resource type="PackedScene" uid="uid://c15berw4qgqi0" path="res://Scenes/options_menu.tscn" id="32_kltya"]
+[ext_resource type="PackedScene" uid="uid://c0ife8kb1rjk6" path="res://Scenes/quest_menu.tscn" id="33_e08e2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
 atlas = ExtResource("5_344ge")
@@ -142,30 +143,29 @@ text = "Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Decorations" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/Decorations"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Decorations"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Decorations"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Egg" parent="." instance=ExtResource("2_bo1nx")]
 position = Vector2(760, 601)
 scale = Vector2(0.12, 0.12)
-
-[node name="ButtonMenu" parent="." instance=ExtResource("8_hpc6h")]
-offset_left = 22.0
-offset_top = 918.0
-offset_right = 119.0
-offset_bottom = 918.0
-scale = Vector2(0.24, 0.24)
-
-[node name="UpgradeMenu" parent="." instance=ExtResource("5_21xkr")]
-offset_left = -719.0
-offset_top = 115.0
-offset_right = 740.99976
-offset_bottom = 2184.9998
-scale = Vector2(0.5, 0.5)
-
-[node name="autoclick_up_menu" parent="." instance=ExtResource("9_ynf5e")]
-offset_left = -709.0
-offset_top = 120.0
-offset_right = -709.0
-offset_bottom = 120.0
-scale = Vector2(0.5, 0.5)
 
 [node name="Duck" parent="." instance=ExtResource("10_hptm8")]
 position = Vector2(1602, 639)
@@ -306,6 +306,27 @@ offset_top = 221.0
 offset_right = 138.0
 offset_bottom = 250.0
 
+[node name="ButtonMenu" parent="." instance=ExtResource("8_hpc6h")]
+offset_left = 22.0
+offset_top = 918.0
+offset_right = 119.0
+offset_bottom = 918.0
+scale = Vector2(0.24, 0.24)
+
+[node name="UpgradeMenu" parent="." instance=ExtResource("5_21xkr")]
+offset_left = -719.0
+offset_top = 115.0
+offset_right = 740.99976
+offset_bottom = 2184.9998
+scale = Vector2(0.5, 0.5)
+
+[node name="autoclick_up_menu" parent="." instance=ExtResource("9_ynf5e")]
+offset_left = -709.0
+offset_top = 120.0
+offset_right = -709.0
+offset_bottom = 120.0
+scale = Vector2(0.5, 0.5)
+
 [node name="OptionsMenu" parent="." instance=ExtResource("32_kltya")]
 visible = false
 z_index = 1
@@ -321,10 +342,18 @@ offset_right = -687.0
 offset_bottom = 43.0
 scale = Vector2(0.6, 0.6)
 
+[node name="QuestMenu" parent="." instance=ExtResource("33_e08e2")]
+offset_left = -711.0
+offset_top = 116.0
+offset_right = -711.0
+offset_bottom = 116.0
+scale = Vector2(0.5, 0.5)
+
 [connection signal="clickMenuClose" from="." to="ButtonMenu" method="_on_main_click_menu_close"]
 [connection signal="duckMenuClose" from="." to="ButtonMenu" method="_on_main_duck_menu_close"]
 [connection signal="optionsMenuClose" from="." to="ButtonMenu" method="_on_main_options_menu_close"]
 [connection signal="questMenuClose" from="." to="ButtonMenu" method="_on_main_quest_menu_close"]
+[connection signal="quest_check" from="." to="QuestMenu" method="_on_main_quest_check"]
 [connection signal="stat_menu" from="." to="StatsMenu" method="_on_main_stat_menu"]
 [connection signal="statsMenuClose" from="." to="ButtonMenu" method="_on_main_stats_menu_close"]
 [connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
@@ -332,6 +361,8 @@ scale = Vector2(0.6, 0.6)
 [connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
 [connection signal="autoclickUnlock" from="Egg" to="autoclick_up_menu" method="_on_egg_autoclick_unlock"]
 [connection signal="egg" from="Egg" to="." method="_on_egg_egg"]
+[connection signal="multiplied_upgrades" from="active_powerups/Fih_bucket" to="UpgradeMenu" method="_on_fih_bucket_active"]
+[connection signal="multiplied_autoclicker_upgrades" from="active_powerups/Elixir" to="autoclick_up_menu" method="_on_elixir_active"]
 [connection signal="clickMenuOpen" from="ButtonMenu" to="." method="_on_click_menu_open"]
 [connection signal="duckMenuOpen" from="ButtonMenu" to="." method="_on_duck_menu_open"]
 [connection signal="optionsMenuOpen" from="ButtonMenu" to="." method="_on_options_menu_open"]
@@ -344,11 +375,11 @@ scale = Vector2(0.6, 0.6)
 [connection signal="DuckHatChange" from="autoclick_up_menu" to="Duck" method="_on_duck_hat_change"]
 [connection signal="DuckWeaponChange" from="autoclick_up_menu" to="Duck" method="_on_duck_weapon_change"]
 [connection signal="autoclickMenuClose" from="autoclick_up_menu" to="." method="_on_autoclick_menu_close"]
-[connection signal="multiplied_upgrades" from="active_powerups/Fih_bucket" to="UpgradeMenu" method="_on_fih_bucket_active"]
-[connection signal="multiplied_autoclicker_upgrades" from="active_powerups/Elixir" to="autoclick_up_menu" method="_on_elixir_active"]
 [connection signal="optionsMenuExit" from="OptionsMenu" to="." method="_on_options_menu_exit"]
 [connection signal="optionsMenuResume" from="OptionsMenu" to="." method="_on_options_menu_resume"]
 [connection signal="stats_menu_close" from="StatsMenu" to="." method="_on_stats_menu_close"]
+[connection signal="questComplete" from="QuestMenu" to="." method="_on_quest_complete"]
+[connection signal="questMenuClose" from="QuestMenu" to="." method="_on_quest_menu_close"]
 
 [editable path="active_powerups/Fih_bucket"]
 [editable path="active_powerups/Whiskey_glass"]

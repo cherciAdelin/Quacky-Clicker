@@ -6,6 +6,7 @@ var eggshell_currency := 100000
 var total_eggshell_currency := 0
 var eggsBroken := 0
 var special_lvl_limit := 10
+var click_number := 0
 
 var click_value := 1.0
 var autoclick_value := 0.0
@@ -123,4 +124,43 @@ var active_powerups := {
 		"duration": 30,
 	}
 	
+}
+
+var quests := {
+	
+	"quest1":{
+		"condition": "Break 5 eggs!",
+		"threshold": 5,
+		"completed": false,
+	},
+	
+	"quest2":{
+		"condition": "Click the egg 1000 times!",
+		"threshold": 1000,
+		"completed": false,
+	},
+	
+	"quest3":{
+		"condition": "Get 10.000$!",
+		"threshold": 10000,
+		"completed": false,
+	},
+	
+	"quest4":{
+		"condition": "Get 5.000 eggshells!",
+		"threshold": 5000,
+		"completed": false,
+	},
+	
+	"quest5":{
+		"condition": "Reach 100 click power!",
+		"threshold": 100,
+		"completed": false,
+	},
+	
+	"quest6":{
+		"condition": "Reach 100 duck click power!",
+		"threshold": 100,
+		"completed": false,
+	}
 }

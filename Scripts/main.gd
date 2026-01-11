@@ -15,8 +15,8 @@ signal optionsMenuClose
 signal statsMenuClose
 signal up_menu
 signal stat_menu
+signal quest_check
 
-var shownCurrency := 0.0
 var currencyTween: Tween
 var cameraTween: Tween
 var menuTween: Tween
@@ -35,6 +35,15 @@ func update_ui():
 	EggshellLabel.text = "EggShells: " + str(Global.eggshell_currency)
 	up_menu.emit()
 	stat_menu.emit()
+	quest_check.emit()
+
+func menu_open_animation(menu: Control, xCoord: int, tween: Tween):
+	if(tween):
+		tween.kill()
+	tween = create_tween()
+	
+	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(menu, "position:x", menu.position.x + xCoord, 1)
 
 func _on_autoclick_menu_change() -> void:
 	update_ui()
@@ -76,42 +85,41 @@ func _on_active_powerup_unlock(apwu: int) -> void:
 	else:
 		return
 
+func _on_quest_complete(qNumber: int) -> void:
+	match qNumber:
+		1:
+			pass
+		2:
+			pass
+		3:
+			pass
+		4:
+			pass
+		5:
+			pass
+		6:
+			pass
 
 func _on_click_menu_open() -> void:
 	var menu = $UpgradeMenu/Control
-	menuTween = create_tween()
-	
-	menuTween.set_trans(Tween.TRANS_SINE)
-	menuTween.set_ease(Tween.EASE_OUT)
-	menuTween.tween_property(menu, "position:x", menu.position.x + 1500, 1)
-
+	menu_open_animation(menu, 1500, menuTween)
 
 func _on_duck_menu_open() -> void:
 	var menu = $autoclick_up_menu
-	if(menuTween):
-		menuTween.kill()
-	menuTween = create_tween()
-	
-	menuTween.set_trans(Tween.TRANS_SINE)
-	menuTween.set_ease(Tween.EASE_OUT)
-	menuTween.tween_property(menu, "position:x", menu.position.x + 750, 1)
-
+	menu_open_animation(menu, 750, menuTween)
 
 func _on_options_menu_open() -> void:
 	var opMenu := $OptionsMenu
 	opMenu.visible = true
 
 func _on_quest_menu_open() -> void:
-	pass # Replace with function body.
+	var menu := $QuestMenu
+	menu_open_animation(menu, 750, menuTween)
 
 func _on_stats_menu_open() -> void:
 	var menu := $StatsMenu
-	if(menuTween):
-		menuTween.kill()
-	menuTween = create_tween()
-	
-	menuTween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	menuTween.tween_property(menu, "position:x", menu.position.x + 750, 1)
+	menu_open_animation(menu, 750, menuTween)
+
 
 func _on_up_menu_close() -> void:
 	clickMenuClose.emit()
@@ -132,6 +140,9 @@ func _on_options_menu_exit() -> void:
 	cameraTween.tween_property(camera, "position", mainMenu.global_position, 0.1)
 	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
 	optionsMenuClose.emit()
+
+func _on_quest_menu_close() -> void:
+	questMenuClose.emit()
 
 func _on_stats_menu_close() -> void:
 	statsMenuClose.emit()

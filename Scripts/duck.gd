@@ -6,6 +6,5 @@ extends Node2D
 func _on_duck_weapon_change(texture: Texture2D) -> void:
 	weapon_sprite.texture = texture
 
-
 func _on_duck_hat_change(texture: Texture2D) -> void:
 	hat_sprite.texture = texture

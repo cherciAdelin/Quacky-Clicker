@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://c0ife8kb1rjk6"]
+
+[ext_resource type="Script" uid="uid://sorba1jfq17u" path="res://Scripts/quest_menu.gd" id="1_5wkm6"]
+[ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_jur4h"]
+[ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_48d4d"]
+[ext_resource type="PackedScene" uid="uid://tgtsvg0jc3yn" path="res://Scenes/quest_template.tscn" id="3_tagws"]
+[ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="5_mkyp2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e634"]
+atlas = ExtResource("1_jur4h")
+region = Rect2(74.03012, 1648.1732, 920.57324, 1485.132)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3ngc"]
+atlas = ExtResource("5_mkyp2")
+region = Rect2(24.863213, 1695.446, 761.8732, 759.35034)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4pt03"]
+texture = SubResource("AtlasTexture_l3ngc")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws1tf"]
+atlas = ExtResource("5_mkyp2")
+region = Rect2(1691.8094, 1694.0353, 762.44104, 761.78796)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gwh8y"]
+texture = SubResource("AtlasTexture_ws1tf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l8nj"]
+atlas = ExtResource("5_mkyp2")
+region = Rect2(856.493, 1692.9412, 762.3608, 760.68384)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_waia1"]
+texture = SubResource("AtlasTexture_6l8nj")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cekm"]
+atlas = ExtResource("5_mkyp2")
+region = Rect2(24.246195, 1693.586, 763.3589, 761.942)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4241"]
+texture = SubResource("AtlasTexture_7cekm")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lm55y"]
+
+[node name="QuestMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wkm6")
+
+[node name="Sprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 1378.0
+offset_bottom = 1816.0
+texture = SubResource("AtlasTexture_0e634")
+
+[node name="QuestLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 106.0
+offset_right = 940.0
+offset_bottom = 236.0
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("2_48d4d")
+theme_override_font_sizes/font_size = 90
+text = "Quests"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 253.0
+offset_right = 1250.0
+offset_bottom = 1703.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="quest_1" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="quest_2" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="quest_3" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="quest_4" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="quest_5" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="quest_6" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="questCloseButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1294.0
+offset_top = 100.0
+offset_right = 1358.0
+offset_bottom = 160.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_4pt03")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gwh8y")
+theme_override_styles/hover = SubResource("StyleBoxTexture_waia1")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_e4241")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lm55y")
+
+[connection signal="pressed" from="questCloseButton" to="." method="_on_quest_close_button_pressed"]
+
+[editable path="QuestContainer/VBoxContainer/quest_1"]
+[editable path="QuestContainer/VBoxContainer/quest_2"]
+[editable path="QuestContainer/VBoxContainer/quest_3"]
+[editable path="QuestContainer/VBoxContainer/quest_4"]
+[editable path="QuestContainer/VBoxContainer/quest_5"]
+[editable path="QuestContainer/VBoxContainer/quest_6"]
