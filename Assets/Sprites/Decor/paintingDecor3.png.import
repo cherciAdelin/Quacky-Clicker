@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn4sxoj88nan7"
-path="res://.godot/imported/Egg_essence.png-12c3bd8af6e78cec6b27d19de63c5c43.ctex"
+uid="uid://cjm38j3t0fkun"
+path="res://.godot/imported/paintingDecor3.png-8e1a40b2f35d2766bb69ffc01250c235.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Other/Egg_essence.png"
-dest_files=["res://.godot/imported/Egg_essence.png-12c3bd8af6e78cec6b27d19de63c5c43.ctex"]
+source_file="res://Assets/Sprites/Decor/paintingDecor3.png"
+dest_files=["res://.godot/imported/paintingDecor3.png-8e1a40b2f35d2766bb69ffc01250c235.ctex"]
 
 [params]
 

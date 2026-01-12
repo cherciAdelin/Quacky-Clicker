@@ -1,10 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0ife8kb1rjk6"]
+[gd_scene load_steps=22 format=3 uid="uid://c0ife8kb1rjk6"]
 
 [ext_resource type="Script" uid="uid://sorba1jfq17u" path="res://Scripts/quest_menu.gd" id="1_5wkm6"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_jur4h"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_48d4d"]
 [ext_resource type="PackedScene" uid="uid://tgtsvg0jc3yn" path="res://Scenes/quest_template.tscn" id="3_tagws"]
+[ext_resource type="Texture2D" uid="uid://be4s6efa5qqbc" path="res://Assets/Sprites/Decor/microwaveDecor.png" id="5_6l8nj"]
 [ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="5_mkyp2"]
+[ext_resource type="Texture2D" uid="uid://jkf0vnsna3eu" path="res://Assets/Sprites/Decor/plantDecor.png" id="6_waia1"]
+[ext_resource type="Texture2D" uid="uid://cjm38j3t0fkun" path="res://Assets/Sprites/Decor/paintingDecor3.png" id="7_7cekm"]
+[ext_resource type="Texture2D" uid="uid://cunpbj6b75f74" path="res://Assets/Sprites/Decor/catDecor.png" id="8_e4241"]
+[ext_resource type="Texture2D" uid="uid://by38gl831qlfa" path="res://Assets/Sprites/Decor/paintingDecor2.png" id="9_lm55y"]
+[ext_resource type="Texture2D" uid="uid://drobnfs6b27gy" path="res://Assets/Sprites/Decor/paintingDecor1.png" id="10_ubbna"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e634"]
 atlas = ExtResource("1_jur4h")
@@ -75,7 +81,7 @@ layout_mode = 0
 offset_left = 132.0
 offset_top = 253.0
 offset_right = 1250.0
-offset_bottom = 1703.0
+offset_bottom = 1710.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="QuestContainer"]
 layout_mode = 2
@@ -86,25 +92,51 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 1
 
+[node name="quest_reward" parent="QuestContainer/VBoxContainer/quest_1" index="5"]
+texture = ExtResource("5_6l8nj")
+
 [node name="quest_2" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
+
+[node name="quest_reward" parent="QuestContainer/VBoxContainer/quest_2" index="5"]
+offset_top = 26.00002
+offset_bottom = 3716.333
+texture = ExtResource("6_waia1")
 
 [node name="quest_3" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
 
+[node name="quest_reward" parent="QuestContainer/VBoxContainer/quest_3" index="5"]
+offset_left = 843.0
+offset_right = 3373.0
+texture = ExtResource("7_7cekm")
+
 [node name="quest_4" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
+
+[node name="quest_reward" parent="QuestContainer/VBoxContainer/quest_4" index="5"]
+offset_top = 44.58004
+offset_bottom = 3551.58
+texture = ExtResource("8_e4241")
 
 [node name="quest_5" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
 
+[node name="quest_reward" parent="QuestContainer/VBoxContainer/quest_5" index="5"]
+texture = ExtResource("9_lm55y")
+
 [node name="quest_6" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
+
+[node name="quest_reward" parent="QuestContainer/VBoxContainer/quest_6" index="5"]
+offset_left = 844.0
+offset_right = 3357.333
+texture = ExtResource("10_ubbna")
 
 [node name="questCloseButton" type="Button" parent="."]
 layout_mode = 0
@@ -118,6 +150,12 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_waia1")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_e4241")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lm55y")
 
+[connection signal="pressed" from="QuestContainer/VBoxContainer/quest_1/claim_button" to="." method="_on_quest1_claim"]
+[connection signal="pressed" from="QuestContainer/VBoxContainer/quest_2/claim_button" to="." method="_on_quest2_claim"]
+[connection signal="pressed" from="QuestContainer/VBoxContainer/quest_3/claim_button" to="." method="_on_quest3_claim"]
+[connection signal="pressed" from="QuestContainer/VBoxContainer/quest_4/claim_button" to="." method="_on_quest4_claim"]
+[connection signal="pressed" from="QuestContainer/VBoxContainer/quest_5/claim_button" to="." method="_on_quest5_claim"]
+[connection signal="pressed" from="QuestContainer/VBoxContainer/quest_6/claim_button" to="." method="_on_quest6_claim"]
 [connection signal="pressed" from="questCloseButton" to="." method="_on_quest_close_button_pressed"]
 
 [editable path="QuestContainer/VBoxContainer/quest_1"]

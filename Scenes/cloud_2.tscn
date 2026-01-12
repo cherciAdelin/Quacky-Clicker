@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnx7a8y6q373y"]
+
+[ext_resource type="Texture2D" uid="uid://o3j6npqktcnw" path="res://Assets/Sprites/Other/Clouds.png" id="1_5eprp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eprp"]
+atlas = ExtResource("1_5eprp")
+region = Rect2(1148.0477, 21.205292, 362.8855, 135.69724)
+
+[node name="Cloud2" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_5eprp")

@@ -7,6 +7,7 @@ var total_eggshell_currency := 0
 var eggsBroken := 0
 var special_lvl_limit := 10
 var click_number := 0
+var current_cursor_texture: Texture2D
 
 var click_value := 1.0
 var autoclick_value := 0.0

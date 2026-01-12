@@ -80,7 +80,6 @@ func egg_broken() -> void:
 	Global.eggsBroken += 1
 	if Global.eggsBroken == 5:
 		autoclickUnlock.emit()
-		$autoclicker.start(0.5)
 	egg.emit()
 
 func gain_eggshells(multiplier: float, lowerLimit: int, upperLimit: int):
@@ -94,6 +93,15 @@ func animate_click():
 	get_tree().current_scene.add_child(click)
 	click.emitting = true
 	click.finished.connect(click.queue_free)
+
+func animate_autoclick():
+	var autoclick := clickAnimation.instantiate()
+	var coord_x := randf_range(-50, 50)
+	var coord_y := randf_range(-100, 100) 
+	autoclick.global_position = sprite.global_position + Vector2(coord_x, coord_y)
+	get_tree().current_scene.add_child(autoclick)
+	autoclick.emitting = true
+	autoclick.finished.connect(autoclick.queue_free)
 
 func break_animation():
 	var particle := breakParticles.instantiate()
@@ -118,6 +126,8 @@ func change_sprite():
 				gain_eggshells(Global.eggshell_multiplier, Global.eggshell_lower_limit, Global.eggshell_upper_limit)
 			break
 
+func change_cursor_sprite(texture: Texture2D):
+	Input.set_custom_mouse_cursor(texture, Input.CURSOR_ARROW, Vector2(0, 0))
 
 func reset_egg():
 	if(Global.eggsBroken >= egg_threshold):
@@ -138,6 +148,7 @@ func animate_tween():
 
 
 func _on_autoclicker_timeout() -> void:
+	animate_autoclick()
 	take_dmg(Global.autoclick_value)
 	Global.currency += Global.autoclick_value
 	Global.total_currency += Global.autoclick_value
@@ -145,12 +156,18 @@ func _on_autoclicker_timeout() -> void:
 
 
 func _on_mouse_entered() -> void:
+	change_cursor_sprite(Global.current_cursor_texture)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(sprite, "scale", Vector2(1.1, 1.1), 0.1)
 
 
 func _on_mouse_exited() -> void:
+	change_cursor_sprite(null)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(sprite, "scale", Vector2(1, 1), 0.1)
+
+
+func _on_autoclick_up_menu_start_autoclicker() -> void:
+	$autoclicker.start(0.5)

@@ -1,11 +1,9 @@
-[gd_scene load_steps=49 format=3 uid="uid://dhcb5h7hybshs"]
+[gd_scene load_steps=47 format=3 uid="uid://dhcb5h7hybshs"]
 
 [ext_resource type="Script" uid="uid://c7lib2a2hajw2" path="res://Scripts/main.gd" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://b5h38kr1t5c8b" path="res://Scenes/cloud_1.tscn" id="2_8cuat"]
 [ext_resource type="PackedScene" uid="uid://b88b3ell8pfih" path="res://Scenes/egg.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://b7qbp2r71yp5f" path="res://Scenes/main_screen.tscn" id="2_kry3j"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="3_8gbba"]
-[ext_resource type="PackedScene" uid="uid://bnx7a8y6q373y" path="res://Scenes/cloud_2.tscn" id="3_o1aky"]
 [ext_resource type="PackedScene" uid="uid://cmvimpsu3c6ub" path="res://Scenes/main_menu.tscn" id="5_6bp64"]
 [ext_resource type="PackedScene" uid="uid://ybq2e658v4de" path="res://Scenes/upgrade_menu.tscn" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="5_344ge"]
@@ -72,8 +70,6 @@ region = Rect2(380.04022, 1153.16, 1677.3491, 1179.1844)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
-Cloud_1 = ExtResource("2_8cuat")
-Cloud_2 = ExtResource("3_o1aky")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(3713, 538)
@@ -110,20 +106,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Clouds" type="Control" parent="UI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CloudsStartPos" type="Control" parent="UI/Clouds"]
-anchors_preset = 0
-offset_left = 2398.0
-offset_top = 52.0
-offset_right = 2533.0
-offset_bottom = 164.0
-
-[node name="CloudsTimer" type="Timer" parent="UI/Clouds"]
 
 [node name="TextureRect" type="TextureRect" parent="UI"]
 layout_mode = 0
@@ -296,10 +278,8 @@ scale = Vector2(0.2, 0.2)
 [node name="active_powerups" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 43.0
-offset_bottom = 43.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Fih_bucket" parent="active_powerups" instance=ExtResource("11_ee4r6")]
 layout_mode = 1
@@ -483,7 +463,6 @@ scale = Vector2(0.5, 0.5)
 [connection signal="up_menu" from="." to="UpgradeMenu" method="_on_main_up_menu"]
 [connection signal="up_menu" from="." to="autoclick_up_menu" method="_on_main_up_menu"]
 [connection signal="StartPressed" from="MainMenu" to="." method="_on_main_menu_start_pressed"]
-[connection signal="timeout" from="UI/Clouds/CloudsTimer" to="." method="_on_clouds_timer_timeout"]
 [connection signal="autoclickUnlock" from="Egg" to="autoclick_up_menu" method="_on_egg_autoclick_unlock"]
 [connection signal="egg" from="Egg" to="." method="_on_egg_egg"]
 [connection signal="multiplied_upgrades" from="active_powerups/Fih_bucket" to="UpgradeMenu" method="_on_fih_bucket_active"]
@@ -500,7 +479,6 @@ scale = Vector2(0.5, 0.5)
 [connection signal="DuckHatChange" from="autoclick_up_menu" to="Duck" method="_on_duck_hat_change"]
 [connection signal="DuckWeaponChange" from="autoclick_up_menu" to="Duck" method="_on_duck_weapon_change"]
 [connection signal="autoclickMenuClose" from="autoclick_up_menu" to="." method="_on_autoclick_menu_close"]
-[connection signal="startAutoclicker" from="autoclick_up_menu" to="Egg" method="_on_autoclick_up_menu_start_autoclicker"]
 [connection signal="optionsMenuExit" from="OptionsMenu" to="." method="_on_options_menu_exit"]
 [connection signal="optionsMenuResume" from="OptionsMenu" to="." method="_on_options_menu_resume"]
 [connection signal="stats_menu_close" from="StatsMenu" to="." method="_on_stats_menu_close"]

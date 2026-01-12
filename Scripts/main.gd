@@ -3,10 +3,24 @@ extends Node2D
 @onready var ScoreLabel = $UI/Score
 @onready var ClickValueLabel = $UI/Click_val
 @onready var EggshellLabel = $UI/EggshellLabel
+
+@onready var CloudsTimer := $UI/Clouds/CloudsTimer
+@onready var CloudsStartPos := $UI/Clouds/CloudsStartPos
+
 @onready var fih_active_up = $active_powerups/Fih_bucket
 @onready var glass_active_up = $active_powerups/Whiskey_glass
 @onready var cauldron_active_up = $active_powerups/Cauldron
 @onready var elixir_active_Up = $active_powerups/Elixir
+
+@onready var microwave := $UI/Decorations/Microwave
+@onready var cat := $UI/Decorations/Cat
+@onready var plant := $UI/Decorations/Plant
+@onready var painting1 := $UI/Decorations/Painting1
+@onready var painting2 := $UI/Decorations/Painting2
+@onready var painting3 := $UI/Decorations/Painting3
+
+@export var Cloud_1: PackedScene
+@export var Cloud_2: PackedScene
 
 signal clickMenuClose
 signal duckMenuClose
@@ -22,8 +36,10 @@ var cameraTween: Tween
 var menuTween: Tween
 enum apw{FIH, WHISKEY, CAULDRON, ELIXIR}
 
+
 func _ready():
 	update_ui()
+	CloudsTimer.start(2)
 	fih_active_up.visible = false
 	glass_active_up.visible = false
 	cauldron_active_up.visible = false
@@ -44,6 +60,20 @@ func menu_open_animation(menu: Control, xCoord: int, tween: Tween):
 	
 	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(menu, "position:x", menu.position.x + xCoord, 1)
+
+func spawn_clouds(scene: PackedScene):
+	var cloud := scene.instantiate()
+	var coord_y := randf_range(-100, 30)
+	cloud.global_position = CloudsStartPos.global_position + Vector2(0, coord_y)
+	get_tree().current_scene.add_child(cloud)
+	
+	var tween := create_tween()
+	var randomTime := randi_range(10, 15)
+	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(cloud, "position:x", cloud.position.x + 3000, randomTime)
+	
+	await get_tree().create_timer(randomTime).timeout
+	cloud.queue_free()
 
 func _on_autoclick_menu_change() -> void:
 	update_ui()
@@ -88,17 +118,17 @@ func _on_active_powerup_unlock(apwu: int) -> void:
 func _on_quest_complete(qNumber: int) -> void:
 	match qNumber:
 		1:
-			pass
+			microwave.visible = true
 		2:
-			pass
+			plant.visible = true
 		3:
-			pass
+			painting1.visible = true
 		4:
-			pass
+			cat.visible = true
 		5:
-			pass
+			painting2.visible = true
 		6:
-			pass
+			painting3.visible = true
 
 func _on_click_menu_open() -> void:
 	var menu = $UpgradeMenu/Control
@@ -146,3 +176,10 @@ func _on_quest_menu_close() -> void:
 
 func _on_stats_menu_close() -> void:
 	statsMenuClose.emit()
+
+func _on_clouds_timer_timeout() -> void:
+	var randCloud := randi_range(1, 2)
+	if(randCloud == 1):
+		spawn_clouds(Cloud_1)
+	else:
+		spawn_clouds(Cloud_2)

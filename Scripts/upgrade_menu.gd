@@ -4,6 +4,7 @@ signal UpMenuChange
 signal upMenuClose
 var multiplied_upgrade_active := false
 var multiplied_upgrade_value := 1.0
+
 @onready var Menu = $Control
 @onready var clickup1Cost = $Control/UpgradesContainer/VBoxContainer/click_up1/Cost
 @onready var clickup2Cost = $Control/UpgradesContainer/VBoxContainer/click_up2/Cost
@@ -83,9 +84,6 @@ func bought_popup(origin: Vector2, offset: Vector2):
 	tween.finished.connect(pop.queue_free)
 
 
-
-
-
 func _on_close_menu_pressed() -> void:
 	$Control/CloseMenu.disabled = true
 	var tween = create_tween()
@@ -114,6 +112,9 @@ func _on_up_button_pressed_clickval1() -> void:
 	else:
 		bought_popup(clickUp1ButtonPos.global_position, Vector2(0, -100))
 		upgrade_click("click_up", 100, 0.1, 1, clickup2lock)
+		if(Global.upgrades["click_up"]["level"] == 1):
+			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/toothpick_cursor.png")
+		
 
 func _on_up_button_pressed_clickval2() -> void:
 	if(Global.currency < Global.upgrades["click_up2"]["cost"]):
@@ -121,6 +122,8 @@ func _on_up_button_pressed_clickval2() -> void:
 	else:
 		bought_popup(clickUp2ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up2", 1000, 10, 15, clickup3lock)
+		if(Global.upgrades["click_up2"]["level"] == 1):
+			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/butterknife_cursor.png")
 
 
 func _on_up_button_pressed_clickval3() -> void:
@@ -129,6 +132,9 @@ func _on_up_button_pressed_clickval3() -> void:
 	else:
 		bought_popup(clickUp3ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up3", 1500, 25, 10, clickup4lock)
+		if(Global.upgrades["click_up3"]["level"] == 1):
+			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/hammer_cursor.png")
+
 
 
 func _on_up_button_pressed_clickval4() -> void:
@@ -137,6 +143,8 @@ func _on_up_button_pressed_clickval4() -> void:
 	else:
 		bought_popup(clickUp4ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up4", 2500, 50, 10, clickup5lock)
+		if(Global.upgrades["click_up4"]["level"] == 1):
+			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/drill_cursor.png")
 
 
 func _on_up_button_pressed_clickval5() -> void:
@@ -145,6 +153,9 @@ func _on_up_button_pressed_clickval5() -> void:
 	else:
 		bought_popup(clickUp5ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up5", 5000, 70, 10, null)
+		if(Global.upgrades["click_up5"]["level"] == 1):
+			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/nuke_cursor.png")
+
 
 
 func _on_fih_bucket_active(active: bool, multiplier: float) -> void:

@@ -5,6 +5,7 @@ signal DuckWeaponChange(texture: Texture2D)
 signal DuckHatChange(texture: Texture2D)
 signal ActivePowerupUnlock(apwu: int)
 signal autoclickMenuClose
+signal startAutoclicker
 enum apw{FIH, WHISKEY, CAULDRON, ELIXIR}
 var multiplied_upgrade_active := false
 var multiplied_upgrade_value := 1.0
@@ -173,6 +174,8 @@ func _on_up_button_pressed_autoclick1() -> void:
 	else:
 		bought_popup(autoclick1UpButoon.global_position, Vector2(0, 0))
 		autoclick_up("autoclick_up1", 1000, 1, 10, autoclick2lock, strawHatlock, fishingPoleTexture)
+		if(Global.upgrades["autoclick_up1"]["level"] == 1):
+			startAutoclicker.emit()
 
 func _on_up_button_pressed_autoclick2() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up2"]["cost"]):
