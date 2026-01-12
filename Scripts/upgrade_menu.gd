@@ -1,5 +1,9 @@
 extends Control
 
+## ------------ VARIABLES ------------
+
+## variables used to manipulate the click upgrades
+
 signal UpMenuChange
 signal upMenuClose
 var multiplied_upgrade_active := false
@@ -36,6 +40,15 @@ var multiplied_upgrade_value := 1.0
 @onready var clickUp5ButtonPos = $Control/UpgradesContainer/VBoxContainer/click_up5/UpButton
 
 
+
+
+
+## ------------ FUNCTIONS ------------
+
+## function that upgrades the click value 
+## it works similar (but a little less complicated) to the autoclick_up funciton 
+## from the autoclick_up_menu script
+
 func upgrade_click(upgrade: String, cost_inc: int, val_inc: float, threshold: int, next_upgrade: Control):
 	Global.currency -= Global.upgrades[upgrade]["cost"]
 	Global.upgrades[upgrade]["cost"] += cost_inc
@@ -49,17 +62,22 @@ func upgrade_click(upgrade: String, cost_inc: int, val_inc: float, threshold: in
 		next_upgrade.visible = false
 	UpMenuChange.emit()
 
+
+## functions that work exactly like the one from the autoclick_up_menu script
+
 func insufficient_funds(costLabel: Control):
 	costLabel.add_theme_color_override("font_color", Color(1.0, 0.0, 0.0, 1.0))
 	costLabel.text = "Insufficient"
 	await get_tree().create_timer(2).timeout
 	UpMenuChange.emit()
 
+
 func UI_change(upgrade: String, costLabel: Control, lvlLabel: Control, detailsLabel: Control):
 	costLabel.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	costLabel.text = str(Global.upgrades[upgrade]["cost"]) + "$"
 	lvlLabel.text = "LVL" + str(Global.upgrades[upgrade]["level"])
 	detailsLabel.text = "Next click upgrade value is " + str(Global.upgrades[upgrade]["value"]) 
+
 
 func bought_popup(origin: Vector2, offset: Vector2):
 	var pop := Label.new()
@@ -84,6 +102,13 @@ func bought_popup(origin: Vector2, offset: Vector2):
 	tween.finished.connect(pop.queue_free)
 
 
+
+
+
+## ------------ FUNCTIONS TRIGGERED BY SIGNALS ------------
+
+## function triggered when you press the button in the top right corner of the menu
+
 func _on_close_menu_pressed() -> void:
 	$Control/CloseMenu.disabled = true
 	var tween = create_tween()
@@ -94,6 +119,11 @@ func _on_close_menu_pressed() -> void:
 	await get_tree().create_timer(1.5).timeout
 	$Control/CloseMenu.disabled = false
 
+
+## SIGNAL TRIGGERED BY THE up_menu SIGNAL SENT BY THE main SCRIPT
+## function that triggers when it gets a signal from the main script 
+## it updates the click upgrades information
+
 func _on_main_up_menu() -> void:
 	UI_change("click_up", clickup1Cost, clickup1LvL, clickup1Details)
 	UI_change("click_up2", clickup2Cost, clickup2LvL, clickup2Details)
@@ -102,9 +132,19 @@ func _on_main_up_menu() -> void:
 	UI_change("click_up5", clickup5Cost, clickup5LvL, clickup5Details)
 
 
+## SIGNAL TRIGGERED BY THE multiplied_upgrades SIGNAL SENT BY THE fih_bucket SCENE
+## function that makes it so, when it's active, whenever you buy an upgrade, it gives
+## the value multiplied
+
+func _on_fih_bucket_active(active: bool, multiplier: float) -> void:
+	multiplied_upgrade_active = active
+	multiplied_upgrade_value = multiplier
 
 
-
+## these functions work like the ones in the autoclick_up_menu
+## they check if you have enough currency then call the corresponding functions
+## these functions also change the cursor texture whenever you buy one upgrade for the
+## first time
 
 func _on_up_button_pressed_clickval1() -> void:
 	if(Global.currency < Global.upgrades["click_up"]["cost"]):
@@ -155,9 +195,3 @@ func _on_up_button_pressed_clickval5() -> void:
 		upgrade_click("click_up5", 5000, 70, 10, null)
 		if(Global.upgrades["click_up5"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/nuke_cursor.png")
-
-
-
-func _on_fih_bucket_active(active: bool, multiplier: float) -> void:
-	multiplied_upgrade_active = active
-	multiplied_upgrade_value = multiplier

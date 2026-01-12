@@ -1,5 +1,14 @@
 extends Node2D
 
+## --------------- VARIABLES ---------------
+
+## variables used to manipulate scenes in the scene tree
+
+var currencyTween: Tween
+var cameraTween: Tween
+var menuTween: Tween
+enum apw{FIH, WHISKEY, CAULDRON, ELIXIR}
+
 @onready var ScoreLabel = $UI/Score
 @onready var ClickValueLabel = $UI/Click_val
 @onready var EggshellLabel = $UI/EggshellLabel
@@ -22,6 +31,8 @@ extends Node2D
 @export var Cloud_1: PackedScene
 @export var Cloud_2: PackedScene
 
+## signals to communicate with other scenes
+
 signal clickMenuClose
 signal duckMenuClose
 signal questMenuClose
@@ -31,11 +42,14 @@ signal up_menu
 signal stat_menu
 signal quest_check
 
-var currencyTween: Tween
-var cameraTween: Tween
-var menuTween: Tween
-enum apw{FIH, WHISKEY, CAULDRON, ELIXIR}
 
+
+
+
+## --------------- FUNCTIONS ---------------
+
+## function that triggers when you run the program
+## it does the UI initialization
 
 func _ready():
 	update_ui()
@@ -45,6 +59,10 @@ func _ready():
 	cauldron_active_up.visible = false
 	elixir_active_Up.visible = false
 
+
+## updates everything related to stats and numbers
+## sends signals to other scripts so they can update their own labels and values
+
 func update_ui():
 	ScoreLabel.text = "Money: " + str(int(Global.currency)) + "$"
 	ClickValueLabel.text = "Click value: " + str(Global.click_value)
@@ -53,6 +71,9 @@ func update_ui():
 	stat_menu.emit()
 	quest_check.emit()
 
+
+## animation for all the menus
+
 func menu_open_animation(menu: Control, xCoord: int, tween: Tween):
 	if(tween):
 		tween.kill()
@@ -60,6 +81,10 @@ func menu_open_animation(menu: Control, xCoord: int, tween: Tween):
 	
 	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(menu, "position:x", menu.position.x + xCoord, 1)
+
+
+## function that instantiates one of the two cloud scenes 
+## spawns it at a random position and makes it move at a random speed
 
 func spawn_clouds(scene: PackedScene):
 	var cloud := scene.instantiate()
@@ -75,6 +100,12 @@ func spawn_clouds(scene: PackedScene):
 	await get_tree().create_timer(randomTime).timeout
 	cloud.queue_free()
 
+
+## --------------- FUNCTIONS TRIGGERED BY SIGNALS ---------------
+
+## these 3 functions update the UI whenever the scene which sent the signal 
+## changes something related to the Global variables
+
 func _on_autoclick_menu_change() -> void:
 	update_ui()
 
@@ -85,6 +116,10 @@ func _on_egg_egg() -> void:
 	update_ui()
 
 
+## SIGNAL TRIGGERED BY THE main_menu_start BUTTON FROM THE MainMenu SCENE
+## animates the door then changes the tint of the screen and camera position so it 
+## switches from the main menu to the main game screen 
+
 func _on_main_menu_start_pressed() -> void:
 	var camera = $Camera2D
 	var tint = $ColorRect
@@ -94,7 +129,6 @@ func _on_main_menu_start_pressed() -> void:
 	cameraTween.parallel().tween_property(camera, "zoom", Vector2(3,3), 1.5)
 	cameraTween.parallel().tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1.0)
 
-	
 	await get_tree().create_timer(1.5).timeout
 	var tween2 = create_tween()
 	
@@ -102,6 +136,10 @@ func _on_main_menu_start_pressed() -> void:
 	tween2.parallel().tween_property(camera, "position", $MainScreen/Background.global_position, 0.1)
 	tween2.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0), 1.0)
 
+
+## SIGNAL TRIGGERED BY THE ActivePowerupUnlock SIGNAL SENT BY THE active_powerups SCENE
+## it matches the index from the enum with one of the cases and unlocks the 
+## corresponding active powerup
 
 func _on_active_powerup_unlock(apwu: int) -> void:
 	if(apwu == apw.FIH):
@@ -114,6 +152,11 @@ func _on_active_powerup_unlock(apwu: int) -> void:
 		elixir_active_Up.visible = true
 	else:
 		return
+
+
+## SIGNAL TRIGGERED BY questComplete SIGNAL SENT BY THE QuestMenu SCENE
+## it matches the number of the quest given as a parameter and 
+## unlocks the corresponding decoration
 
 func _on_quest_complete(qNumber: int) -> void:
 	match qNumber:
@@ -129,6 +172,10 @@ func _on_quest_complete(qNumber: int) -> void:
 			painting2.visible = true
 		6:
 			painting3.visible = true
+
+
+## SIGNALS SENT BY THE ButtonMenu SCENE
+## all of these functions open their corresponding menus
 
 func _on_click_menu_open() -> void:
 	var menu = $UpgradeMenu/Control
@@ -151,6 +198,10 @@ func _on_stats_menu_open() -> void:
 	menu_open_animation(menu, 750, menuTween)
 
 
+## SIGNALS SENT BY DIFFERENT MENU SCENES 
+## these functions send a signal to the 
+## ButtonMenu so the buttons can be re-enabled
+
 func _on_up_menu_close() -> void:
 	clickMenuClose.emit()
 
@@ -159,6 +210,10 @@ func _on_autoclick_menu_close() -> void:
 
 func _on_options_menu_resume() -> void:
 	optionsMenuClose.emit()
+
+
+## this function is triggered when you press the main menu button
+## in the options tab. It takes you back to the main menu
 
 func _on_options_menu_exit() -> void:
 	var camera = $Camera2D
@@ -176,6 +231,11 @@ func _on_quest_menu_close() -> void:
 
 func _on_stats_menu_close() -> void:
 	statsMenuClose.emit()
+
+
+## SIGNAL TRIGGERED BY THE CloudTimer 
+## this function generates random clouds with
+## random speeds and positions in the main menu
 
 func _on_clouds_timer_timeout() -> void:
 	var randCloud := randi_range(1, 2)

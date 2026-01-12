@@ -1,5 +1,10 @@
 extends Node
 
+## --------------- VARIABLES ---------------
+
+## this whole script is just for variables that hold
+## key informations about the game
+
 var currency := 10000000.0
 var total_currency := 0.0
 var eggshell_currency := 100000
@@ -17,6 +22,8 @@ var eggshell_lower_limit := 1
 var eggshell_upper_limit := 5
 var active_powerup_cdr := 0.0
 var active_powerup_multiplier := 1.0
+
+## click and autoclick upgrades
 
 var upgrades = {
 	
@@ -75,6 +82,9 @@ var upgrades = {
 	},
 }
 
+
+## special upgrades
+
 var hats = {
 	
 	"straw_hat":{
@@ -103,6 +113,8 @@ var hats = {
 	
 }
 
+## active powerup details
+
 var active_powerups := {
 	
 	"fih_bucket":{
@@ -126,6 +138,8 @@ var active_powerups := {
 	}
 	
 }
+
+## quest details
 
 var quests := {
 	

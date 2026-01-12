@@ -1,6 +1,11 @@
 extends OptionButton
 
+## --------------- VARIABLES ---------------
+
 @onready var windowMode := $"."
+
+
+## array that holds window modes
 
 var windowModeOptions := [
 	"Full-Screen",
@@ -9,10 +14,20 @@ var windowModeOptions := [
 	"Borderless Full-Screen"
 ]
 
+
+## --------------- FUNCTIONS TRIGGERED BY SIGNALS ---------------
+
+## function that triggers the moment you run the program
+## it initializes all the window modes in the "options" button 
+
 func _ready():
 	for mode in windowModeOptions:
 		windowMode.add_item(mode)
 	windowMode.item_selected.connect(_on_window_mode_selected)
+
+
+## function that triggers when you change the window mode in the "options" button
+## it changes the window mode 
 
 func _on_window_mode_selected(index: int):
 	match index:

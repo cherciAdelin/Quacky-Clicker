@@ -1,5 +1,9 @@
 extends Control
 
+## --------------- VARIABLES ---------------
+
+## variables used to manipulate the quest scenes
+
 signal questMenuClose
 signal questComplete(qNumber: int)
 
@@ -53,16 +57,12 @@ signal questComplete(qNumber: int)
 @onready var quest6completed := $QuestContainer/VBoxContainer/quest_6/quest_completed
 
 
-func _on_quest_close_button_pressed() -> void:
-	var questCloseButton := $questCloseButton
-	var tween := create_tween()
-	var menu := $"."
-	questCloseButton.disabled = true
-	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(menu, "position:x", menu.position.x - 750, 1)
-	questMenuClose.emit()
-	await get_tree().create_timer(1.5).timeout
-	questCloseButton.disabled = false
+
+
+
+## --------------- FUNCTIONS ---------------
+
+## function that sets the initial quest details
 
 func set_quest_params(cond_label: Control, prog_label: Control, status_label: Control,quest_reward: Control, quest_button: Control, quest_number: int):
 	var quest := "quest" + str(quest_number)
@@ -73,13 +73,15 @@ func set_quest_params(cond_label: Control, prog_label: Control, status_label: Co
 	quest_reward.visible = false
 	quest_button.disabled = true
 
-func _ready():
-	set_quest_params(quest1conditionLabel, quest1progressLabel, quest1statusLabel, quest1reward ,quest1button, 1)
-	set_quest_params(quest2conditionLabel, quest2progressLabel, quest2statusLabel, quest2reward ,quest2button, 2)
-	set_quest_params(quest3conditionLabel, quest3progressLabel, quest3statusLabel, quest3reward ,quest3button, 3)
-	set_quest_params(quest4conditionLabel, quest4progressLabel, quest4statusLabel, quest4reward ,quest4button, 4)
-	set_quest_params(quest5conditionLabel, quest5progressLabel, quest5statusLabel, quest5reward ,quest5button, 5)
-	set_quest_params(quest6conditionLabel, quest6progressLabel, quest6statusLabel, quest6reward ,quest6button, 6)
+
+## function that updates the quest progress
+
+func update_values(value: int, prog_label: Control, quest_number: int):
+	var quest := "quest" + str(quest_number)
+	prog_label.text = str(value) + "/" + str(Global.quests[quest]["threshold"])
+
+
+## function that checks if the quest requirements have been met
 
 func check_quest_complete(comp_value: int, quest_number: int) -> bool:
 	var quest := "quest" + str(quest_number)
@@ -88,9 +90,8 @@ func check_quest_complete(comp_value: int, quest_number: int) -> bool:
 	else:
 		return false
 
-func update_values(value: int, prog_label: Control, quest_number: int):
-	var quest := "quest" + str(quest_number)
-	prog_label.text = str(value) + "/" + str(Global.quests[quest]["threshold"])
+
+## function that sets the quest details to completed
 
 func set_quest_complete(prog_label: Control, status_label: Control, button: Control, reward: Control, qhidden: Control, quest_number: int):
 	var quest := "quest" + str(quest_number)
@@ -102,6 +103,44 @@ func set_quest_complete(prog_label: Control, status_label: Control, button: Cont
 	qhidden.visible = false
 	button.disabled = false
 
+
+
+
+
+## --------------- FUNCTIONS TRIGGERED BY SIGNALS ---------------
+
+## function that sets the inital quest details the moment you run the program
+
+func _ready():
+	set_quest_params(quest1conditionLabel, quest1progressLabel, quest1statusLabel, quest1reward ,quest1button, 1)
+	set_quest_params(quest2conditionLabel, quest2progressLabel, quest2statusLabel, quest2reward ,quest2button, 2)
+	set_quest_params(quest3conditionLabel, quest3progressLabel, quest3statusLabel, quest3reward ,quest3button, 3)
+	set_quest_params(quest4conditionLabel, quest4progressLabel, quest4statusLabel, quest4reward ,quest4button, 4)
+	set_quest_params(quest5conditionLabel, quest5progressLabel, quest5statusLabel, quest5reward ,quest5button, 5)
+	set_quest_params(quest6conditionLabel, quest6progressLabel, quest6statusLabel, quest6reward ,quest6button, 6)
+
+
+## function that triggers when you press the exit button in the top right corner of the menu
+
+func _on_quest_close_button_pressed() -> void:
+	var questCloseButton := $questCloseButton
+	var tween := create_tween()
+	var menu := $"."
+	questCloseButton.disabled = true
+	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(menu, "position:x", menu.position.x - 750, 1)
+	questMenuClose.emit()
+	await get_tree().create_timer(1.5).timeout
+	questCloseButton.disabled = false
+
+
+## SIGNAL TRIGGERED BY quest_check SENT BY main SCRIPT
+## function that triggers when a Global variable has changed. The main script sends a signal which
+## calls this function whenever it calls the UI_update function. The function checks the state of each 
+## individual quest and calls the appropriate functions. It can:
+## 1. Update the quest progress
+## 2. Mark the quest as completed
+## 3. Change nothing
 
 func _on_main_quest_check() -> void:
 	if(check_quest_complete(Global.eggsBroken, 1) and !Global.quests["quest1"]["completed"]):
@@ -135,6 +174,11 @@ func _on_main_quest_check() -> void:
 		update_values(int(Global.autoclick_value), quest6progressLabel, 6)
 
 
+##  functions triggered by the claimButton from each individual quest
+## it disables the button so you can't claim the rewards multiple times
+## enables the "completed" sprite 
+## sends a signal to the main script that unlocks the corresponding reward
+## based on the quest number sent as parameter
 
 func _on_quest1_claim() -> void:
 	quest1button.disabled = true

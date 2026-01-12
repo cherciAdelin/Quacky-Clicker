@@ -1,14 +1,23 @@
 extends Control
 
+## --------------- VARIABLES ---------------
+
+## Signals that are used to communicate with other scripts whenever 
+## something UI related changes or when an event that unlocks certain things in the game
+## triggers
 signal AutoclickMenuChange
 signal DuckWeaponChange(texture: Texture2D)
 signal DuckHatChange(texture: Texture2D)
 signal ActivePowerupUnlock(apwu: int)
 signal autoclickMenuClose
 signal startAutoclicker
+
 enum apw{FIH, WHISKEY, CAULDRON, ELIXIR}
 var multiplied_upgrade_active := false
 var multiplied_upgrade_value := 1.0
+
+## variables that hold the textures for the duck accessories which are unlocked
+## whenever you buy an upgrade for the first time
 @onready var Menu = $Control
 @onready var fishingPoleTexture = preload("res://Assets/Sprites/Duckk/Accessories/FishingPole.png")
 @onready var revolverTexture = preload("res://Assets/Sprites/Duckk/Accessories/Revolver.png")
@@ -19,6 +28,7 @@ var multiplied_upgrade_value := 1.0
 @onready var witchHatTexture = preload("res://Assets/Sprites/Duckk/Hats/WitchHat.png")
 @onready var wizardHatTexture = preload("res://Assets/Sprites/Duckk/Hats/WizardHat.png")
 
+## variables used to manipulate the button/menu nodes
 @onready var autoclick1Cost = $Control/UpgradesContainer/VBoxContainer/autoclick_up1/Cost
 @onready var autoclick2Cost = $Control/UpgradesContainer/VBoxContainer/autoclick_up2/Cost
 @onready var autoclick3Cost = $Control/UpgradesContainer/VBoxContainer/autoclick_up3/Cost
@@ -65,21 +75,53 @@ var multiplied_upgrade_value := 1.0
 @onready var wizardHatlock = $Control/UpgradesContainer/VBoxContainer/wizard_hat/Locked
 
 
+
+
+
+##--------------- FUNCTIONS ---------------
+
+## function that upgrades the autoclick value
+## it takes arguments related to the upgrade it is used on like:
+## - the upgrade name (key from the global dictionary "upgrades")
+## - the cost increase of the upgrade
+## - the autoclick value increase which adds to the current value of the upgrade and ends up being the 
+## next upgrade actual value
+## - the level threshold which, when reached, unlocks the next upgrade
+## - the upgrade which is unlocked when the threshold is reached
+## - the upgrade's corresponding "hat" upgrade (special upgrade)
+## - the texture of the weapon the upgrade ulocks for the duck
+
 func autoclick_up(upgrade: String, cost_inc: int, val_inc: float, threshold: int, next_upgrade: Control, hat: Control, weapon_texture: Texture2D):
 	Global.currency -= Global.upgrades[upgrade]["cost"]
 	Global.upgrades[upgrade]["cost"] += cost_inc
 	Global.upgrades[upgrade]["level"] += 1
+	## checks to see if the active powerup which doubles click power is active and offers the 
+	## upgrade value accordingly (it goes back to normal after the active powerup expires)
 	if(multiplied_upgrade_active):
 		Global.autoclick_value += Global.upgrades[upgrade]["value"] * multiplied_upgrade_value
 	else:
 		Global.autoclick_value += Global.upgrades[upgrade]["value"]
 	Global.upgrades[upgrade]["value"] += val_inc
+	## if it's the first time you buy the upgrade, it unlocks the corresponding hat upgrade and
+	## changes the duck's weapon sprite  
 	if(Global.upgrades[upgrade]["level"] == 1):
 		hat.visible = false
 		DuckWeaponChange.emit(weapon_texture)
+	## when the level threshold is reached and the next_upgrade argument isn't null (the current upgrade is 
+	## not the last one) it unlocks the next upgrade
 	if(Global.upgrades[upgrade]["level"] == threshold and next_upgrade != null):
 		next_upgrade.visible = false
 	AutoclickMenuChange.emit()
+
+
+## function that upgrades the "special" stats like: 
+## active powerup cooldown reduction, eggshell minimum/maximum gain etc.
+## it takes arguments related to the hat upgrades, similar to the autoclick_up() function:
+## - the upgrade name (key from the global dictionary "hats")
+## - the cost increase of the upgrade
+## - the value increase which adds to the current value of the upgrade
+## - the corresponding active powerup index value or name from the enum variable declared at the beginning of the script
+## - the texture of the hat the upgrade unlocks for the duck
 
 func special_up(upgrade: String, cost_inc: int, val_inc: float, active_up: int, hat_texture: Texture2D):
 	Global.eggshell_currency -= Global.hats[upgrade]["cost"]
@@ -87,11 +129,17 @@ func special_up(upgrade: String, cost_inc: int, val_inc: float, active_up: int, 
 	Global.hats[upgrade]["value"] += val_inc
 	Global.hats[upgrade]["level"] += 1
 	var passed_value := float(Global.hats[upgrade]["value"])
+	## if it's the first time you buy the upgrade, it unlocks the corresponding active powerup and 
+	## changes the hat sprite for the duck
 	if(Global.hats[upgrade]["level"] == 1 and active_up != null):
 		ActivePowerupUnlock.emit(active_up)
 		DuckHatChange.emit(hat_texture)
 	AutoclickMenuChange.emit()
 	return passed_value
+
+
+## function used to display an error message on the cost label of the upgrade when you don't have enought
+## money to buy the upgrade
 
 func insufficient_funds(costLabel: Control):
 	costLabel.add_theme_color_override("font_color", Color(1.0, 0.0, 0.0, 1.0))
@@ -99,11 +147,22 @@ func insufficient_funds(costLabel: Control):
 	await get_tree().create_timer(2).timeout
 	AutoclickMenuChange.emit()
 
+
+## function used to update the labels of the autoclick upgrades like:
+## - the cost of the upgrade
+## - the level of the upgrade
+## - the details of the upgrade (what the upgrade gives and its value)
+
 func UI_change(upgrade: String, costLabel: Control, lvlLabel: Control, detailsLabel: Control):
 	costLabel.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	costLabel.text = str(Global.upgrades[upgrade]["cost"]) + "$"
 	lvlLabel.text = "LVL" + str(Global.upgrades[upgrade]["level"])
 	detailsLabel.text = "Next autoclick up value is " + str(Global.upgrades[upgrade]["value"])
+
+
+## function used to update the labels of the special upgrades exactly like the UI_change function
+## but for the hats. When the special upgrade level limit threshold is reached, the function stops 
+## updating the labels
 
 func UI_change_hats(upgrade: String, costLabel: Control, lvlLabel: Control, detailsLabel: Control, txt: String):
 	if(Global.hats[upgrade]["level"] == Global.special_lvl_limit):
@@ -113,10 +172,14 @@ func UI_change_hats(upgrade: String, costLabel: Control, lvlLabel: Control, deta
 	lvlLabel.text = "LVL" + str(Global.hats[upgrade]["level"])
 	detailsLabel.text = txt + str(Global.hats[upgrade]["value"])
 
+
+## function that creates a +1 popup whenever you successfully buy an upgrade
+
 func bought_popup(origin: Vector2, offset: Vector2):
 	var pop := Label.new()
 	var font := FontFile.new()
 	
+	## font details for the popup (so it doesn't have the default color, font size etc.)
 	font.load_dynamic_font("res://Assets/Sprites/Fonts/Cute Dino.ttf")
 	pop.text = "+1"
 	pop.add_theme_font_override("font", font)
@@ -139,6 +202,12 @@ func bought_popup(origin: Vector2, offset: Vector2):
 
 
 
+## --------------- FUNCTIONS TRIGGERED BY SIGNALS FROM OTHER SCRIPTS/NODES ---------------
+
+## SIGNAL FROM CloseMenu BUTTON IN THE autoclick_up_menu SCENE
+## function that "closes" the menu when you press the x button in the top right corner
+## it moves the menu to its initial position
+
 func _on_close_menu_pressed() -> void:
 	$Control/CloseMenu.disabled = true
 	var tween = create_tween()
@@ -149,8 +218,26 @@ func _on_close_menu_pressed() -> void:
 	await get_tree().create_timer(1.5).timeout
 	$Control/CloseMenu.disabled = false
 
+
+## SIGNAL FROM THE egg.gd SCRIPT
+## function that triggers after the requirements for unlocking the autoclick upgrade menu 
+## are met (at the moment it's when you break 5 eggs, the egg script sends this signal)
+
 func _on_egg_autoclick_unlock() -> void:
 	autoclick1lock.visible = false
+
+
+## SIGNAL FROM THE multiplied_autoclicker_upgrades SIGNAL SENT FROM THE elixir_powerup SCRIPT
+## function that triggers after the active powerup "elixir" has been activated
+## it multiplies the autoclick values
+
+func _on_elixir_active(active: bool, multiplier: float) -> void:
+	multiplied_upgrade_active = active
+	multiplied_upgrade_value = multiplier
+
+
+## SIGNAL FROM THE up_menu SIGNAL SENT FROM THE main SCRIPT
+## function that uses the UI functions to update the labels of all the upgrades
 
 func _on_main_up_menu() -> void:
 	UI_change("autoclick_up1", autoclick1Cost, autoclick1LVL, autoclick1Details)
@@ -166,7 +253,11 @@ func _on_main_up_menu() -> void:
 
 
 
+## --------------- FUNCTIONS TRIGGERED BY BUTTONS FROM THE CURRENT SCENE ---------------
 
+## all the buttons work the same but the upgrades have different values
+## each function checks to see if you have enough currency and calls the 
+## appropriate functions
 
 func _on_up_button_pressed_autoclick1() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up1"]["cost"]):
@@ -177,12 +268,14 @@ func _on_up_button_pressed_autoclick1() -> void:
 		if(Global.upgrades["autoclick_up1"]["level"] == 1):
 			startAutoclicker.emit()
 
+
 func _on_up_button_pressed_autoclick2() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up2"]["cost"]):
 		insufficient_funds(autoclick2Cost)
 	else:
 		bought_popup(autoclick2UpButoon.global_position, Vector2.ZERO)
 		autoclick_up("autoclick_up2", 2500, 2, 20, autoclick3lock, cowboyHatlock, revolverTexture)
+
 
 func _on_up_button_pressed_autoclick3() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up3"]["cost"]):
@@ -191,12 +284,17 @@ func _on_up_button_pressed_autoclick3() -> void:
 		bought_popup(autoclick3UpButoon.global_position, Vector2.ZERO)
 		autoclick_up("autoclick_up3", 5000, 10, 35, autoclick4lock, witchHatlock, witchBroomTexture)
 
+
 func _on_up_button_pressed_autoclick4() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up4"]["cost"]):
 		insufficient_funds(autoclick4Cost)
 	else:
 		bought_popup(autoclick4UpButoon.global_position, Vector2.ZERO)
 		autoclick_up("autoclick_up4", 10000, 15, 50, null, wizardHatlock, wizardStaffTexture)
+
+
+
+
 
 
 func _on_up_button_pressed_straw_hat() -> void:
@@ -213,6 +311,7 @@ func _on_up_button_pressed_straw_hat() -> void:
 			strawHatDetails.text = "Eggshell multiplier value: " + str(Global.eggshell_multiplier)
 			strawHatLVL.text = "LVL: " + str(Global.hats["straw_hat"]["level"])
 
+
 func _on_up_button_pressed_cowboy_hat() -> void:	
 	if(Global.eggshell_currency < Global.hats["cowboy_hat"]["cost"]):
 		insufficient_funds(cowboyHatCost)
@@ -228,6 +327,7 @@ func _on_up_button_pressed_cowboy_hat() -> void:
 			cowboyHatDetails.text = "Eggshell drop lower/upper limit values: " + str(Global.eggshell_lower_limit) + "/" + str(Global.eggshell_upper_limit)
 			cowboyHatLVL.text = "LVL: " + str(Global.hats["cowboy_hat"]["level"])
 
+
 func _on_up_button_pressed_witch_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["witch_hat"]["cost"]):
 		insufficient_funds(witchHatCost)
@@ -242,6 +342,7 @@ func _on_up_button_pressed_witch_hat() -> void:
 			witchHatDetails.text = "Active powerups cdr value: " + str(Global.active_powerup_cdr)
 			witchHatLVL.text = "LVL: " + str(Global.hats["witch_hat"]["level"])
 
+
 func _on_up_button_pressed_wizard_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["wizard_hat"]["cost"]):
 		insufficient_funds(wizardHatCost)
@@ -255,7 +356,3 @@ func _on_up_button_pressed_wizard_hat() -> void:
 			wizardHatCost.text = "MAX LVL"
 			wizardHatDetails.text = "Active powerups multiplier value: " + str(Global.active_powerup_multiplier)
 			wizardHatLVL.text = "LVL: " + str(Global.hats["wizard_hat"]["level"])
-
-func _on_elixir_active(active: bool, multiplier: float) -> void:
-	multiplied_upgrade_active = active
-	multiplied_upgrade_value = multiplier

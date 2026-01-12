@@ -1,5 +1,9 @@
 extends Control
 
+## ------------ VARIABLES ------------
+
+## variables used to manipulate the labels 
+
 signal stats_menu_close
 @onready var total_clicks := $VBoxContainer/TotalClicks
 @onready var total_money := $VBoxContainer/TotalMoney
@@ -15,6 +19,14 @@ signal stats_menu_close
 @onready var apwcdr	:= $VBoxContainer/APWCDR
 @onready var apw_mult := $VBoxContainer/APWMult
 @onready var sp_up_lvl_lim := $VBoxContainer/SpUpLVLLim
+
+
+
+
+
+## ------------ FUNCTIONS ------------
+
+## function that sets the Global stats to each of their individual label
 
 func set_stats():
 	total_clicks.text = "Total clicks: " + str(Global.click_number)
@@ -34,6 +46,13 @@ func set_stats():
 	
 
 
+
+
+
+## ------------ FUNCTIONS TRIGGERED BY SIGNALS ------------
+
+## function triggered when you press the close menu button in the top right corner of the menu
+
 func _on_close_menu_button_pressed() -> void:
 	var closeMenuButton := $CloseMenuButton
 	closeMenuButton.disabled = true
@@ -45,6 +64,9 @@ func _on_close_menu_button_pressed() -> void:
 	await get_tree().create_timer(1).timeout
 	closeMenuButton.disabled = false
 
+
+## function triggered when the main script calls the UI_update function
+## it updates the stats of all the labels with the new Global variables
 
 func _on_main_stat_menu() -> void:
 	set_stats()
