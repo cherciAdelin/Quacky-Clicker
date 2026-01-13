@@ -197,7 +197,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Microwave" type="TextureRect" parent="UI/Decorations"]
-visible = false
 layout_mode = 0
 offset_left = 1088.0
 offset_top = 483.0
@@ -208,7 +207,6 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_kqrg6")
 
 [node name="Cat" type="TextureRect" parent="UI/Decorations"]
-visible = false
 layout_mode = 0
 offset_left = 1149.0
 offset_top = 390.0
@@ -219,7 +217,6 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_nwwfm")
 
 [node name="Plant" type="TextureRect" parent="UI/Decorations"]
-visible = false
 layout_mode = 0
 offset_left = -40.0
 offset_top = 334.0
@@ -230,7 +227,6 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_s8vy0")
 
 [node name="Painting1" type="TextureRect" parent="UI/Decorations"]
-visible = false
 layout_mode = 0
 offset_left = 943.99994
 offset_top = 76.0
@@ -241,7 +237,6 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_jut3y")
 
 [node name="Painting2" type="TextureRect" parent="UI/Decorations"]
-visible = false
 layout_mode = 0
 offset_left = 601.0
 offset_top = 48.0
@@ -252,7 +247,6 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_v2nl5")
 
 [node name="Painting3" type="TextureRect" parent="UI/Decorations"]
-visible = false
 layout_mode = 0
 offset_left = 351.0
 offset_top = 335.0
@@ -290,7 +284,8 @@ position = Vector2(760, 601)
 scale = Vector2(0.12, 0.12)
 
 [node name="Duck" parent="." instance=ExtResource("10_hptm8")]
-position = Vector2(1602, 639)
+z_index = 1
+position = Vector2(1658.9999, 632)
 scale = Vector2(0.2, 0.2)
 
 [node name="active_powerups" type="Control" parent="."]
@@ -473,6 +468,15 @@ offset_right = -711.0
 offset_bottom = 116.0
 scale = Vector2(0.5, 0.5)
 
+[node name="DisableInputLayer" type="ColorRect" parent="."]
+z_index = 10
+offset_left = -280.0
+offset_top = -238.0
+offset_right = 2308.0
+offset_bottom = 1375.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
 [connection signal="clickMenuClose" from="." to="ButtonMenu" method="_on_main_click_menu_close"]
 [connection signal="duckMenuClose" from="." to="ButtonMenu" method="_on_main_duck_menu_close"]
 [connection signal="optionsMenuClose" from="." to="ButtonMenu" method="_on_main_options_menu_close"]
@@ -486,6 +490,7 @@ scale = Vector2(0.5, 0.5)
 [connection signal="timeout" from="UI/Clouds/CloudsTimer" to="." method="_on_clouds_timer_timeout"]
 [connection signal="autoclickUnlock" from="Egg" to="autoclick_up_menu" method="_on_egg_autoclick_unlock"]
 [connection signal="egg" from="Egg" to="." method="_on_egg_egg"]
+[connection signal="duck_speaking" from="Duck" to="." method="_on_duck_speaking"]
 [connection signal="multiplied_upgrades" from="active_powerups/Fih_bucket" to="UpgradeMenu" method="_on_fih_bucket_active"]
 [connection signal="multiplied_autoclicker_upgrades" from="active_powerups/Elixir" to="autoclick_up_menu" method="_on_elixir_active"]
 [connection signal="clickMenuOpen" from="ButtonMenu" to="." method="_on_click_menu_open"]

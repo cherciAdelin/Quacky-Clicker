@@ -14,11 +14,15 @@ signal autoclickUnlock
 ## - the number of eggs broken required for the autoclick upgrade menu to be unlocked
 ## - current_stage used for the egg sprite change 
 
-var egg_health := 100.0
-var max_egg_health := 100.0
-var egg_threshold := 10
-var eggs_broken_threshold := 5
+var egg_health: float
+var max_egg_health: float
+const default_max_egg_health := 100.0
+var egg_threshold: int
+const default_egg_threshold := 10
+var eggs_broken_threshold: int
+const default_eggs_broken_threshold := 5
 var current_stage := 4
+var current_eggs_broken := 0
 
 
 ## @export variables are the particle scenes used for the click and break animations
@@ -43,6 +47,16 @@ var current_stage := 4
 
 ## --------------- FUNCTIONS FOR EGG MANIPULATION ---------------
 
+## function that sets every important egg stat to its default value
+## then resets the egg
+
+func set_default_stats():
+	max_egg_health = default_max_egg_health
+	egg_threshold = default_egg_threshold
+	eggs_broken_threshold = default_eggs_broken_threshold
+	reset_egg()
+
+
 ## function that is triggered whenever the egg is clicked
 ## when the hitbox detects the "left_click" input
 ## it calls all the required functions like:
@@ -66,9 +80,13 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func egg_broken() -> void:
 	Global.eggsBroken += 1
+	current_eggs_broken += 1
 	if Global.eggsBroken == eggs_broken_threshold:
 		autoclickUnlock.emit()
+		Global.duck.speak(Global.text_monologue["Tutorial"][4], false)
 	egg.emit()
+	if(Global.eggsBroken == 1):
+		Global.duck.speak(Global.text_monologue["Other"]["First egg broken"], false)
 
 
 ## function that increases the currency value based on how much damage was dealt to the egg
@@ -81,6 +99,9 @@ func gain_money() -> void:
 	Global.total_currency += Global.click_value
 	show_dmg(Global.click_value,sprite.position)
 	egg.emit()
+	if(Global.currency >= 50 and !Global.egg_tutorial_dialogue_seen):
+		Global.duck.speak(Global.text_monologue["Tutorial"][3], false)
+		Global.egg_tutorial_dialogue_seen = true
 
 
 ## function that randomly increases the eggshells of the player based
@@ -122,9 +143,9 @@ func take_dmg(amount:float):
 ## max health threshold accordingly
 
 func reset_egg():
-	if(Global.eggsBroken >= egg_threshold):
+	if(current_eggs_broken >= egg_threshold):
 		max_egg_health *= 10
-		egg_threshold *= 10
+		current_eggs_broken = 0
 	egg_health = int(max_egg_health)
 	$egg_hp.text = "Egg health: 100.0%"
 	current_stage = 4
@@ -228,6 +249,13 @@ func show_dmg(dmg_val: float, origin: Vector2):
 
 
 ## --------------- FUNCTIONS TRIGGERED BY SIGNALS ---------------
+
+## function that triggers the moment you run the program 
+## it initializes the egg
+
+func _ready():
+	set_default_stats()
+
 
 ## function that triggers whenever the autoclick timer finishes 
 ## triggers a particle effect at random positions

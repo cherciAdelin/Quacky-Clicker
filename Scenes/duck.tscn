@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://lq30jipgbnqm"]
+[gd_scene load_steps=7 format=3 uid="uid://lq30jipgbnqm"]
 
 [ext_resource type="Script" uid="uid://ckaubownshbmt" path="res://Scripts/duck.gd" id="1_tvw4f"]
 [ext_resource type="Texture2D" uid="uid://dvycim7csvi8b" path="res://Assets/Sprites/Duckk/DuckBody.png" id="2_mshtc"]
 [ext_resource type="Texture2D" uid="uid://6yexhg8guodh" path="res://Assets/Sprites/Duckk/Eyes/RegularEyes.png" id="3_8ghs4"]
+[ext_resource type="Texture2D" uid="uid://yvq8l7du7cp8" path="res://Assets/Sprites/Other/speech_bubble.png" id="4_xpqa0"]
+[ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="5_mshtc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ghs4"]
+atlas = ExtResource("4_xpqa0")
+region = Rect2(279.0692, 1092.5894, 1985.8026, 1272.5029)
 
 [node name="Duck" type="Node2D"]
 script = ExtResource("1_tvw4f")
@@ -16,3 +22,34 @@ texture = ExtResource("3_8ghs4")
 [node name="Hat" type="Sprite2D" parent="."]
 
 [node name="Weapon" type="Sprite2D" parent="."]
+
+[node name="SpeechBubble" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -2434.0
+offset_top = -1679.0
+offset_right = -752.0
+offset_bottom = -579.0
+pivot_offset = Vector2(1359, 1059)
+
+[node name="Sprite" type="TextureRect" parent="SpeechBubble"]
+layout_mode = 0
+offset_left = 36.99994
+offset_top = 71.99992
+offset_right = 2399.1428
+offset_bottom = 1529.714
+scale = Vector2(0.7, 0.7)
+texture = SubResource("AtlasTexture_8ghs4")
+
+[node name="Text" type="Label" parent="SpeechBubble"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 280.0
+offset_right = 1519.0
+offset_bottom = 732.0
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("5_mshtc")
+theme_override_font_sizes/font_size = 75
+text = "     Greetings EggMaster69!"
+autowrap_mode = 3

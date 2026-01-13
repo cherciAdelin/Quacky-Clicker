@@ -153,15 +153,15 @@ func _on_main_quest_check() -> void:
 	elif(!Global.quests["quest2"]["completed"]):
 		update_values(Global.click_number, quest2progressLabel, 2)
 	
-	if(check_quest_complete(int(Global.currency), 3) and !Global.quests["quest3"]["completed"]):
+	if(check_quest_complete(int(Global.total_currency), 3) and !Global.quests["quest3"]["completed"]):
 		set_quest_complete(quest3progressLabel, quest3statusLabel, quest3button, quest3reward, quest3hidden, 3)
 	elif(!Global.quests["quest3"]["completed"]):
-		update_values(int(Global.currency), quest3progressLabel, 3)
+		update_values(int(Global.total_currency), quest3progressLabel, 3)
 	
-	if(check_quest_complete(Global.eggshell_currency, 4) and !Global.quests["quest4"]["completed"]):
+	if(check_quest_complete(Global.total_eggshell_currency, 4) and !Global.quests["quest4"]["completed"]):
 		set_quest_complete(quest4progressLabel, quest4statusLabel, quest4button, quest4reward, quest4hidden, 4)
 	elif(!Global.quests["quest4"]["completed"]):
-		update_values(Global.eggshell_currency, quest4progressLabel, 4)
+		update_values(Global.total_eggshell_currency, quest4progressLabel, 4)
 	
 	if(check_quest_complete(int(Global.click_value), 5) and !Global.quests["quest5"]["completed"]):
 		set_quest_complete(quest5progressLabel, quest5statusLabel, quest5button, quest5reward, quest5hidden, 5)

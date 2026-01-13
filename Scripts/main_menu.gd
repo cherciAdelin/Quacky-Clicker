@@ -8,6 +8,7 @@ signal StartPressed
 @onready var door = $Door
 
 
+
 ## --------------- FUNCTIONS ---------------
 
 ## this function animates the door in the main menu
@@ -44,3 +45,12 @@ func _on_start_button_pressed() -> void:
 	StartPressed.emit()
 	await get_tree().create_timer(1.5).timeout
 	$Buttons/StartButton.disabled = false
+	
+	
+	## duck speaks when you first start the game
+	
+	if(!Global.main_menu_tutorial_dialogue_seen):
+		await get_tree().create_timer(2).timeout
+		await Global.duck.speak(Global.text_monologue["Tutorial"][1], true)
+		Global.duck.speak(Global.text_monologue["Tutorial"][2], false)
+		Global.main_menu_tutorial_dialogue_seen = true

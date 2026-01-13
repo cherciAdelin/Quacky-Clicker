@@ -28,6 +28,7 @@ var multiplied_upgrade_value := 1.0
 @onready var clickup4LvL = $Control/UpgradesContainer/VBoxContainer/click_up4/LvL
 @onready var clickup5LvL = $Control/UpgradesContainer/VBoxContainer/click_up5/LvL
 
+@onready var clickup1lock = $Control/UpgradesContainer/VBoxContainer/click_up1/Locked
 @onready var clickup2lock = $Control/UpgradesContainer/VBoxContainer/click_up2/Locked
 @onready var clickup3lock = $Control/UpgradesContainer/VBoxContainer/click_up3/Locked
 @onready var clickup4lock = $Control/UpgradesContainer/VBoxContainer/click_up4/Locked
@@ -45,21 +46,32 @@ var multiplied_upgrade_value := 1.0
 
 ## ------------ FUNCTIONS ------------
 
+## function that sets the upgrades to their default states
+
+func set_upgrade_states_default(upgrade: String, LvLlabel: Control, DetailsLabel: Control, UpButton: Control, CostLabel: Control, Locked: Control, isLocked: bool):
+	LvLlabel.text = "LVL" + str(Global.upgrades[upgrade]["level"])
+	DetailsLabel.text = "Next click upgrade value is: " + str(Global.upgrades[upgrade]["value"])
+	UpButton.disabled = false
+	CostLabel.text = str(Global.upgrades[upgrade]["cost"]) + "$"
+	Locked.visible = isLocked
+
+
 ## function that upgrades the click value 
 ## it works similar (but a little less complicated) to the autoclick_up funciton 
 ## from the autoclick_up_menu script
 
-func upgrade_click(upgrade: String, cost_inc: int, val_inc: float, threshold: int, next_upgrade: Control):
+func upgrade_click(upgrade: String, cost_inc: int, val_inc: float, threshold: int, next_upgrade: Control, dialogue: int):
 	Global.currency -= Global.upgrades[upgrade]["cost"]
 	Global.upgrades[upgrade]["cost"] += cost_inc
 	Global.upgrades[upgrade]["level"] += 1
 	if(multiplied_upgrade_active):
-		Global.click_value += Global.upgrades[upgrade]["value"] * multiplied_upgrade_value
+		Global.click_value += val_inc * multiplied_upgrade_value
 	else:
-		Global.click_value += Global.upgrades[upgrade]["value"]
+		Global.click_value += val_inc
 	Global.upgrades[upgrade]["value"] += val_inc
 	if (Global.upgrades[upgrade]["level"] == threshold and next_upgrade != null):
 		next_upgrade.visible = false
+		Global.duck.speak(Global.text_monologue["Click_up_menu"][dialogue], false)
 	UpMenuChange.emit()
 
 
@@ -107,6 +119,13 @@ func bought_popup(origin: Vector2, offset: Vector2):
 
 ## ------------ FUNCTIONS TRIGGERED BY SIGNALS ------------
 
+func _ready():
+	set_upgrade_states_default("click_up", clickup1LvL, clickup1Details, clickUp1ButtonPos, clickup1Cost, clickup1lock, false)
+	set_upgrade_states_default("click_up2", clickup2LvL, clickup2Details, clickUp2ButtonPos, clickup2Cost, clickup2lock, true)
+	set_upgrade_states_default("click_up3", clickup3LvL, clickup3Details, clickUp3ButtonPos, clickup3Cost, clickup3lock, true)
+	set_upgrade_states_default("click_up4", clickup4LvL, clickup4Details, clickUp4ButtonPos, clickup4Cost, clickup4lock, true)
+	set_upgrade_states_default("click_up5", clickup5LvL, clickup5Details, clickUp5ButtonPos, clickup5Cost, clickup5lock, true)
+
 ## function triggered when you press the button in the top right corner of the menu
 
 func _on_close_menu_pressed() -> void:
@@ -151,17 +170,17 @@ func _on_up_button_pressed_clickval1() -> void:
 		insufficient_funds(clickup1Cost)
 	else:
 		bought_popup(clickUp1ButtonPos.global_position, Vector2(0, -100))
-		upgrade_click("click_up", 100, 0.1, 1, clickup2lock)
+		upgrade_click("click_up", 150, 2, 10, clickup2lock,2)
 		if(Global.upgrades["click_up"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/toothpick_cursor.png")
-		
+			Global.duck.speak(Global.text_monologue["Click_up_menu"][1], false)
 
 func _on_up_button_pressed_clickval2() -> void:
 	if(Global.currency < Global.upgrades["click_up2"]["cost"]):
 		insufficient_funds(clickup2Cost)
 	else:
 		bought_popup(clickUp2ButtonPos.global_position, Vector2.ZERO)
-		upgrade_click("click_up2", 1000, 10, 15, clickup3lock)
+		upgrade_click("click_up2", 750, 5, 10, clickup3lock,3)
 		if(Global.upgrades["click_up2"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/butterknife_cursor.png")
 
@@ -171,7 +190,7 @@ func _on_up_button_pressed_clickval3() -> void:
 		insufficient_funds(clickup3Cost)
 	else:
 		bought_popup(clickUp3ButtonPos.global_position, Vector2.ZERO)
-		upgrade_click("click_up3", 1500, 25, 10, clickup4lock)
+		upgrade_click("click_up3", 3500, 15, 10, clickup4lock,4)
 		if(Global.upgrades["click_up3"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/hammer_cursor.png")
 
@@ -182,7 +201,7 @@ func _on_up_button_pressed_clickval4() -> void:
 		insufficient_funds(clickup4Cost)
 	else:
 		bought_popup(clickUp4ButtonPos.global_position, Vector2.ZERO)
-		upgrade_click("click_up4", 2500, 50, 10, clickup5lock)
+		upgrade_click("click_up4", 7800, 50, 10, clickup5lock,5)
 		if(Global.upgrades["click_up4"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/drill_cursor.png")
 
@@ -192,6 +211,6 @@ func _on_up_button_pressed_clickval5() -> void:
 		insufficient_funds(clickup5Cost)
 	else:
 		bought_popup(clickUp5ButtonPos.global_position, Vector2.ZERO)
-		upgrade_click("click_up5", 5000, 70, 10, null)
+		upgrade_click("click_up5", 25000, 100, 10, null, -1)
 		if(Global.upgrades["click_up5"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/nuke_cursor.png")

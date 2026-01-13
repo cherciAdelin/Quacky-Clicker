@@ -7,11 +7,13 @@ extends Node2D
 var currencyTween: Tween
 var cameraTween: Tween
 var menuTween: Tween
+
 enum apw{FIH, WHISKEY, CAULDRON, ELIXIR}
 
 @onready var ScoreLabel = $UI/Score
 @onready var ClickValueLabel = $UI/Click_val
 @onready var EggshellLabel = $UI/EggshellLabel
+@onready var DisableInputLayer = $DisableInputLayer
 
 @onready var CloudsTimer := $UI/Clouds/CloudsTimer
 @onready var CloudsStartPos := $UI/Clouds/CloudsStartPos
@@ -48,16 +50,24 @@ signal quest_check
 
 ## --------------- FUNCTIONS ---------------
 
-## function that triggers when you run the program
-## it does the UI initialization
+## function that sets the active powerups to their default states (hidden/locked)
 
-func _ready():
-	update_ui()
-	CloudsTimer.start(2)
+func set_active_powerup_default():
 	fih_active_up.visible = false
 	glass_active_up.visible = false
 	cauldron_active_up.visible = false
 	elixir_active_Up.visible = false
+
+
+## function that sets the decorations to their default states (hidden/locked)
+
+func set_decorations_default():
+	microwave.visible = false
+	cat.visible = false
+	plant.visible = false
+	painting1.visible = false
+	painting2.visible = false
+	painting3.visible = false
 
 
 ## updates everything related to stats and numbers
@@ -88,7 +98,7 @@ func menu_open_animation(menu: Control, xCoord: int, tween: Tween):
 
 func spawn_clouds(scene: PackedScene):
 	var cloud := scene.instantiate()
-	var coord_y := randf_range(-100, 30)
+	var coord_y := randf_range(-100, 100)
 	cloud.global_position = CloudsStartPos.global_position + Vector2(0, coord_y)
 	get_tree().current_scene.add_child(cloud)
 	
@@ -102,6 +112,17 @@ func spawn_clouds(scene: PackedScene):
 
 
 ## --------------- FUNCTIONS TRIGGERED BY SIGNALS ---------------
+
+## function that triggers when you run the program
+## it does the UI initialization
+
+func _ready():
+	CloudsTimer.start(4)
+	Global.set_global_variables_default()
+	set_active_powerup_default()
+	set_decorations_default()
+	update_ui()
+
 
 ## these 3 functions update the UI whenever the scene which sent the signal 
 ## changes something related to the Global variables
@@ -243,3 +264,10 @@ func _on_clouds_timer_timeout() -> void:
 		spawn_clouds(Cloud_1)
 	else:
 		spawn_clouds(Cloud_2)
+
+
+func _on_duck_speaking(isTrue: bool) -> void:
+	if(isTrue):
+		DisableInputLayer.mouse_filter = Control.MOUSE_FILTER_STOP
+	else:
+		DisableInputLayer.mouse_filter = Control.MOUSE_FILTER_IGNORE

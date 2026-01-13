@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmvimpsu3c6ub"]
+[gd_scene load_steps=10 format=3 uid="uid://cmvimpsu3c6ub"]
 
 [ext_resource type="Texture2D" uid="uid://eqojogv1drnb" path="res://Assets/Sprites/Background/MainMenu.png" id="1_1ehe0"]
 [ext_resource type="Script" uid="uid://cocpt4hd4dlpi" path="res://Scripts/main_menu.gd" id="1_n45e2"]
 [ext_resource type="PackedScene" uid="uid://h3kbhghj3j7d" path="res://Scenes/button.tscn" id="2_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://dypveyyw7aely" path="res://Assets/Sprites/Background/MainMenuBack.png" id="2_opfnp"]
 [ext_resource type="Texture2D" uid="uid://dsf5svlq1t4ka" path="res://Assets/Sprites/Other/Door.png" id="3_n45e2"]
 [ext_resource type="FontFile" uid="uid://ukc2asseur21" path="res://Assets/Sprites/Fonts/Super Kindly.ttf" id="5_n45e2"]
 
@@ -18,11 +19,20 @@ anchors_preset = 0
 pivot_offset = Vector2(911, 584)
 script = ExtResource("1_n45e2")
 
+[node name="BackgroundColor" type="TextureRect" parent="."]
+z_index = -2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_opfnp")
+
 [node name="Background" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(960, 540)
 texture = ExtResource("1_1ehe0")
 
 [node name="Buttons" type="Control" parent="."]
+z_index = 1
 anchors_preset = 0
 offset_left = -9.0
 offset_top = 6.0
@@ -74,11 +84,13 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_cp0ys")
 text = "Quit"
 
 [node name="Door" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(820, 523)
 texture = ExtResource("3_n45e2")
 offset = Vector2(-77, -3)
 
 [node name="GameName" type="Label" parent="."]
+z_index = 1
 layout_mode = 0
 offset_left = 1098.0
 offset_top = 158.0
