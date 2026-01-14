@@ -1,5 +1,7 @@
 extends Control
 
+## duck dialogue function called in upgrade_click function
+
 ## ------------ VARIABLES ------------
 
 ## variables used to manipulate the click upgrades

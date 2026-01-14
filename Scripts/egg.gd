@@ -1,5 +1,7 @@
 extends Area2D
 
+## Duck dialogue called in egg_broken & gain_momey functions
+
 ## --------------- VARIABLES ---------------
 
 ## signals used to communicate with the main script

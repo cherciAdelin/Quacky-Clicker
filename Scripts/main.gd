@@ -266,6 +266,9 @@ func _on_clouds_timer_timeout() -> void:
 		spawn_clouds(Cloud_2)
 
 
+## function that stops the imputs when the duck speaks so it doesn't break the speech bubble when the speak function 
+## is called multiple times (kinda inefficient but i'll change it at some point)
+
 func _on_duck_speaking(isTrue: bool) -> void:
 	if(isTrue):
 		DisableInputLayer.mouse_filter = Control.MOUSE_FILTER_STOP

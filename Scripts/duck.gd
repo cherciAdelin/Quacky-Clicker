@@ -12,7 +12,7 @@ extends Node2D
 
 ## variables used for the speaking logic of the duck
 
-var text_speed := 0.05
+var text_speed := 0.03
 var speech_bubble_on := false
 signal duck_speaking(isTrue: bool)
 
@@ -44,7 +44,7 @@ func speak(text: String, chain: bool):
 		speech_label.visible_characters = i + 1
 		await get_tree().create_timer(text_speed).timeout
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(0.5).timeout
 	
 	duck_speaking.emit(false)
 	if(!chain):

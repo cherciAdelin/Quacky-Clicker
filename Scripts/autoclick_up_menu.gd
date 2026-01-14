@@ -1,5 +1,7 @@
 extends Control
 
+## duck dialogue functon called in autoclick_up & special_up functions
+
 ## --------------- VARIABLES ---------------
 
 ## Signals that are used to communicate with other scripts whenever 
@@ -115,21 +117,15 @@ func autoclick_up(upgrade: String, cost_inc: int, val_inc: float, threshold: int
 	Global.currency -= Global.upgrades[upgrade]["cost"]
 	Global.upgrades[upgrade]["cost"] += cost_inc
 	Global.upgrades[upgrade]["level"] += 1
-	## checks to see if the active powerup which doubles click power is active and offers the 
-	## upgrade value accordingly (it goes back to normal after the active powerup expires)
 	if(multiplied_upgrade_active):
 		Global.autoclick_value += val_inc * multiplied_upgrade_value
 	else:
 		Global.autoclick_value += val_inc 
 	Global.upgrades[upgrade]["value"] += val_inc
-	## if it's the first time you buy the upgrade, it unlocks the corresponding hat upgrade and
-	## changes the duck's weapon sprite  
 	if(Global.upgrades[upgrade]["level"] == 1):
 		hat.visible = false
 		DuckWeaponChange.emit(weapon_texture)
 		Global.duck.speak(Global.text_monologue["Autoclick_up_menu"][dialogue], false)
-	## when the level threshold is reached and the next_upgrade argument isn't null (the current upgrade is 
-	## not the last one) it unlocks the next upgrade
 	if(Global.upgrades[upgrade]["level"] == threshold and next_upgrade != null):
 		next_upgrade.visible = false
 	AutoclickMenuChange.emit()
@@ -150,8 +146,6 @@ func special_up(upgrade: String, cost_inc: int, val_inc: float, active_up: int, 
 	Global.hats[upgrade]["value"] += val_inc
 	Global.hats[upgrade]["level"] += 1
 	var passed_value := float(Global.hats[upgrade]["value"])
-	## if it's the first time you buy the upgrade, it unlocks the corresponding active powerup and 
-	## changes the hat sprite for the duck
 	if(Global.hats[upgrade]["level"] == 1 and active_up != null):
 		ActivePowerupUnlock.emit(active_up)
 		DuckHatChange.emit(hat_texture)

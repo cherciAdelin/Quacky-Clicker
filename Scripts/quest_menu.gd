@@ -93,7 +93,7 @@ func check_quest_complete(comp_value: int, quest_number: int) -> bool:
 
 ## function that sets the quest details to completed
 
-func set_quest_complete(prog_label: Control, status_label: Control, button: Control, reward: Control, qhidden: Control, quest_number: int):
+func set_quest_complete(prog_label: Control, status_label: Control, button: Control, reward: Control, qhidden: Control, quest_number: int, dialogue: int):
 	var quest := "quest" + str(quest_number)
 	Global.quests[quest]["completed"] = true
 	prog_label.text = str(Global.quests[quest]["threshold"]) + "/" + str(Global.quests[quest]["threshold"])
@@ -102,6 +102,7 @@ func set_quest_complete(prog_label: Control, status_label: Control, button: Cont
 	reward.visible = true
 	qhidden.visible = false
 	button.disabled = false
+	Global.duck.speak(Global.text_monologue["Quest"][dialogue], false)
 
 
 
@@ -144,32 +145,32 @@ func _on_quest_close_button_pressed() -> void:
 
 func _on_main_quest_check() -> void:
 	if(check_quest_complete(Global.eggsBroken, 1) and !Global.quests["quest1"]["completed"]):
-		set_quest_complete(quest1progressLabel, quest1statusLabel, quest1button, quest1reward, quest1hidden, 1)
+		set_quest_complete(quest1progressLabel, quest1statusLabel, quest1button, quest1reward, quest1hidden, 1, 1)
 	elif(!Global.quests["quest1"]["completed"]):
 		update_values(Global.eggsBroken, quest1progressLabel, 1)
 	
 	if(check_quest_complete(Global.click_number, 2) and !Global.quests["quest2"]["completed"]):
-		set_quest_complete(quest2progressLabel, quest2statusLabel, quest2button, quest2reward, quest2hidden, 2)
+		set_quest_complete(quest2progressLabel, quest2statusLabel, quest2button, quest2reward, quest2hidden, 2, 3)
 	elif(!Global.quests["quest2"]["completed"]):
 		update_values(Global.click_number, quest2progressLabel, 2)
 	
 	if(check_quest_complete(int(Global.total_currency), 3) and !Global.quests["quest3"]["completed"]):
-		set_quest_complete(quest3progressLabel, quest3statusLabel, quest3button, quest3reward, quest3hidden, 3)
+		set_quest_complete(quest3progressLabel, quest3statusLabel, quest3button, quest3reward, quest3hidden, 3, 5)
 	elif(!Global.quests["quest3"]["completed"]):
 		update_values(int(Global.total_currency), quest3progressLabel, 3)
 	
 	if(check_quest_complete(Global.total_eggshell_currency, 4) and !Global.quests["quest4"]["completed"]):
-		set_quest_complete(quest4progressLabel, quest4statusLabel, quest4button, quest4reward, quest4hidden, 4)
+		set_quest_complete(quest4progressLabel, quest4statusLabel, quest4button, quest4reward, quest4hidden, 4, 7)
 	elif(!Global.quests["quest4"]["completed"]):
 		update_values(Global.total_eggshell_currency, quest4progressLabel, 4)
 	
 	if(check_quest_complete(int(Global.click_value), 5) and !Global.quests["quest5"]["completed"]):
-		set_quest_complete(quest5progressLabel, quest5statusLabel, quest5button, quest5reward, quest5hidden, 5)
+		set_quest_complete(quest5progressLabel, quest5statusLabel, quest5button, quest5reward, quest5hidden, 5, 9)
 	elif(!Global.quests["quest5"]["completed"]):
 		update_values(int(Global.click_value), quest5progressLabel, 5)
 	
 	if(check_quest_complete(int(Global.autoclick_value), 6) and !Global.quests["quest6"]["completed"]):
-		set_quest_complete(quest6progressLabel, quest6statusLabel, quest6button, quest6reward, quest6hidden, 6)
+		set_quest_complete(quest6progressLabel, quest6statusLabel, quest6button, quest6reward, quest6hidden, 6, 11)
 	elif(!Global.quests["quest6"]["completed"]):
 		update_values(int(Global.autoclick_value), quest6progressLabel, 6)
 
@@ -184,28 +185,34 @@ func _on_quest1_claim() -> void:
 	quest1button.disabled = true
 	quest1completed.visible = true
 	questComplete.emit(1)
+	Global.duck.speak(Global.text_monologue["Quest"][2], false)
 
 func _on_quest2_claim() -> void:
 	quest2button.disabled = true
 	quest2completed.visible = true
 	questComplete.emit(2)
+	Global.duck.speak(Global.text_monologue["Quest"][4], false)
 
 func _on_quest3_claim() -> void:
 	quest3button.disabled = true
 	quest3completed.visible = true
 	questComplete.emit(3)
+	Global.duck.speak(Global.text_monologue["Quest"][6], false)
 
 func _on_quest4_claim() -> void:
 	quest4button.disabled = true
 	quest4completed.visible = true
 	questComplete.emit(4)
+	Global.duck.speak(Global.text_monologue["Quest"][8], false)
 
 func _on_quest5_claim() -> void:
 	quest5button.disabled = true
 	quest5completed.visible = true
 	questComplete.emit(5)
+	Global.duck.speak(Global.text_monologue["Quest"][10], false)
 
 func _on_quest6_claim() -> void:
 	quest6button.disabled = true
 	quest6completed.visible = true
 	questComplete.emit(6)
+	Global.duck.speak(Global.text_monologue["Quest"][12], false)
