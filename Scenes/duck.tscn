@@ -34,22 +34,22 @@ pivot_offset = Vector2(1359, 1059)
 
 [node name="Sprite" type="TextureRect" parent="SpeechBubble"]
 layout_mode = 0
-offset_left = 36.99994
-offset_top = 71.99992
-offset_right = 2399.1428
-offset_bottom = 1529.714
+offset_left = -225.00018
+offset_top = -104.99992
+offset_right = 2511.4285
+offset_bottom = 1605.5712
 scale = Vector2(0.7, 0.7)
 texture = SubResource("AtlasTexture_8ghs4")
 
 [node name="Text" type="Label" parent="SpeechBubble"]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 280.0
-offset_right = 1519.0
-offset_bottom = 732.0
+offset_left = -14.0
+offset_top = 137.0
+offset_right = 1524.0
+offset_bottom = 680.0
 theme_override_constants/line_spacing = 3
-theme_override_constants/outline_size = 40
+theme_override_constants/outline_size = 45
 theme_override_fonts/font = ExtResource("5_mshtc")
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 85
 text = "     Greetings EggMaster69!"
 autowrap_mode = 3

@@ -12,7 +12,7 @@ extends Node2D
 
 ## variables used for the speaking logic of the duck
 
-var text_speed := 0.03
+var text_speed := 0.05
 var speech_bubble_on := false
 signal duck_speaking(isTrue: bool)
 

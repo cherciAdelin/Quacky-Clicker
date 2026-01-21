@@ -204,6 +204,7 @@ func bought_popup(origin: Vector2, offset: Vector2):
 	pop.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	pop.add_theme_color_override("outline_color", Color(0.0, 0.0, 0.0, 1.0))
 	pop.top_level = true
+	pop.z_index = 3
 	pop.position = origin + offset + Vector2(30, 20)
 	add_child(pop)
 	

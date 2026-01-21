@@ -117,6 +117,7 @@ func spawn_clouds(scene: PackedScene):
 ## it does the UI initialization
 
 func _ready():
+	Input.set_custom_mouse_cursor(Global.default_cursor_texture, Input.CURSOR_ARROW, Vector2(0, 0))
 	CloudsTimer.start(4)
 	Global.set_global_variables_default()
 	set_active_powerup_default()

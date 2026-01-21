@@ -87,8 +87,6 @@ func egg_broken() -> void:
 		autoclickUnlock.emit()
 		Global.duck.speak(Global.text_monologue["Tutorial"][4], false)
 	egg.emit()
-	if(Global.eggsBroken == 1):
-		Global.duck.speak(Global.text_monologue["Other"]["First egg broken"], false)
 
 
 ## function that increases the currency value based on how much damage was dealt to the egg
@@ -289,7 +287,7 @@ func _on_mouse_entered() -> void:
 ## it makes the egg turn back to normal
 
 func _on_mouse_exited() -> void:
-	change_cursor_sprite(null)
+	change_cursor_sprite(Global.default_cursor_texture)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(sprite, "scale", Vector2(1, 1), 0.1)

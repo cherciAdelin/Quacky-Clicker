@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmvimpsu3c6ub"]
+[gd_scene load_steps=11 format=3 uid="uid://cmvimpsu3c6ub"]
 
 [ext_resource type="Texture2D" uid="uid://eqojogv1drnb" path="res://Assets/Sprites/Background/MainMenu.png" id="1_1ehe0"]
 [ext_resource type="Script" uid="uid://cocpt4hd4dlpi" path="res://Scripts/main_menu.gd" id="1_n45e2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dypveyyw7aely" path="res://Assets/Sprites/Background/MainMenuBack.png" id="2_opfnp"]
 [ext_resource type="Texture2D" uid="uid://dsf5svlq1t4ka" path="res://Assets/Sprites/Other/Door.png" id="3_n45e2"]
 [ext_resource type="FontFile" uid="uid://ukc2asseur21" path="res://Assets/Sprites/Fonts/Super Kindly.ttf" id="5_n45e2"]
+[ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="7_cp0ys"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n45e2"]
 
@@ -46,10 +47,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 1447.0
-offset_top = 606.0
-offset_right = 1672.0
-offset_bottom = 703.0
+offset_left = 1419.0
+offset_top = 623.0
+offset_right = 1644.0
+offset_bottom = 720.0
 grow_horizontal = 1
 grow_vertical = 1
 theme_override_colors/font_color = Color(0.973535, 0.9735351, 0.973535, 1)
@@ -57,6 +58,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_n45e2")
 text = "Start"
 
 [node name="OptionsButton" parent="Buttons" instance=ExtResource("2_ce3w2")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -75,10 +77,10 @@ text = "Options"
 
 [node name="ExitButton" parent="Buttons" instance=ExtResource("2_ce3w2")]
 layout_mode = 1
-offset_left = -555.0
-offset_top = -311.0
-offset_right = -330.0
-offset_bottom = -214.0
+offset_left = -368.0
+offset_top = -314.0
+offset_right = -143.0
+offset_bottom = -217.0
 theme_override_colors/font_color = Color(0.9209942, 0.92099476, 0.9209944, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cp0ys")
 text = "Quit"
@@ -92,19 +94,72 @@ offset = Vector2(-77, -3)
 [node name="GameName" type="Label" parent="."]
 z_index = 1
 layout_mode = 0
-offset_left = 1098.0
-offset_top = 158.0
-offset_right = 1889.0
-offset_bottom = 520.0
+offset_left = 1074.0
+offset_top = 147.0
+offset_right = 1865.0
+offset_bottom = 509.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -44
-theme_override_constants/outline_size = 10
+theme_override_constants/line_spacing = -66
+theme_override_constants/outline_size = 35
 theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 165
 text = "      QUACKY
-	CLICKER"
+  CLICKER"
+vertical_alignment = 1
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackgroundColor" type="ColorRect" parent="Credits"]
+z_index = 2
+layout_mode = 0
+offset_left = -39.0
+offset_top = -28.0
+offset_right = 1956.0
+offset_bottom = 1096.0
+color = Color(0.46666667, 0.3529412, 0.75686276, 1)
+
+[node name="1stLabel" type="Label" parent="Credits"]
+z_index = 2
+layout_mode = 0
+offset_left = 100.0
+offset_top = 280.0
+offset_right = 1821.0
+offset_bottom = 824.0
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("7_cp0ys")
+theme_override_font_sizes/font_size = 75
+text = "A game made by..."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="2ndLabel" type="Label" parent="Credits"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+layout_mode = 0
+offset_left = 124.0
+offset_top = 285.0
+offset_right = 1845.0
+offset_bottom = 829.0
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("7_cp0ys")
+theme_override_font_sizes/font_size = 75
+text = "Cherci Adelin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TopLayer" type="ColorRect" parent="."]
+visible = false
+z_index = 5
+layout_mode = 0
+offset_left = -31.0
+offset_top = -18.0
+offset_right = 1949.0
+offset_bottom = 1117.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]

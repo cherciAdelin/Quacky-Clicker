@@ -18,7 +18,8 @@ var special_lvl_limit: int
 var default_special_lvl_limit := 10
 var click_number: int
 var default_click_number := 0
-var current_cursor_texture: Texture2D
+var current_cursor_texture := preload("res://Assets/Sprites/CursorSprites/default_cursor.png")
+var default_cursor_texture := preload("res://Assets/Sprites/CursorSprites/default_cursor.png")
 
 var click_value: float
 var default_click_value := 1.0
@@ -212,10 +213,10 @@ var text_monologue := {
 	## the speak function is called in the egg.gd script
 	
 	"Tutorial": {
-		1: " Hello EggMaster69! Welcome to QuackyClicker™, a game about.......\n clicking......\n very original......",
-		2: " Why don't you try hitting that suspiciously large egg?",
-		3: " Great! You have enough money for... toothpicks..?\n Inflation is crazy. Go ahead and open the menu that resembles a cursor in the bottom left.",
-		4: " You just unlocked something AMAZING... go ahead and click the button that has a duck on it...",
+		1: "  Greetings! Welcome to QuackyClicker, a game about.... clicking.... very original...",
+		2: "   Why don't you try hitting that suspiciously large egg?",
+		3: "   Great! You have enough money for your first upgrade! Go ahead and open the menu that resembles a cursor in the bottom left.",
+		4: "   You just unlocked something AMAZING... go ahead and click the button that has a duck on it...",
 	},
 	
 	
@@ -224,11 +225,11 @@ var text_monologue := {
 	## the speak function is called in the upgrade_menu.gd script
 	
 	"Click_up_menu":{
-		1: " There you go, you just DOUBLED your power.... also... take a look at that new cursor .... looks powerful...",
-		2: " Hey look you just unlocked a new upgrade for your cursor. Go ahead, buy it, who cares about your kid's college funds...",
-		3: " Isn't that Thor's hamm- nevermind.... you just unlocked a new click upgrade!",
-		4: " Hey, take a break you animal.... you just unlocked one of my favourite tools.... come on, make your neighbours happy... ",
-		5: " Congratulations! You've just unlocked a weapon of mass destruction! Can't wait to see how you'll use it... "
+		1: "   There you go, now you don't have to use your finger to hit that guy...",
+		2: "   Hey look you just unlocked a new click upgrade. Go ahead, buy it, who cares about your kid's college funds...",
+		3: "   Isn't that Thor's hamm- nevermind.... you just unlocked a new click upgrade!",
+		4: "   Hey, take a break you animal.... you just unlocked one of my favourite tools.... come on, make your neighbours happy... ",
+		5: "   Congratulations! You've just unlocked a weapon of mass destruction! Can't wait to see how you'll use it... "
 	},
 	
 	
@@ -237,41 +238,37 @@ var text_monologue := {
 	## the speak function is called by the autoclick_up_menu.gd script
 	
 	"Autoclick_up_menu":{
-		1: " Yay, isn't this wonderful? You unlocked a menu JUST FOR ME! Don't worry I'll make it worth your time... Look now i can help you murdering the egg!",
-		2: " Oh cool my first complete outfit, thank you. By the way, whenever you unlock both the weapon and the hat from a set, you'll also get an active powerup. This one doubles your click power!",
-		3: " Damn, I kinda feel bad for the egg... I mean imagine chilling in ur spherical residence and someone starts shooting your walls for no reason...",
-		4: " This one looks expensive. LOOK you just got a BRAND NEW active powerup. This one'll give you 20% of your current currency INSTANTLY!",
-		5: " You know... I can fly on my own, I don't really need this... thanks either way...",
-		6: " Great... that's exactly what was missing from my Halloween outfit... don't forget about your active powerup... this one maxes out your eggshell gain!",
-		7: " Don't you have like... a sword or something... you know... something a little more masculine...",
-		8: " I can feel Gandalf coming inside me now that his accessories are all mine! The next active powerup doubles MY power",
+		1: "   Yay, isn't this wonderful? You unlocked a menu JUST FOR ME! Now i can help you murder the egg!",
+		2: "   Oh cool my first complete outfit, thank you. By the way, whenever you unlock both the weapon and the hat from a set, you'll also get an active powerup. This one doubles your click power!",
+		3: "   Damn, I kinda feel bad for the egg... I mean imagine chilling in ur spherical residence and someone starts shooting your walls for no reason...",
+		4: "   This one looks expensive. LOOK you just got a BRAND NEW active powerup. This one'll give you 20% of your current currency INSTANTLY!",
+		5: "   You know... I can fly on my own, I don't really need this... thanks either way...",
+		6: "   Great... that's exactly what was missing from my Halloween outfit... don't forget about your active powerup... this one maxes out your eggshell gain!",
+		7: "   Don't you have like... a sword or something... you know... something a little more masculine...",
+		8: "   I can feel Gandalf coming inside me now that his accessories are all mine! The next active powerup doubles MY power",
 	},
 	
 	"Quest":{
 		
 		## microwave
-		1: " You might wanna check that quest tab... maybe there's something for you... ",
-		2: " Cool, finally something usef-\n What do you mean it doesn't work...\n So we're just getting junk as rewards now...",
+		1: "   You might wanna check that quest tab... maybe there's something for you... ",
+		2: "   Cool, finally something usef- What do you mean it doesn't work... So we're just getting junk as rewards now...",
 		## plant
-		3: " This place could really use a plant or something gree-....\n THERE'S NO WAY...\n Check the quest menu...",
-		4: " Simply beautiful...",
+		3: "   This place could really use a plant or something gree-.... THERE'S NO WAY... Check the quest menu...",
+		4: "   Simply beautiful...",
 		## painting 1
-		5:" Ooh I wonder what the Gods have prepared for us this time...\n Check quests...", 
-		6: " Who the f**k is this lady bro...\n Can't you throw it in a pool full of sharks...\n It's creeping me tf out...",
+		5:"   Ooh I wonder what the Gods have prepared for us this time... Check quests...", 
+		6: "   Who the f**k is this lady bro... Can't you throw it in a pool full of sharks... It's creeping me tf out...",
 		## cat
-		7: " I think you're gonna love this one!\n Check the quest menu real quick...",
-		8:  " JUST LOOK AT HER\n Cutest thing on the planet...",
+		7: "   I think you're gonna love this one! Check the quest menu real quick...",
+		8:  "   JUST LOOK AT HER Cutest thing on the planet...",
 		## painting 2
-		9: " Hey, look, another useless thing just for us...\n Check quests...",
-		10: " OH MY GOD... I apologize for my previous comment...\n This is the best one so far...",
+		9: "   Hey, look, another useless thing just for us... Check quests...",
+		10: "   OH MY GOD... I apologize for my previous comment... This is the best one so far...",
 		## painting 3
-		11: " Hope you're ready for this one man...\n Check quests",
-		12: " Congrats dude, now you're officially Forklift Certified...\n Although it might be expired... holy f**k it says 2001"
+		11: "   Hope you're ready for this one man... Check quests",
+		12: "   Congrats dude, now you're officially Forklift Certified... Although it might be expired... holy f**k it says 2001"
 	},
-	
-	"Other": {
-		"First egg broken": " Damn he's dead.... oh nevermind he came back. Didn't want to add \"Aiding and abetting murder\" to my criminal record..."
-	}
 	
 }
 
