@@ -96,28 +96,28 @@ func UI_change(upgrade: String, costLabel: Control, lvlLabel: Control, detailsLa
 	detailsLabel.text = "Next click upgrade value is " + str(Global.upgrades[upgrade]["value"]) 
 
 
-func bought_popup(origin: Vector2, offset: Vector2):
-	var pop := Label.new()
-	var font := FontFile.new()
-	
-	font.load_dynamic_font("res://Assets/Sprites/Fonts/Cute Dino.ttf")
-	pop.text = "+1"
-	pop.add_theme_font_override("font", font)
-	pop.add_theme_font_size_override("font_size", 55)
-	pop.add_theme_constant_override("outline_size", 7)
-	pop.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
-	pop.add_theme_color_override("outline_color", Color(0.0, 0.0, 0.0, 1.0))
-	pop.top_level = true
-	pop.z_index = 3
-	pop.position = origin + offset + Vector2(30, 20)
-	add_child(pop)
-	
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
-	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
-	tween.finished.connect(pop.queue_free)
+#func bought_popup(origin: Vector2, offset: Vector2):
+	#var pop := Label.new()
+	#var font := FontFile.new()
+	#
+	#font.load_dynamic_font("res://Assets/Sprites/Fonts/Cute Dino.ttf")
+	#pop.text = "+1"
+	#pop.add_theme_font_override("font", font)
+	#pop.add_theme_font_size_override("font_size", 55)
+	#pop.add_theme_constant_override("outline_size", 7)
+	#pop.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
+	#pop.add_theme_color_override("outline_color", Color(0.0, 0.0, 0.0, 1.0))
+	#pop.top_level = true
+	#pop.z_index = 3
+	#pop.position = origin + offset + Vector2(30, 20)
+	#add_child(pop)
+	#
+	#var tween = create_tween()
+	#tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	#tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
+	#tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	#tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
+	#tween.finished.connect(pop.queue_free)
 
 
 
@@ -175,7 +175,7 @@ func _on_up_button_pressed_clickval1() -> void:
 	if(Global.currency < Global.upgrades["click_up"]["cost"]):
 		insufficient_funds(clickup1Cost)
 	else:
-		bought_popup(clickUp1ButtonPos.global_position, Vector2(0, -100))
+		#bought_popup(clickUp1ButtonPos.global_position, Vector2(0, -100))
 		upgrade_click("click_up", 150, 2, 10, clickup2lock,2)
 		if(Global.upgrades["click_up"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/toothpick_cursor.png")
@@ -185,7 +185,7 @@ func _on_up_button_pressed_clickval2() -> void:
 	if(Global.currency < Global.upgrades["click_up2"]["cost"]):
 		insufficient_funds(clickup2Cost)
 	else:
-		bought_popup(clickUp2ButtonPos.global_position, Vector2.ZERO)
+		#bought_popup(clickUp2ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up2", 750, 5, 10, clickup3lock,3)
 		if(Global.upgrades["click_up2"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/butterknife_cursor.png")
@@ -195,7 +195,7 @@ func _on_up_button_pressed_clickval3() -> void:
 	if(Global.currency < Global.upgrades["click_up3"]["cost"]):
 		insufficient_funds(clickup3Cost)
 	else:
-		bought_popup(clickUp3ButtonPos.global_position, Vector2.ZERO)
+		#bought_popup(clickUp3ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up3", 3500, 15, 10, clickup4lock,4)
 		if(Global.upgrades["click_up3"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/hammer_cursor.png")
@@ -206,7 +206,7 @@ func _on_up_button_pressed_clickval4() -> void:
 	if(Global.currency < Global.upgrades["click_up4"]["cost"]):
 		insufficient_funds(clickup4Cost)
 	else:
-		bought_popup(clickUp4ButtonPos.global_position, Vector2.ZERO)
+		#bought_popup(clickUp4ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up4", 7800, 50, 10, clickup5lock,5)
 		if(Global.upgrades["click_up4"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/drill_cursor.png")
@@ -216,7 +216,7 @@ func _on_up_button_pressed_clickval5() -> void:
 	if(Global.currency < Global.upgrades["click_up5"]["cost"]):
 		insufficient_funds(clickup5Cost)
 	else:
-		bought_popup(clickUp5ButtonPos.global_position, Vector2.ZERO)
+		#bought_popup(clickUp5ButtonPos.global_position, Vector2.ZERO)
 		upgrade_click("click_up5", 25000, 100, 10, null, -1)
 		if(Global.upgrades["click_up5"]["level"] == 1):
 			Global.current_cursor_texture = preload("res://Assets/Sprites/CursorSprites/nuke_cursor.png")

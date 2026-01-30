@@ -98,7 +98,7 @@ func egg_broken() -> void:
 func gain_money() -> void:
 	Global.currency += Global.click_value
 	Global.total_currency += Global.click_value
-	show_dmg(Global.click_value,sprite.position)
+	#show_dmg(Global.click_value,sprite.position)
 	egg.emit()
 	if(Global.currency >= 50 and !Global.egg_tutorial_dialogue_seen):
 		Global.duck.speak(Global.text_monologue["Tutorial"][3], false)
@@ -222,29 +222,31 @@ func break_animation():
 
 
 ## function that creates a +value popup at random locations which shows how much money you've gained
+## unfortunately it doesn't work in the web build
 
-func show_dmg(dmg_val: float, origin: Vector2):
-	var pop = Label.new()
-	var pos_x = randf_range(-400, 100)
-	var pos_y = randf_range(-150, 150)
-	var font = FontFile.new()
-	
-	font.load_dynamic_font("res://Assets/Sprites/Fonts/Cute Dino.ttf")
-	pop.text = "+ " + str(dmg_val) + "$"
-	pop.add_theme_font_override("font", font)
-	pop.add_theme_font_size_override("font_size", 300)
-	pop.add_theme_color_override("font_color", Color(0.0, 0.914, 0.0, 1.0))
-	pop.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
-	pop.add_theme_constant_override("outline_size", 70)
-	pop.global_position = origin + Vector2(pos_x, pos_y)
-	add_child(pop)
-	
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
-	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
-	tween.finished.connect(pop.queue_free)
+#func show_dmg(dmg_val: float, origin: Vector2):
+	#var pop = Label.new()
+	#var pos_x = randi_range(-600, 100)
+	#var pos_y = randi_range(-300, 300)
+	#var font = FontFile.new()
+	#
+	#font.load_dynamic_font("res://Assets/Sprites/Fonts/Cute Dino.ttf")
+	#pop.text = "+ " + str(dmg_val) + "$"
+	#pop.add_theme_font_override("font", font)
+	#pop.add_theme_font_size_override("font_size", 300)
+	#pop.add_theme_color_override("font_color", Color(0.0, 0.914, 0.0, 1.0))
+	#pop.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
+	#pop.add_theme_constant_override("outline_size", 70)
+	#pop.global_position = origin + Vector2(pos_x, pos_y)
+	#add_child(pop)
+	#
+	#var tween = create_tween()
+	#tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	#tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
+	#tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	#tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
+	#await get_tree().create_timer(1).timeout
+	#pop.queue_free()
 
 
 

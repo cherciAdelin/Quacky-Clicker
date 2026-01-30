@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://c15berw4qgqi0"]
+[gd_scene format=3 uid="uid://c15berw4qgqi0"]
 
 [ext_resource type="Script" uid="uid://bnhf57rb4r3sy" path="res://Scripts/options_menu.gd" id="1_inh3s"]
 [ext_resource type="Texture2D" uid="uid://c4ehevte6h1m8" path="res://Assets/Sprites/Other/LabelSpriteSheet2.png" id="1_l1wg4"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_plplt"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="2_uj0ok"]
 [ext_resource type="Script" uid="uid://ba4y4wponcxws" path="res://Scripts/window_mode_button.gd" id="4_inh3s"]
+[ext_resource type="Script" uid="uid://dbya4i883k5ne" path="res://Scripts/volume_slider.gd" id="6_tqe32"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l1wg4"]
 atlas = ExtResource("1_plplt")
@@ -86,7 +87,7 @@ texture = SubResource("AtlasTexture_cvaji")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_838ek"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" unique_id=1966429157]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,7 +96,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_inh3s")
 
-[node name="Tint" type="ColorRect" parent="."]
+[node name="Tint" type="ColorRect" parent="." unique_id=2117732516]
 layout_mode = 0
 offset_left = -758.0
 offset_top = -444.0
@@ -103,7 +104,7 @@ offset_right = 2420.0
 offset_bottom = 1838.0
 color = Color(0, 0, 0, 0.5372549)
 
-[node name="Sprite" type="TextureRect" parent="."]
+[node name="Sprite" type="TextureRect" parent="." unique_id=310373438]
 layout_mode = 0
 offset_left = 575.0
 offset_top = 294.0
@@ -111,7 +112,7 @@ offset_right = 1235.0
 offset_bottom = 769.0
 texture = SubResource("AtlasTexture_l1wg4")
 
-[node name="OptionsLabel" type="Label" parent="."]
+[node name="OptionsLabel" type="Label" parent="." unique_id=1295676248]
 layout_mode = 0
 offset_left = 766.0
 offset_top = 329.0
@@ -124,14 +125,14 @@ text = "OPTIONS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=90067060]
 layout_mode = 0
 offset_left = 731.0
 offset_top = 400.0
 offset_right = 1074.0
 offset_bottom = 724.0
 
-[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=1928939343]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/outline_size = 7
@@ -142,7 +143,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_syw6n")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cvaji")
 text = "RESUME"
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=530528378]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/line_spacing = 3
@@ -152,7 +153,7 @@ text = "WINDOW MODE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WindowModeButton" type="OptionButton" parent="VBoxContainer"]
+[node name="WindowModeButton" type="OptionButton" parent="VBoxContainer" unique_id=112856795]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.7
@@ -165,7 +166,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_m6e8v")
 alignment = 1
 script = ExtResource("4_inh3s")
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=514099096]
 layout_mode = 2
 theme_override_constants/line_spacing = 3
 theme_override_constants/outline_size = 7
@@ -174,11 +175,14 @@ text = "VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VolumeSlider" type="HSlider" parent="VBoxContainer"]
+[node name="VolumeSlider" type="HSlider" parent="VBoxContainer" unique_id=8475382]
 layout_mode = 2
 size_flags_vertical = 6
+max_value = 1.0
+step = 0.001
+script = ExtResource("6_tqe32")
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=763775645]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/outline_size = 8

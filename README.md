@@ -1,2 +1,144 @@
-# Quacky-Clicker
-Small clicker game where you click an egg.
+# Joc tip incremental in Godot - Quacky Clicker
+
+
+
+Quacky Clicker este un joc de tip incremental dezvoltat în Godot, folosind limbajul GDScript. Jucătorul apasă pe un ou pentru a câștiga bani și eggshell-uri, resurse care pot fi folosite pentru a cumpăra upgrade-uri, arme și accesorii. Jocul include un sistem de progres bazat pe upgrade-uri permanente, autoclicker și quest-uri.
+
+
+
+## Autor
+
+- **Nume:** Cherci Adelin Andrei
+
+- **Grupă:** 1.2
+
+- **Email:** adelin-andrei.cherci@student.upt.ro
+
+- **An academic:** 2025-2026
+
+
+
+## Descriere
+
+**IMPORTANT:** la rularea programului, dupa actionarea butonului "start" din meniul principal, se poate regasi un buton in dreapta-sus a ecranului pe care scrie "+$$$" care va va oferi 50.000$ la fiecare actionare a butonului. Pentru a putea testa toate aspectele jocului, se recomanda sa se utilizeze acest buton. (Implementarea acestuia a fost realizata strict cu scopul de a putea testa programul cat mai rapid si cat mai in detaliu) 
+
+Quacky Clicker este un joc de tip incremental / clicker în care progresul jucătorului este bazat pe acumularea treptată de resurse și pe achiziționarea de upgrade-uri care cresc eficiența acțiunilor. Jocul este dezvoltat folosind motorul de joc Godot, iar logica este implementată în limbajul GDScript.
+
+Mecanica principală a jocului constă în apăsarea repetată pe un ou aflat în centrul ecranului, acțiune prin care jucătorul obține două tipuri de monede: bani și eggshell-uri. Aceste resurse sunt utilizate pentru a cumpăra upgrade-uri permanente care măresc puterea de click, viteza de progres și profitul obținut pe termen lung.
+
+Jucătorul poate achiziționa, folosind bani, diverse unelte care cresc click power-ul, reprezentate sub forma unor obiecte progresive precum scobitori, cuțit, ciocan, bormașină și bombă nucleară. Pe lângă acestea, jocul include un personaj secundar – o rață – care are rol de autoclicker, ajutând jucătorul să provoace automat daune oului și să accelereze progresul.
+
+Rața poate fi personalizată prin achiziționarea de arme și șepci, armele fiind cumpărate cu bani, iar șepcile cu eggshell-uri. Aceste obiecte sunt organizate sub formă de seturi, iar achiziționarea unui set complet deblochează upgrade-uri temporare corespunzătoare outfit-ului, oferind bonusuri suplimentare pentru o perioadă limitată.
+
+Pe lângă sistemul de upgrade-uri, jocul include și un sistem de quest-uri, care oferă obiective specifice jucătorului. Finalizarea acestora deblochează decorațiuni ce pot fi utilizate pentru personalizarea mediului de joc, adăugând un element vizual și de progres suplimentar.
+
+Prin combinarea mecanicilor de click, upgrade-uri permanente și temporare, personalizare și quest-uri, Quacky Clicker oferă o experiență de joc progresivă, ușor de înțeles, dar care recompensează planificarea și gestionarea eficientă a resurselor.
+
+
+## Tehnologii folosite
+
+- **Limbaj:** GDScript
+
+- **Game Engine:** Godot 4.6
+
+- **Tools:** Git, Docker
+
+
+
+## Cerințe sistem
+
+- Docker(latest)
+
+- Browser web modern (Chrome / Firefox / Brave / etc.)
+
+- Sistem de operare: Windows / Linux / MacOS
+
+- Min. 4GB RAM
+
+
+
+## Instalare
+
+\# Clone repository
+
+git clone https://github.com/username/project.git
+
+cd project
+
+\# Instalare dependențe
+
+\[comenzi specifice limbajului]
+
+\# Build (dacă aplicabil)
+
+\[comenzi de compilare]
+
+Rulare
+
+## Structura proiectului
+
+project/
+
+├── res://
+
+│ └── Assets - Imagini/resurse audio folosite in cadrul proiectului
+
+│ └── Scenes - Scene-urile in Godot sunt componentele principale folosite pentru a crea obiecte/componente cu logica lor individuala care vor fi folosite in intocmirea jocului propriu-zis
+
+│ └── Scripts - Fisiere cod asociate Scene-urilor. Aici sunt declarate functiile si variabilele pentru fiecare componenta a jocului. In cadrul fiecarui script, fiecare functie are comentarii unde este explicata functionalitatea acesteia.
+
+│ └── default\_bus\_layout.tres - Fisier pentru configuratia audio a jocului 
+
+│ └── export\_presets.cfg - este fișierul în care Godot salvează: toate preset-urile de export, setările pentru fiecare platformă, opțiunile de export (web, Windows, Linux etc.)
+
+│ └── global.gd - script unde sunt declarate functiile/variabilele care pot fi folosite in orice alt script din cadrul jocului
+
+│ └── icon.svg - iconita aplicatiei de pe desktop
+
+
+
+## Decizie de design
+
+- O prima decizie tehnica importanta pe care am luat-o in cadrul realizarii acestui proiect este utilizarea logicii de FSM-uri (finite state machine) la implementarea logicii upgrade-urilor temporare (obtinute dupa achizitionarea accesoriilor corespondente ale ratei). Fiecare upgrade temporar are o stare de: ready, active si cooldown. Din starea "ready", upgrade-ul poate fi actionat pentru a trece in starea de "active" si a activa un bonus temporar pentru un timp prestabilit. Din starea de "active", dupa expirarea timpului, upgrade-ul va trece in starea de "cooldown" in care nu mai poate fi actionat pentru o durata prestabilita de timp. Aceste durate pot fi ajustate cu ajutorul unor upgrade-uri. Din starea de "cooldown", dupa expirarea timpului, upgrade-ul va trece inapoi in starea de "ready" unde va putea fi actionat din nou, astfel ciclul repetandu-se.  
+
+- o alta decizie tehnica pe care am luat-o in cadrul realizarii acestui proiect este utilizarea randomizarii in cadrul mai multor aspecte ale jocului. Randomizarea este prezenta in generarea aleatoare a elementelor din background-ului meniului principal (norii care au viteze si locatii de generare aleatoare) si la obtinerea uneia din cele doua resurse principale ale jocului: eggshell-uri, care pot fi obtinute in cantitati randomizate de fiecare data cand oul trece dintr-o stare in alta (starile fiind schimbate in functie de procentajul vietii ramase a oului: 75%, 50%, 25% respectiv 0%)
+
+## Probleme complexe rezolvate
+
+- Una din cele mai mari probleme intalnite in realizarea acestui proiect a fost actionarea multipla a butoanelor care afectau in mod direct pozitiile obiectelor pe ecran. Spre exemplu, in cazul actionarii multiple a butonului care deschide meniul cu upgrade-uri, acesta ar fi apelat functia care ii schimba pozitia de mai multe ori, astfel ajungand intr-o pozitie total gresita fata de unde ar fi trebuit sa ajunga, astfel necesitand un restart al programului. 
+
+- Solutia cu care am venit pentru rezolvarea acestei probleme a fost implementarea mai multor butoane care depind unele de altele. Cand se actiona un buton, acesta ajungea dezactivat (nu se mai putea actiona) pana la actionarea unui alt buton care, la randul lui, depindea de primul buton. 
+
+## Testare
+
+- Dupa rularea programului, se va actiona butonul de Start pentru a incepe jocul si Exit pentru a inchide programul.
+
+- Dupa actionarea butonului Start, rata va va ghida pe parcursul jocului.
+
+
+
+Docker
+
+\# Build imagine
+
+docker build -t project-name .
+
+\# Rulare container
+
+docker run project-name \[args]
+
+
+
+## Resurse folosite
+
+- [DocumentatieGodotOficiala](https://docs.godotengine.org/en/stable/)
+
+- [PlaylistTutorialeGodot](https://www.youtube.com/playlist?list=PLpfUc\_PJNA9NLlZDPjSGWRvLQbPlBqaEI)
+
+## Licență
+
+- Proiect realizat exclusiv in scop educativ
+
+## Contact
+
+Pentru întrebări: adelincherci24@gmail.com

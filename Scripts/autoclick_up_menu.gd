@@ -192,30 +192,31 @@ func UI_change_hats(upgrade: String, costLabel: Control, lvlLabel: Control, deta
 
 
 ## function that creates a +1 popup whenever you successfully buy an upgrade
+## unfortunately it doesn't work in the web build
 
-func bought_popup(origin: Vector2, offset: Vector2):
-	var pop := Label.new()
-	var font := FontFile.new()
-	
-	## font details for the popup (so it doesn't have the default color, font size etc.)
-	font.load_dynamic_font("res://Assets/Sprites/Fonts/Cute Dino.ttf")
-	pop.text = "+1"
-	pop.add_theme_font_override("font", font)
-	pop.add_theme_font_size_override("font_size", 55)
-	pop.add_theme_constant_override("outline_size", 7)
-	pop.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
-	pop.add_theme_color_override("outline_color", Color(0.0, 0.0, 0.0, 1.0))
-	pop.top_level = true
-	pop.z_index = 3
-	pop.position = origin + offset + Vector2(30, 20)
-	add_child(pop)
-	
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
-	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
-	tween.finished.connect(pop.queue_free)
+#func bought_popup(origin: Vector2, offset: Vector2):
+	#var pop := Label.new()
+	#var font := FontFile.new()
+	#
+	### font details for the popup (so it doesn't have the default color, font size etc.)
+	#font.load_dynamic_font("res://Assets/Sprites/Fonts/Cute Dino.ttf")
+	#pop.text = "+1"
+	#pop.add_theme_font_override("font", font)
+	#pop.add_theme_font_size_override("font_size", 55)
+	#pop.add_theme_constant_override("outline_size", 7)
+	#pop.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
+	#pop.add_theme_color_override("outline_color", Color(0.0, 0.0, 0.0, 1.0))
+	#pop.top_level = true
+	#pop.z_index = 3
+	#pop.position = origin + offset + Vector2(30, 20)
+	#add_child(pop)
+	#
+	#var tween = create_tween()
+	#tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	#tween.tween_property(pop, "position:y", pop.position.y - 30, 0.3)
+	#tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	#tween.tween_property(pop, "scale", Vector2.ZERO, 0.6)
+	#tween.finished.connect(pop.queue_free)
 
 
 
@@ -296,7 +297,7 @@ func _on_up_button_pressed_autoclick1() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up1"]["cost"]):
 		insufficient_funds(autoclick1Cost)
 	else:
-		bought_popup(autoclick1UpButoon.global_position, Vector2(0, 0))
+		#bought_popup(autoclick1UpButoon.global_position, Vector2(0, 0))
 		autoclick_up("autoclick_up1", 250, 2, 10, autoclick2lock, strawHatlock, fishingPoleTexture, 1)
 		if(Global.upgrades["autoclick_up1"]["level"] == 1):
 			startAutoclicker.emit()
@@ -306,7 +307,7 @@ func _on_up_button_pressed_autoclick2() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up2"]["cost"]):
 		insufficient_funds(autoclick2Cost)
 	else:
-		bought_popup(autoclick2UpButoon.global_position, Vector2.ZERO)
+		#bought_popup(autoclick2UpButoon.global_position, Vector2.ZERO)
 		autoclick_up("autoclick_up2", 700, 5, 10, autoclick3lock, cowboyHatlock, revolverTexture, 3)
 
 
@@ -314,7 +315,7 @@ func _on_up_button_pressed_autoclick3() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up3"]["cost"]):
 		insufficient_funds(autoclick3Cost)
 	else:
-		bought_popup(autoclick3UpButoon.global_position, Vector2.ZERO)
+		#bought_popup(autoclick3UpButoon.global_position, Vector2.ZERO)
 		autoclick_up("autoclick_up3", 1700, 25, 10, autoclick4lock, witchHatlock, witchBroomTexture, 5)
 
 
@@ -322,7 +323,7 @@ func _on_up_button_pressed_autoclick4() -> void:
 	if(Global.currency < Global.upgrades["autoclick_up4"]["cost"]):
 		insufficient_funds(autoclick4Cost)
 	else:
-		bought_popup(autoclick4UpButoon.global_position, Vector2.ZERO)
+		#bought_popup(autoclick4UpButoon.global_position, Vector2.ZERO)
 		autoclick_up("autoclick_up4", 4000, 100, 10, null, wizardHatlock, wizardStaffTexture, 7)
 
 
@@ -334,7 +335,7 @@ func _on_up_button_pressed_straw_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["straw_hat"]["cost"]):
 		insufficient_funds(strawHatCost)
 	else:
-		bought_popup(strawHatUpButton.global_position, Vector2.ZERO)
+		#bought_popup(strawHatUpButton.global_position, Vector2.ZERO)
 		var eggshell_mult = special_up("straw_hat", 250, 1, apw.FIH, strawHatTexture, 2)
 		Global.eggshell_multiplier = eggshell_mult
 		
@@ -349,7 +350,7 @@ func _on_up_button_pressed_cowboy_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["cowboy_hat"]["cost"]):
 		insufficient_funds(cowboyHatCost)
 	else:
-		bought_popup(cowboyHatUpButton.global_position, Vector2.ZERO)
+		#bought_popup(cowboyHatUpButton.global_position, Vector2.ZERO)
 		var eggshell_limitbreak = special_up("cowboy_hat", 500, 1, apw.WHISKEY, cowboyHatTexture, 4)
 		Global.eggshell_lower_limit += int(eggshell_limitbreak)
 		Global.eggshell_upper_limit += int(eggshell_limitbreak)
@@ -365,7 +366,7 @@ func _on_up_button_pressed_witch_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["witch_hat"]["cost"]):
 		insufficient_funds(witchHatCost)
 	else:
-		bought_popup(witchHatUpButton.global_position, Vector2.ZERO)
+		#bought_popup(witchHatUpButton.global_position, Vector2.ZERO)
 		var active_pw_cdr = special_up("witch_hat", 1500, 10, apw.CAULDRON, witchHatTexture, 6)
 		Global.active_powerup_cdr = active_pw_cdr
 		
@@ -380,7 +381,7 @@ func _on_up_button_pressed_wizard_hat() -> void:
 	if(Global.eggshell_currency < Global.hats["wizard_hat"]["cost"]):
 		insufficient_funds(wizardHatCost)
 	else:
-		bought_popup(wizardHatUpButton.global_position, Vector2.ZERO)
+		#bought_popup(wizardHatUpButton.global_position, Vector2.ZERO)
 		var active_powerup_mult = special_up("wizard_hat", 2000, 1, apw.ELIXIR, wizardHatTexture, 8)
 		Global.active_powerup_multiplier = active_powerup_mult
 
