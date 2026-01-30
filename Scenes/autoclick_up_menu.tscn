@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b81tfanlc847y"]
+[gd_scene format=3 uid="uid://b81tfanlc847y"]
 
 [ext_resource type="Script" uid="uid://j745132cbrmb" path="res://Scripts/autoclick_up_menu.gd" id="1_614lw"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_f2sfo"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://brnn64rl5c452" path="res://Assets/Sprites/Duckk/Accessories/WizardStaff.png" id="9_jbvtb"]
 [ext_resource type="Texture2D" uid="uid://dhr3ba3gxnob6" path="res://Assets/Sprites/Duckk/Hats/WitchHat.png" id="11_h085u"]
 [ext_resource type="Texture2D" uid="uid://cw5idwdsii46u" path="res://Assets/Sprites/Duckk/Hats/WizardHat.png" id="13_n1kb3"]
+[ext_resource type="AudioStream" uid="uid://66tiijvdn3am" path="res://Assets/Audio/BoughtSound.ogg" id="15_8vt5a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vardp"]
 atlas = ExtResource("1_f2sfo")
@@ -23,7 +24,7 @@ region = Rect2(76.95616, 1648.0436, 917.81824, 1486.7938)
 atlas = ExtResource("5_fmh26")
 region = Rect2(279.5791, 663.4125, 1926.4385, 1920.5084)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k3b1m"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eceln"]
 resource_local_to_scene = true
 texture = SubResource("AtlasTexture_45uvo")
 
@@ -31,11 +32,19 @@ texture = SubResource("AtlasTexture_45uvo")
 atlas = ExtResource("5_fmh26")
 region = Rect2(279.5791, 663.4125, 1926.4385, 1920.5084)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tld15"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h085u"]
 resource_local_to_scene = true
 texture = SubResource("AtlasTexture_ptup7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vs0mw"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1kb3"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_45uvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ptup7"]
+resource_local_to_scene = true
+texture = SubResource("AtlasTexture_ptup7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tld15"]
 resource_local_to_scene = true
 texture = SubResource("AtlasTexture_45uvo")
 
@@ -43,15 +52,7 @@ texture = SubResource("AtlasTexture_45uvo")
 resource_local_to_scene = true
 texture = SubResource("AtlasTexture_ptup7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbvtb"]
-resource_local_to_scene = true
-texture = SubResource("AtlasTexture_45uvo")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ui2qe"]
-resource_local_to_scene = true
-texture = SubResource("AtlasTexture_ptup7")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eceln"]
 resource_local_to_scene = true
 texture = SubResource("AtlasTexture_45uvo")
 
@@ -89,7 +90,7 @@ texture = SubResource("AtlasTexture_eceln")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbvtb"]
 
-[node name="autoclick_up_menu" type="Control"]
+[node name="autoclick_up_menu" type="Control" unique_id=520101184]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,18 +99,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_614lw")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1968600016]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MainSprite" type="TextureRect" parent="Control"]
+[node name="MainSprite" type="TextureRect" parent="Control" unique_id=1550951616]
 layout_mode = 0
 offset_right = 1375.0
 offset_bottom = 1816.0
 texture = SubResource("AtlasTexture_vardp")
 
-[node name="UpgradesText" type="Label" parent="Control"]
+[node name="UpgradesText" type="Label" parent="Control" unique_id=1266272222]
 layout_mode = 0
 offset_left = 365.0
 offset_top = 121.0
@@ -122,24 +123,24 @@ text = "Duck Upgrades"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UpgradesContainer" type="ScrollContainer" parent="Control"]
+[node name="UpgradesContainer" type="ScrollContainer" parent="Control" unique_id=1983821739]
 layout_mode = 0
 offset_left = 140.0
 offset_top = 240.0
 offset_right = 1243.0
 offset_bottom = 1697.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/UpgradesContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/UpgradesContainer" unique_id=1343078968]
 layout_mode = 2
 
-[node name="autoclick_up1" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+[node name="autoclick_up1" parent="Control/UpgradesContainer/VBoxContainer" unique_id=636240988 instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="0"]
 text = "Fishing Pole"
 
 [node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="3"]
-theme_override_styles/normal = SubResource("StyleBoxTexture_k3b1m")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eceln")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up1" index="4"]
 offset_left = 746.0
@@ -149,14 +150,14 @@ offset_bottom = 3491.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("6_o7p5u")
 
-[node name="straw_hat" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+[node name="straw_hat" parent="Control/UpgradesContainer/VBoxContainer" unique_id=2089623460 instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/straw_hat" index="0"]
 text = "Straw Hat"
 
 [node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/straw_hat" index="3"]
-theme_override_styles/normal = SubResource("StyleBoxTexture_tld15")
+theme_override_styles/normal = SubResource("StyleBoxTexture_h085u")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/straw_hat" index="4"]
 offset_left = 738.0
@@ -165,14 +166,14 @@ offset_right = 3218.0
 offset_bottom = 3466.0
 texture = ExtResource("7_eceln")
 
-[node name="autoclick_up2" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+[node name="autoclick_up2" parent="Control/UpgradesContainer/VBoxContainer" unique_id=1013747631 instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="0"]
 text = "Revolver"
 
 [node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="3"]
-theme_override_styles/normal = SubResource("StyleBoxTexture_vs0mw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n1kb3")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up2" index="4"]
 offset_left = 689.99994
@@ -181,14 +182,14 @@ offset_right = 3170.0
 offset_bottom = 3232.0
 texture = ExtResource("7_vs0mw")
 
-[node name="cowboy_hat" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+[node name="cowboy_hat" parent="Control/UpgradesContainer/VBoxContainer" unique_id=526189763 instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/cowboy_hat" index="0"]
 text = "Cowboy Hat"
 
 [node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/cowboy_hat" index="3"]
-theme_override_styles/normal = SubResource("StyleBoxTexture_73w0o")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ptup7")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/cowboy_hat" index="4"]
 offset_left = 745.0
@@ -197,14 +198,14 @@ offset_right = 3225.0
 offset_bottom = 3494.0
 texture = ExtResource("9_8vt5a")
 
-[node name="autoclick_up3" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+[node name="autoclick_up3" parent="Control/UpgradesContainer/VBoxContainer" unique_id=886430419 instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="0"]
 text = "Witch Broom"
 
 [node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="3"]
-theme_override_styles/normal = SubResource("StyleBoxTexture_jbvtb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tld15")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up3" index="4"]
 offset_left = 846.00006
@@ -215,14 +216,14 @@ rotation = 0.31415927
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("8_lwnqu")
 
-[node name="witch_hat" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+[node name="witch_hat" parent="Control/UpgradesContainer/VBoxContainer" unique_id=505637936 instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/witch_hat" index="0"]
 text = "Witch Hat"
 
 [node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/witch_hat" index="3"]
-theme_override_styles/normal = SubResource("StyleBoxTexture_ui2qe")
+theme_override_styles/normal = SubResource("StyleBoxTexture_73w0o")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/witch_hat" index="4"]
 offset_left = 740.0
@@ -231,14 +232,14 @@ offset_right = 3220.0
 offset_bottom = 3511.0
 texture = ExtResource("11_h085u")
 
-[node name="autoclick_up4" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+[node name="autoclick_up4" parent="Control/UpgradesContainer/VBoxContainer" unique_id=94018011 instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="0"]
 text = "Gandalf's Staff"
 
 [node name="UpButton" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="3"]
-theme_override_styles/normal = SubResource("StyleBoxTexture_eceln")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ui2qe")
 
 [node name="TextureRect" parent="Control/UpgradesContainer/VBoxContainer/autoclick_up4" index="4"]
 offset_left = 750.0
@@ -248,7 +249,7 @@ offset_bottom = 3404.0
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("9_jbvtb")
 
-[node name="wizard_hat" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("2_4yun0")]
+[node name="wizard_hat" parent="Control/UpgradesContainer/VBoxContainer" unique_id=2087305752 instance=ExtResource("2_4yun0")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/wizard_hat" index="0"]
@@ -264,7 +265,7 @@ offset_right = 3197.0
 offset_bottom = 3494.0
 texture = ExtResource("13_n1kb3")
 
-[node name="CloseMenu" type="Button" parent="Control"]
+[node name="CloseMenu" type="Button" parent="Control" unique_id=452019005]
 layout_mode = 0
 offset_left = 1291.0
 offset_top = 109.0
@@ -275,6 +276,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_o7p5u")
 theme_override_styles/hover = SubResource("StyleBoxTexture_lwnqu")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_8vt5a")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jbvtb")
+
+[node name="BoughtSFX" type="AudioStreamPlayer" parent="." unique_id=827873830]
+stream = ExtResource("15_8vt5a")
 
 [connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/autoclick_up1/UpButton" to="." method="_on_up_button_pressed_autoclick1"]
 [connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/straw_hat/UpButton" to="." method="_on_up_button_pressed_straw_hat"]

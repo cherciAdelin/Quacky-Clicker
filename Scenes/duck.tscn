@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://lq30jipgbnqm"]
+[gd_scene format=3 uid="uid://lq30jipgbnqm"]
 
 [ext_resource type="Script" uid="uid://ckaubownshbmt" path="res://Scripts/duck.gd" id="1_tvw4f"]
 [ext_resource type="Texture2D" uid="uid://dvycim7csvi8b" path="res://Assets/Sprites/Duckk/DuckBody.png" id="2_mshtc"]
@@ -10,20 +10,20 @@
 atlas = ExtResource("4_xpqa0")
 region = Rect2(279.0692, 1092.5894, 1985.8026, 1272.5029)
 
-[node name="Duck" type="Node2D"]
+[node name="Duck" type="Node2D" unique_id=703975624]
 script = ExtResource("1_tvw4f")
 
-[node name="Body" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="." unique_id=1197946094]
 texture = ExtResource("2_mshtc")
 
-[node name="Eyes" type="Sprite2D" parent="."]
+[node name="Eyes" type="Sprite2D" parent="." unique_id=511511290]
 texture = ExtResource("3_8ghs4")
 
-[node name="Hat" type="Sprite2D" parent="."]
+[node name="Hat" type="Sprite2D" parent="." unique_id=289219856]
 
-[node name="Weapon" type="Sprite2D" parent="."]
+[node name="Weapon" type="Sprite2D" parent="." unique_id=1522814979]
 
-[node name="SpeechBubble" type="Control" parent="."]
+[node name="SpeechBubble" type="Control" parent="." unique_id=907588514]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -2434.0
@@ -32,21 +32,20 @@ offset_right = -752.0
 offset_bottom = -579.0
 pivot_offset = Vector2(1359, 1059)
 
-[node name="Sprite" type="TextureRect" parent="SpeechBubble"]
+[node name="Sprite" type="TextureRect" parent="SpeechBubble" unique_id=992885567]
 layout_mode = 0
-offset_left = -225.00018
-offset_top = -104.99992
-offset_right = 2511.4285
-offset_bottom = 1605.5712
-scale = Vector2(0.7, 0.7)
+offset_left = -224.99994
+offset_top = -222.00005
+offset_right = 1760.0
+offset_bottom = 1050.0
 texture = SubResource("AtlasTexture_8ghs4")
 
-[node name="Text" type="Label" parent="SpeechBubble"]
+[node name="Text" type="Label" parent="SpeechBubble" unique_id=175585457]
 layout_mode = 0
-offset_left = -14.0
-offset_top = 137.0
-offset_right = 1524.0
-offset_bottom = 680.0
+offset_left = 9.0
+offset_top = 48.0
+offset_right = 1547.0
+offset_bottom = 591.0
 theme_override_constants/line_spacing = 3
 theme_override_constants/outline_size = 45
 theme_override_fonts/font = ExtResource("5_mshtc")

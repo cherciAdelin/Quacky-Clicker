@@ -76,7 +76,7 @@ var multiplied_upgrade_value := 1.0
 @onready var witchHatlock = $Control/UpgradesContainer/VBoxContainer/witch_hat/Locked
 @onready var wizardHatlock = $Control/UpgradesContainer/VBoxContainer/wizard_hat/Locked
 
-
+@onready var bought_sfx = $BoughtSFX
 
 
 
@@ -114,6 +114,7 @@ func set_hat_stats_default(upgrade: String, LvLlabel: Control, DetailsLabel: Con
 ## - the texture of the weapon the upgrade ulocks for the duck
 
 func autoclick_up(upgrade: String, cost_inc: int, val_inc: float, threshold: int, next_upgrade: Control, hat: Control, weapon_texture: Texture2D, dialogue: int):
+	bought_sfx.play()
 	Global.currency -= Global.upgrades[upgrade]["cost"]
 	Global.upgrades[upgrade]["cost"] += cost_inc
 	Global.upgrades[upgrade]["level"] += 1
@@ -141,6 +142,7 @@ func autoclick_up(upgrade: String, cost_inc: int, val_inc: float, threshold: int
 ## - the texture of the hat the upgrade unlocks for the duck
 
 func special_up(upgrade: String, cost_inc: int, val_inc: float, active_up: int, hat_texture: Texture2D, dialogue: int):
+	bought_sfx.play()
 	Global.eggshell_currency -= Global.hats[upgrade]["cost"]
 	Global.hats[upgrade]["cost"] += cost_inc
 	Global.hats[upgrade]["value"] += val_inc

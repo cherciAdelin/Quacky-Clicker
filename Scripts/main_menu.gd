@@ -10,7 +10,7 @@ signal StartPressed
 @onready var toplayer = $TopLayer
 @onready var firstLabel = $"Credits/1stLabel"
 @onready var secondLabel = $"Credits/2ndLabel"
-
+@onready var ambient_sfx = $AmbientSound
 
 
 ## --------------- FUNCTIONS ---------------
@@ -56,6 +56,7 @@ func intro_credits():
 
 func _ready():
 	intro_credits()
+	ambient_sfx.play()
 
 ## this function triggers when you press the exit button in the main menu
 ## it closes the program
@@ -74,6 +75,7 @@ func _on_start_button_pressed() -> void:
 	await get_tree().create_timer(0.1).timeout
 	StartPressed.emit()
 	await get_tree().create_timer(1.5).timeout
+	ambient_sfx.stop()
 	$Buttons/StartButton.disabled = false
 	
 	
@@ -84,3 +86,8 @@ func _on_start_button_pressed() -> void:
 		await Global.duck.speak(Global.text_monologue["Tutorial"][1], true)
 		Global.duck.speak(Global.text_monologue["Tutorial"][2], false)
 		Global.main_menu_tutorial_dialogue_seen = true
+
+
+func _on_main_main_menu_sfx() -> void:
+	await get_tree().create_timer(1).timeout
+	ambient_sfx.play()

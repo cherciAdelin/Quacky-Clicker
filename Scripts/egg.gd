@@ -20,7 +20,7 @@ var egg_health: float
 var max_egg_health: float
 const default_max_egg_health := 100.0
 var egg_threshold: int
-const default_egg_threshold := 10
+const default_egg_threshold := 5
 var eggs_broken_threshold: int
 const default_eggs_broken_threshold := 5
 var current_stage := 4
@@ -35,6 +35,7 @@ var current_eggs_broken := 0
 @export var breakParticles: PackedScene
 @onready var sprite = $egg_sprite
 @onready var egg_collision = $egg_collision_shape
+@onready var egg_crack_sfx = $EggCrackSFX
 @onready var egg_textures := {
 	100:	preload("res://Assets/Sprites/Egg/Egg_full.png"),
 	75:		preload("res://Assets/Sprites/Egg/Egg_cracked1.png"),
@@ -144,7 +145,7 @@ func take_dmg(amount:float):
 
 func reset_egg():
 	if(current_eggs_broken >= egg_threshold):
-		max_egg_health *= 10
+		max_egg_health *= 3
 		current_eggs_broken = 0
 	egg_health = int(max_egg_health)
 	$egg_hp.text = "Egg health: 100.0%"
@@ -164,6 +165,7 @@ func change_sprite():
 	for i in thresholds.size():
 		if(percent <= thresholds[i]):
 			if(i != current_stage):
+				egg_crack_sfx.play()
 				current_stage = i
 				break_animation()
 				sprite.texture = egg_textures[thresholds[i]]

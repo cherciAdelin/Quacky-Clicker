@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ybq2e658v4de"]
+[gd_scene format=3 uid="uid://ybq2e658v4de"]
 
 [ext_resource type="Script" uid="uid://dtw1cmvonb7is" path="res://Scripts/upgrade_menu.gd" id="1_6gn5s"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_11363"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ljpiwrpliw0w" path="res://Assets/Sprites/ClickUpSprites/hammer.png" id="7_60tjm"]
 [ext_resource type="Texture2D" uid="uid://bpdq8kgvw3tkb" path="res://Assets/Sprites/ClickUpSprites/drill.png" id="8_ttpbb"]
 [ext_resource type="Texture2D" uid="uid://mhxadurwd3eh" path="res://Assets/Sprites/ClickUpSprites/nuke.png" id="9_fm0cu"]
+[ext_resource type="AudioStream" uid="uid://66tiijvdn3am" path="res://Assets/Audio/BoughtSound.ogg" id="12_60tjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5dmy"]
 atlas = ExtResource("1_11363")
@@ -70,7 +71,7 @@ texture = SubResource("AtlasTexture_60tjm")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ttpbb"]
 
-[node name="UpgradeMenu" type="Control"]
+[node name="UpgradeMenu" type="Control" unique_id=1095766921]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,13 +82,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6gn5s")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=849472105]
 anchors_preset = 0
 offset_left = -9.0
 offset_right = 1418.0
 offset_bottom = 1919.0
 
-[node name="MainSprite" type="TextureRect" parent="Control"]
+[node name="MainSprite" type="TextureRect" parent="Control" unique_id=1250397351]
 layout_mode = 0
 offset_left = 33.0
 offset_top = 25.0
@@ -95,7 +96,7 @@ offset_right = 1407.0
 offset_bottom = 1839.0
 texture = SubResource("AtlasTexture_f5dmy")
 
-[node name="UpgradesText" type="Label" parent="Control"]
+[node name="UpgradesText" type="Label" parent="Control" unique_id=298015219]
 layout_mode = 0
 offset_left = 58.0
 offset_top = 114.0
@@ -109,19 +110,19 @@ text = "Click Upgrades"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UpgradesContainer" type="ScrollContainer" parent="Control"]
+[node name="UpgradesContainer" type="ScrollContainer" parent="Control" unique_id=2076434468]
 layout_mode = 0
 offset_left = 176.0
 offset_top = 262.0
 offset_right = 1291.0
 offset_bottom = 1734.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/UpgradesContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/UpgradesContainer" unique_id=1983356176]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="click_up1" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+[node name="click_up1" parent="Control/UpgradesContainer/VBoxContainer" unique_id=1936894640 instance=ExtResource("5_lhh40")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="0"]
@@ -151,7 +152,7 @@ offset_bottom = 246.0
 [node name="Locked" parent="Control/UpgradesContainer/VBoxContainer/click_up1" index="6"]
 visible = false
 
-[node name="click_up2" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+[node name="click_up2" parent="Control/UpgradesContainer/VBoxContainer" unique_id=1699902178 instance=ExtResource("5_lhh40")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="0"]
@@ -174,7 +175,7 @@ texture = ExtResource("6_m70ya")
 [node name="Cost" parent="Control/UpgradesContainer/VBoxContainer/click_up2" index="5"]
 offset_left = 789.0
 
-[node name="click_up3" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+[node name="click_up3" parent="Control/UpgradesContainer/VBoxContainer" unique_id=70817488 instance=ExtResource("5_lhh40")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up3" index="0"]
@@ -201,7 +202,7 @@ offset_top = 199.0
 offset_right = 966.0
 offset_bottom = 244.0
 
-[node name="click_up4" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+[node name="click_up4" parent="Control/UpgradesContainer/VBoxContainer" unique_id=1812311458 instance=ExtResource("5_lhh40")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up4" index="0"]
@@ -222,7 +223,7 @@ offset_bottom = 3529.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("8_ttpbb")
 
-[node name="click_up5" parent="Control/UpgradesContainer/VBoxContainer" instance=ExtResource("5_lhh40")]
+[node name="click_up5" parent="Control/UpgradesContainer/VBoxContainer" unique_id=86884323 instance=ExtResource("5_lhh40")]
 layout_mode = 2
 
 [node name="UpName" parent="Control/UpgradesContainer/VBoxContainer/click_up5" index="0"]
@@ -242,7 +243,7 @@ offset_bottom = 3514.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("9_fm0cu")
 
-[node name="CloseMenu" type="Button" parent="Control"]
+[node name="CloseMenu" type="Button" parent="Control" unique_id=1676945647]
 layout_mode = 0
 offset_left = 1321.0
 offset_top = 132.0
@@ -257,6 +258,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_d1lbs")
 theme_override_styles/hover = SubResource("StyleBoxTexture_60tjm")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_ou68t")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ttpbb")
+
+[node name="BoughtSFX" type="AudioStreamPlayer" parent="." unique_id=400714165]
+stream = ExtResource("12_60tjm")
 
 [connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up1/UpButton" to="." method="_on_up_button_pressed_clickval1"]
 [connection signal="pressed" from="Control/UpgradesContainer/VBoxContainer/click_up2/UpButton" to="." method="_on_up_button_pressed_clickval2"]

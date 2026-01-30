@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c0ife8kb1rjk6"]
+[gd_scene format=3 uid="uid://c0ife8kb1rjk6"]
 
 [ext_resource type="Script" uid="uid://sorba1jfq17u" path="res://Scripts/quest_menu.gd" id="1_5wkm6"]
 [ext_resource type="Texture2D" uid="uid://pc5ecpir1ksj" path="res://Assets/Sprites/Other/LabelSpriteSheet.png" id="1_jur4h"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cunpbj6b75f74" path="res://Assets/Sprites/Decor/catDecor.png" id="8_e4241"]
 [ext_resource type="Texture2D" uid="uid://by38gl831qlfa" path="res://Assets/Sprites/Decor/paintingDecor2.png" id="9_lm55y"]
 [ext_resource type="Texture2D" uid="uid://drobnfs6b27gy" path="res://Assets/Sprites/Decor/paintingDecor1.png" id="10_ubbna"]
+[ext_resource type="AudioStream" uid="uid://igjunt234q11" path="res://Assets/Audio/ClaimSound.ogg" id="12_waia1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e634"]
 atlas = ExtResource("1_jur4h")
@@ -46,7 +47,7 @@ texture = SubResource("AtlasTexture_7cekm")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lm55y"]
 
-[node name="QuestMenu" type="Control"]
+[node name="QuestMenu" type="Control" unique_id=1234598931]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5wkm6")
 
-[node name="Sprite" type="TextureRect" parent="."]
+[node name="Sprite" type="TextureRect" parent="." unique_id=73850797]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 2.0
@@ -63,7 +64,7 @@ offset_right = 1378.0
 offset_bottom = 1816.0
 texture = SubResource("AtlasTexture_0e634")
 
-[node name="QuestLabel" type="Label" parent="."]
+[node name="QuestLabel" type="Label" parent="." unique_id=1501042979]
 layout_mode = 0
 offset_left = 428.0
 offset_top = 106.0
@@ -76,26 +77,26 @@ text = "Quests"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="QuestContainer" type="ScrollContainer" parent="."]
+[node name="QuestContainer" type="ScrollContainer" parent="." unique_id=836365275]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 253.0
 offset_right = 1250.0
 offset_bottom = 1710.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="QuestContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestContainer" unique_id=737624902]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="quest_1" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+[node name="quest_1" parent="QuestContainer/VBoxContainer" unique_id=269621741 instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
 
 [node name="quest_reward" parent="QuestContainer/VBoxContainer/quest_1" index="5"]
 texture = ExtResource("5_6l8nj")
 
-[node name="quest_2" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+[node name="quest_2" parent="QuestContainer/VBoxContainer" unique_id=900178406 instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
 
@@ -104,7 +105,7 @@ offset_top = 26.00002
 offset_bottom = 3716.333
 texture = ExtResource("6_waia1")
 
-[node name="quest_3" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+[node name="quest_3" parent="QuestContainer/VBoxContainer" unique_id=34237309 instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
 
@@ -113,7 +114,7 @@ offset_left = 843.0
 offset_right = 3373.0
 texture = ExtResource("7_7cekm")
 
-[node name="quest_4" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+[node name="quest_4" parent="QuestContainer/VBoxContainer" unique_id=2053849286 instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
 
@@ -122,14 +123,14 @@ offset_top = 44.58004
 offset_bottom = 3551.58
 texture = ExtResource("8_e4241")
 
-[node name="quest_5" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+[node name="quest_5" parent="QuestContainer/VBoxContainer" unique_id=1489496524 instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
 
 [node name="quest_reward" parent="QuestContainer/VBoxContainer/quest_5" index="5"]
 texture = ExtResource("9_lm55y")
 
-[node name="quest_6" parent="QuestContainer/VBoxContainer" instance=ExtResource("3_tagws")]
+[node name="quest_6" parent="QuestContainer/VBoxContainer" unique_id=1457741195 instance=ExtResource("3_tagws")]
 layout_mode = 2
 size_flags_vertical = 1
 
@@ -138,7 +139,7 @@ offset_left = 844.0
 offset_right = 3357.333
 texture = ExtResource("10_ubbna")
 
-[node name="questCloseButton" type="Button" parent="."]
+[node name="questCloseButton" type="Button" parent="." unique_id=960231894]
 layout_mode = 0
 offset_left = 1294.0
 offset_top = 100.0
@@ -149,6 +150,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_gwh8y")
 theme_override_styles/hover = SubResource("StyleBoxTexture_waia1")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_e4241")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lm55y")
+
+[node name="ClaimSFX" type="AudioStreamPlayer" parent="." unique_id=619571984]
+stream = ExtResource("12_waia1")
 
 [connection signal="pressed" from="QuestContainer/VBoxContainer/quest_1/claim_button" to="." method="_on_quest1_claim"]
 [connection signal="pressed" from="QuestContainer/VBoxContainer/quest_2/claim_button" to="." method="_on_quest2_claim"]

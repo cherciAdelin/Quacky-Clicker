@@ -14,6 +14,7 @@ enum apw{FIH, WHISKEY, CAULDRON, ELIXIR}
 @onready var ClickValueLabel = $UI/Click_val
 @onready var EggshellLabel = $UI/EggshellLabel
 @onready var DisableInputLayer = $DisableInputLayer
+@onready var backgroundMusic = $UI/BackgroundMusic
 
 @onready var CloudsTimer := $UI/Clouds/CloudsTimer
 @onready var CloudsStartPos := $UI/Clouds/CloudsStartPos
@@ -43,7 +44,7 @@ signal statsMenuClose
 signal up_menu
 signal stat_menu
 signal quest_check
-
+signal main_menu_sfx
 
 
 
@@ -152,6 +153,7 @@ func _on_main_menu_start_pressed() -> void:
 	cameraTween.parallel().tween_property(tint, "color", Color(0.0, 0.0, 0.0, 1.0), 1.0)
 
 	await get_tree().create_timer(1.5).timeout
+	backgroundMusic.play()
 	var tween2 = create_tween()
 	
 	tween2.tween_property(camera, "zoom", Vector2(1, 1), 0.1)
@@ -247,6 +249,8 @@ func _on_options_menu_exit() -> void:
 	cameraTween.tween_property(camera, "position", mainMenu.global_position, 0.1)
 	cameraTween.tween_property(tint, "color", Color(0.0, 0.0, 0.0, 0.0),1)
 	optionsMenuClose.emit()
+	main_menu_sfx.emit()
+	backgroundMusic.stop()
 
 func _on_quest_menu_close() -> void:
 	questMenuClose.emit()
@@ -275,3 +279,7 @@ func _on_duck_speaking(isTrue: bool) -> void:
 		DisableInputLayer.mouse_filter = Control.MOUSE_FILTER_STOP
 	else:
 		DisableInputLayer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+func _on_dev_press() -> void:
+	update_ui()

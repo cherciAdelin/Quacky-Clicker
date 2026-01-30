@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmvimpsu3c6ub"]
+[gd_scene format=3 uid="uid://cmvimpsu3c6ub"]
 
 [ext_resource type="Texture2D" uid="uid://eqojogv1drnb" path="res://Assets/Sprites/Background/MainMenu.png" id="1_1ehe0"]
 [ext_resource type="Script" uid="uid://cocpt4hd4dlpi" path="res://Scripts/main_menu.gd" id="1_n45e2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dsf5svlq1t4ka" path="res://Assets/Sprites/Other/Door.png" id="3_n45e2"]
 [ext_resource type="FontFile" uid="uid://ukc2asseur21" path="res://Assets/Sprites/Fonts/Super Kindly.ttf" id="5_n45e2"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="7_cp0ys"]
+[ext_resource type="AudioStream" uid="uid://dpmkudyjrh70c" path="res://Assets/Audio/mainMenuSound.ogg" id="8_yhxw7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n45e2"]
 
@@ -14,25 +15,25 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cp0ys"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=222346235]
 layout_mode = 3
 anchors_preset = 0
 pivot_offset = Vector2(911, 584)
 script = ExtResource("1_n45e2")
 
-[node name="BackgroundColor" type="TextureRect" parent="."]
+[node name="BackgroundColor" type="TextureRect" parent="." unique_id=1548242097]
 z_index = -2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_opfnp")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=1785274065]
 z_index = 1
 position = Vector2(960, 540)
 texture = ExtResource("1_1ehe0")
 
-[node name="Buttons" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="." unique_id=1718594948]
 z_index = 1
 anchors_preset = 0
 offset_left = -9.0
@@ -40,7 +41,7 @@ offset_top = 6.0
 offset_right = 1931.0
 offset_bottom = 1083.0
 
-[node name="StartButton" parent="Buttons" instance=ExtResource("2_ce3w2")]
+[node name="StartButton" parent="Buttons" unique_id=1509181096 instance=ExtResource("2_ce3w2")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -57,7 +58,7 @@ theme_override_colors/font_color = Color(0.973535, 0.9735351, 0.973535, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_n45e2")
 text = "Start"
 
-[node name="OptionsButton" parent="Buttons" instance=ExtResource("2_ce3w2")]
+[node name="OptionsButton" parent="Buttons" unique_id=779499170 instance=ExtResource("2_ce3w2")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -75,7 +76,7 @@ theme_override_colors/font_color = Color(0.9955804, 0.99558026, 0.99558026, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_opfnp")
 text = "Options"
 
-[node name="ExitButton" parent="Buttons" instance=ExtResource("2_ce3w2")]
+[node name="ExitButton" parent="Buttons" unique_id=1019890014 instance=ExtResource("2_ce3w2")]
 layout_mode = 1
 offset_left = -368.0
 offset_top = -314.0
@@ -85,35 +86,35 @@ theme_override_colors/font_color = Color(0.9209942, 0.92099476, 0.9209944, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cp0ys")
 text = "Quit"
 
-[node name="Door" type="Sprite2D" parent="."]
+[node name="Door" type="Sprite2D" parent="." unique_id=84005074]
 z_index = 1
 position = Vector2(820, 523)
 texture = ExtResource("3_n45e2")
 offset = Vector2(-77, -3)
 
-[node name="GameName" type="Label" parent="."]
+[node name="GameName" type="Label" parent="." unique_id=1497124303]
 z_index = 1
 layout_mode = 0
-offset_left = 1074.0
-offset_top = 147.0
-offset_right = 1865.0
-offset_bottom = 509.0
+offset_left = 1123.0
+offset_top = 54.0
+offset_right = 1914.0
+offset_bottom = 416.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -66
-theme_override_constants/outline_size = 35
+theme_override_constants/line_spacing = -37
+theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("5_n45e2")
-theme_override_font_sizes/font_size = 165
+theme_override_font_sizes/font_size = 135
 text = "      QUACKY
   CLICKER"
 vertical_alignment = 1
 
-[node name="Credits" type="Control" parent="."]
+[node name="Credits" type="Control" parent="." unique_id=4272279]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BackgroundColor" type="ColorRect" parent="Credits"]
+[node name="BackgroundColor" type="ColorRect" parent="Credits" unique_id=560809647]
 z_index = 2
 layout_mode = 0
 offset_left = -39.0
@@ -122,7 +123,7 @@ offset_right = 1956.0
 offset_bottom = 1096.0
 color = Color(0.46666667, 0.3529412, 0.75686276, 1)
 
-[node name="1stLabel" type="Label" parent="Credits"]
+[node name="1stLabel" type="Label" parent="Credits" unique_id=1438824936]
 z_index = 2
 layout_mode = 0
 offset_left = 100.0
@@ -136,7 +137,7 @@ text = "A game made by..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2ndLabel" type="Label" parent="Credits"]
+[node name="2ndLabel" type="Label" parent="Credits" unique_id=206487849]
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 layout_mode = 0
@@ -151,7 +152,7 @@ text = "Cherci Adelin"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TopLayer" type="ColorRect" parent="."]
+[node name="TopLayer" type="ColorRect" parent="." unique_id=1435751342]
 visible = false
 z_index = 5
 layout_mode = 0
@@ -160,6 +161,10 @@ offset_top = -18.0
 offset_right = 1949.0
 offset_bottom = 1117.0
 color = Color(0, 0, 0, 1)
+
+[node name="AmbientSound" type="AudioStreamPlayer" parent="." unique_id=206315303]
+stream = ExtResource("8_yhxw7")
+parameters/looping = false
 
 [connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]

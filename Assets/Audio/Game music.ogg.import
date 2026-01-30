@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ctpvowo8hp4t5"
+path="res://.godot/imported/Game music.ogg-60a833278825f0668b70289a70f35ae5.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Game music.ogg"
+dest_files=["res://.godot/imported/Game music.ogg-60a833278825f0668b70289a70f35ae5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

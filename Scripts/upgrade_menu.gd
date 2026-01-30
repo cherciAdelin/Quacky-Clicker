@@ -12,6 +12,8 @@ var multiplied_upgrade_active := false
 var multiplied_upgrade_value := 1.0
 
 @onready var Menu = $Control
+@onready var bought_sfx = $BoughtSFX
+
 @onready var clickup1Cost = $Control/UpgradesContainer/VBoxContainer/click_up1/Cost
 @onready var clickup2Cost = $Control/UpgradesContainer/VBoxContainer/click_up2/Cost
 @onready var clickup3Cost = $Control/UpgradesContainer/VBoxContainer/click_up3/Cost
@@ -63,6 +65,7 @@ func set_upgrade_states_default(upgrade: String, LvLlabel: Control, DetailsLabel
 ## from the autoclick_up_menu script
 
 func upgrade_click(upgrade: String, cost_inc: int, val_inc: float, threshold: int, next_upgrade: Control, dialogue: int):
+	bought_sfx.play()
 	Global.currency -= Global.upgrades[upgrade]["cost"]
 	Global.upgrades[upgrade]["cost"] += cost_inc
 	Global.upgrades[upgrade]["level"] += 1

@@ -7,6 +7,8 @@ extends Control
 signal questMenuClose
 signal questComplete(qNumber: int)
 
+@onready var claim_sfx = $ClaimSFX
+
 @onready var quest1conditionLabel := $QuestContainer/VBoxContainer/quest_1/quest_conditions
 @onready var quest2conditionLabel := $QuestContainer/VBoxContainer/quest_2/quest_conditions
 @onready var quest3conditionLabel := $QuestContainer/VBoxContainer/quest_3/quest_conditions
@@ -182,36 +184,42 @@ func _on_main_quest_check() -> void:
 ## based on the quest number sent as parameter
 
 func _on_quest1_claim() -> void:
+	claim_sfx.play()
 	quest1button.disabled = true
 	quest1completed.visible = true
 	questComplete.emit(1)
 	Global.duck.speak(Global.text_monologue["Quest"][2], false)
 
 func _on_quest2_claim() -> void:
+	claim_sfx.play()
 	quest2button.disabled = true
 	quest2completed.visible = true
 	questComplete.emit(2)
 	Global.duck.speak(Global.text_monologue["Quest"][4], false)
 
 func _on_quest3_claim() -> void:
+	claim_sfx.play()
 	quest3button.disabled = true
 	quest3completed.visible = true
 	questComplete.emit(3)
 	Global.duck.speak(Global.text_monologue["Quest"][6], false)
 
 func _on_quest4_claim() -> void:
+	claim_sfx.play()
 	quest4button.disabled = true
 	quest4completed.visible = true
 	questComplete.emit(4)
 	Global.duck.speak(Global.text_monologue["Quest"][8], false)
 
 func _on_quest5_claim() -> void:
+	claim_sfx.play()
 	quest5button.disabled = true
 	quest5completed.visible = true
 	questComplete.emit(5)
 	Global.duck.speak(Global.text_monologue["Quest"][10], false)
 
 func _on_quest6_claim() -> void:
+	claim_sfx.play()
 	quest6button.disabled = true
 	quest6completed.visible = true
 	questComplete.emit(6)

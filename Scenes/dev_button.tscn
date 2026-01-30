@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bwdyo61rgb1uj"]
+
+[ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="1_su1j2"]
+[ext_resource type="Texture2D" uid="uid://cij31lkh2d2e" path="res://Assets/Sprites/Other/IconsSpriteSheet2.png" id="2_d5u1a"]
+[ext_resource type="Script" uid="uid://ccu6eptjttq3n" path="res://Scripts/dev_button.gd" id="3_d5u1a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bokj8"]
+atlas = ExtResource("2_d5u1a")
+region = Rect2(21.204578, 2523.5525, 763.61975, 762.29956)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b783p"]
+texture = SubResource("AtlasTexture_bokj8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_najns"]
+atlas = ExtResource("2_d5u1a")
+region = Rect2(1688.8898, 2523.5837, 762.40173, 761.94434)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t2w1b"]
+texture = SubResource("AtlasTexture_najns")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xias"]
+atlas = ExtResource("2_d5u1a")
+region = Rect2(853.6255, 2521.823, 763.1277, 761.572)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0cncf"]
+texture = SubResource("AtlasTexture_2xias")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jhe0g"]
+
+[node name="DevButton" type="Button" unique_id=1915534069]
+offset_right = 45.0
+offset_bottom = 45.0
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_su1j2")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxTexture_b783p")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_t2w1b")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0cncf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jhe0g")
+script = ExtResource("3_d5u1a")
+
+[node name="Label" type="Label" parent="." unique_id=362706863]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 14.0
+offset_right = 69.0
+offset_bottom = 48.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/outline_size = 4
+text = "+$$$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

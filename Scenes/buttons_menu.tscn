@@ -1,9 +1,10 @@
-[gd_scene load_steps=51 format=3 uid="uid://b3x168mtsjgq3"]
+[gd_scene format=3 uid="uid://b3x168mtsjgq3"]
 
 [ext_resource type="Texture2D" uid="uid://c4ehevte6h1m8" path="res://Assets/Sprites/Other/LabelSpriteSheet2.png" id="1_l1wg4"]
 [ext_resource type="Script" uid="uid://c48arewkmfpw8" path="res://Scripts/buttons_menu.gd" id="1_r5apd"]
 [ext_resource type="Texture2D" uid="uid://cij31lkh2d2e" path="res://Assets/Sprites/Other/IconsSpriteSheet2.png" id="2_inh3s"]
 [ext_resource type="Texture2D" uid="uid://py1kvbnxnso5" path="res://Assets/Sprites/Other/IconsSpriteSheet.png" id="3_m6e8v"]
+[ext_resource type="AudioStream" uid="uid://b728k77i2h3bd" path="res://Assets/Audio/menuMovingSound.ogg" id="5_kuavi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uj0ok"]
 atlas = ExtResource("1_l1wg4")
@@ -159,7 +160,7 @@ texture = SubResource("AtlasTexture_vl7s3")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ol2go"]
 
-[node name="ButtonMenu" type="Control"]
+[node name="ButtonMenu" type="Control" unique_id=1566933858]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -170,7 +171,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r5apd")
 
-[node name="Sprite" type="TextureRect" parent="."]
+[node name="Sprite" type="TextureRect" parent="." unique_id=367065922]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 11.0
@@ -178,14 +179,14 @@ offset_right = 2190.0
 offset_bottom = 595.0
 texture = SubResource("AtlasTexture_uj0ok")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=956802116]
 layout_mode = 0
 offset_left = 83.0
 offset_top = 90.0
 offset_right = 2113.0
 offset_bottom = 518.0
 
-[node name="ClickUpMenu" type="Button" parent="HBoxContainer"]
+[node name="ClickUpMenu" type="Button" parent="HBoxContainer" unique_id=1855020586]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_qfavn")
@@ -194,7 +195,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_rf7jh")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_uyb61")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_064ll")
 
-[node name="DuckUpMenu" type="Button" parent="HBoxContainer"]
+[node name="DuckUpMenu" type="Button" parent="HBoxContainer" unique_id=35177814]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_838ek")
@@ -203,7 +204,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_1dcvo")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_i7kjx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sag0e")
 
-[node name="QuestMenu" type="Button" parent="HBoxContainer"]
+[node name="QuestMenu" type="Button" parent="HBoxContainer" unique_id=85507976]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_1j4vm")
@@ -212,7 +213,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_bfgvb")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_bvuc7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_iw484")
 
-[node name="StatsMenu" type="Button" parent="HBoxContainer"]
+[node name="StatsMenu" type="Button" parent="HBoxContainer" unique_id=977111850]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_kuavi")
@@ -221,7 +222,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_g4j5t")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_dx6ho")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lxq16")
 
-[node name="OptionsMenu" type="Button" parent="HBoxContainer"]
+[node name="OptionsMenu" type="Button" parent="HBoxContainer" unique_id=1809019731]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_c05hx")
@@ -229,6 +230,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_fewjm")
 theme_override_styles/hover = SubResource("StyleBoxTexture_opl43")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_xp826")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ol2go")
+
+[node name="MenuMovementSFX" type="AudioStreamPlayer" parent="." unique_id=2106849636]
+stream = ExtResource("5_kuavi")
 
 [connection signal="pressed" from="HBoxContainer/ClickUpMenu" to="." method="_on_click_up_menu_pressed"]
 [connection signal="pressed" from="HBoxContainer/DuckUpMenu" to="." method="_on_duck_up_menu_pressed"]

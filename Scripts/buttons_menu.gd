@@ -18,7 +18,7 @@ signal statsMenuOpen
 @onready var questMenu = $HBoxContainer/QuestMenu
 @onready var optionsMenu = $HBoxContainer/OptionsMenu
 @onready var statsMenu = $HBoxContainer/StatsMenu
-
+@onready var menu_movement_sfx = $MenuMovementSFX
 
 
 
@@ -34,14 +34,17 @@ signal statsMenuOpen
 func _on_click_up_menu_pressed() -> void:
 	clickMenu.disabled = true
 	clickMenuOpen.emit()
+	menu_movement_sfx.play()
 
 func _on_duck_up_menu_pressed() -> void:
 	duckMenu.disabled = true
 	duckMenuOpen.emit()
+	menu_movement_sfx.play()
 
 func _on_quest_menu_pressed() -> void:
 	questMenu.disabled = true
 	questMenuOpen.emit()
+	menu_movement_sfx.play()
 
 func _on_options_menu_pressed() -> void:
 	optionsMenu.disabled = true
@@ -50,6 +53,7 @@ func _on_options_menu_pressed() -> void:
 func _on_stats_menu_pressed() -> void:
 	statsMenu.disabled = true
 	statsMenuOpen.emit()
+	menu_movement_sfx.play()
 
 
 ## these functions re-activate the buttons after the corresponding menu has been closed
@@ -57,15 +61,19 @@ func _on_stats_menu_pressed() -> void:
 
 func _on_main_click_menu_close() -> void:
 	clickMenu.disabled = false
+	menu_movement_sfx.play()
 
 func _on_main_duck_menu_close() -> void:
 	duckMenu.disabled = false
+	menu_movement_sfx.play()
 
 func _on_main_quest_menu_close() -> void:
 	questMenu.disabled = false
+	menu_movement_sfx.play()
 
 func _on_main_options_menu_close() -> void:
 	optionsMenu.disabled = false
 
 func _on_main_stats_menu_close() -> void:
 	statsMenu.disabled = false
+	menu_movement_sfx.play()

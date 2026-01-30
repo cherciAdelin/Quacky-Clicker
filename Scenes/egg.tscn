@@ -1,30 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://b88b3ell8pfih"]
+[gd_scene format=3 uid="uid://b88b3ell8pfih"]
 
 [ext_resource type="Script" uid="uid://bveltrx3av83w" path="res://Scripts/egg.gd" id="1_1iuog"]
 [ext_resource type="Texture2D" uid="uid://k26l1kr27um3" path="res://Assets/Sprites/Egg/Egg_full.png" id="2_85tk0"]
 [ext_resource type="PackedScene" uid="uid://dsx7l5f8hg2nn" path="res://Scenes/click_animation.tscn" id="2_y3rox"]
 [ext_resource type="FontFile" uid="uid://w54u7a0mjjv7" path="res://Assets/Sprites/Fonts/Cute Dino.ttf" id="3_85tk0"]
 [ext_resource type="PackedScene" uid="uid://1eug5q7apiu2" path="res://Scenes/egg_shell_burst.tscn" id="4_io5x2"]
+[ext_resource type="AudioStream" uid="uid://cnprcj6y3ylop" path="res://Assets/Audio/EggCrackSound.ogg" id="6_fb18l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1iuog"]
 radius = 907.0
 height = 2424.0
 
-[node name="Egg" type="Area2D"]
+[node name="Egg" type="Area2D" unique_id=1832410822]
 script = ExtResource("1_1iuog")
 clickAnimation = ExtResource("2_y3rox")
 breakParticles = ExtResource("4_io5x2")
 
-[node name="egg_sprite" type="Sprite2D" parent="."]
+[node name="egg_sprite" type="Sprite2D" parent="." unique_id=960017332]
 position = Vector2(87, -55)
 scale = Vector2(1.015, 1)
 texture = ExtResource("2_85tk0")
 
-[node name="egg_collision_shape" type="CollisionShape2D" parent="."]
+[node name="egg_collision_shape" type="CollisionShape2D" parent="." unique_id=1977648650]
 position = Vector2(96, -2)
 shape = SubResource("CapsuleShape2D_1iuog")
 
-[node name="egg_hp" type="Label" parent="."]
+[node name="egg_hp" type="Label" parent="." unique_id=1637660561]
 offset_left = -1097.0
 offset_top = -1536.0
 offset_right = 1365.0
@@ -37,7 +38,10 @@ text = "Click the egg!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="autoclicker" type="Timer" parent="."]
+[node name="autoclicker" type="Timer" parent="." unique_id=1818973543]
+
+[node name="EggCrackSFX" type="AudioStreamPlayer" parent="." unique_id=2027687006]
+stream = ExtResource("6_fb18l")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
